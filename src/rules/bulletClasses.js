@@ -1,0 +1,1 @@
+export default ['DASH', 'DOT'];

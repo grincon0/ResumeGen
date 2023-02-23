@@ -10,7 +10,7 @@ const Section = ({title = '', data}) => {
   return (
     <div className="c-section">
       <SectionTitle titleString={title} />
-      <SectionItemOutput />
+      <SectionItemOutput sectionItemData={data} />
     </div>);
 }
 
