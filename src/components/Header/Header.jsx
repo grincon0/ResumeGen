@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Header.scss';
 
-const Header = (contactData) => {
+const Header = ({contactData}) => {
 
   if (!contactData) {
     console.log('no contact data found');

@@ -1,11 +1,17 @@
 import React from 'react';
 import SectionTitle from '../Classic/SectionTitle/SectionTitle';
+import SectionItemOutput from './_helper_components/SectionItemOutput';
 
-const Section = (title = '', data) => {
+const Section = ({title = '', data}) => {
 
-  return (<div className="c-section">
-    <SectionTitle titleString={title} />
-  </div>);
+  console.log('section title', title);
+  console.log('section data', data);
+
+  return (
+    <div className="c-section">
+      <SectionTitle titleString={title} />
+      <SectionItemOutput />
+    </div>);
 }
 
 export default Section;
