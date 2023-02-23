@@ -15,8 +15,7 @@
     },
     {
       "name": "Cox Communications",
-      "bullets": ["Developed and styled landing page, dashboards, and multiple UI components using Angular, TypeScript, and SASS for an enterprise Spring Boot application.", "Collaborated with onshore and offshore teams in identifying and resolving issues within the application.",
-      ],
+      "bullets": ["Developed and styled landing page, dashboards, and multiple UI components using Angular, TypeScript, and SASS for an enterprise Spring Boot application.", "Collaborated with onshore and offshore teams in identifying and resolving issues within the application."],
       "isContract": 1,
       "contractor": "Capgemini Sogeti",
       "role": "Software Engineering Consultant",
@@ -37,12 +36,13 @@
       "bullets": ["Developing all text, meshes, and particle emitter components that would render when triggered by animage marker.","Created reusable classes for ViroReact’s particle system that streamline particle effects development", "Constructed chained animations that brought the 3D components to life and greatly improve the user experience.", "Utilized: JavaScript, ViroReact AR, React Native, Node, Express, Google Cloud Vision"  ]
     }
   ],
-  "Contact": {
+  "contact": {
     "email": "georgerincon2@gmail.com",
+    "name": "George Rincon",
     "phone": "678-778-4904",
     "address": "1802 Summerbrook Dr, Sandy Springs, GA, 30350"
   },
-  "Education": {
+  "education": {
     "content": [
       {
         "name": "Georgia Institue of Technology",
@@ -58,7 +58,7 @@
       }
     ]
   },
-  "Skills": [
+  "skills": [
     "Javascript (React, Node, jQuery), Git, React Native, HTML5, CSS/SASS, GraphQL, SQL (MySQL), AR (ViroReact)"
   ]
 }
