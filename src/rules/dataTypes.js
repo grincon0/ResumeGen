@@ -1,0 +1,7 @@
+export default {
+  WORK: 'WORK',
+  PROJECTS: 'PROJECT',
+  CONTACT: 'CONTACT',
+  EDUCATION: 'EDUCATION',
+  SKILLS: 'SKILL'
+};

@@ -1,48 +1,66 @@
 {
-  "companies": [
-    {
-      "name": "Cox Enterprises",
-      "bullets": [
-        "Spearheaded the development of robust features on websites that receive hundred of thousands of visitors monthly using React, Arc Publishing CMS, and hooks.",
-        "Worked closely with design team in modernizing the user experience and responsive interfaces for AJC.com and sister-sites.",
-        "Collaborated with stakeholders and vendors in ensuring time-sensitive features where deployed before deadlines.",
-        "Developed paywalls, ad-blocker checks, and subscriber initiatives that increased digital revenue for AJC.com."
-      ],
-      "isContract": 1,
-      "contractor": "Brooksource",
-      "role": "Web Developer II",
-      "dateString": "Sept 2019 - Feb 2023"
+  "companies": {
+    "meta": {
+      "dataType": "WORK"
     },
-    {
-      "name": "Cox Communications",
-      "bullets": ["Developed and styled landing page, dashboards, and multiple UI components using Angular, TypeScript, and SASS for an enterprise Spring Boot application.", "Collaborated with onshore and offshore teams in identifying and resolving issues within the application."],
-      "isContract": 1,
-      "contractor": "Capgemini Sogeti",
-      "role": "Software Engineering Consultant",
-      "dateString": "April 2019 - Sept 2019"
-    }
-  ],
-  "projects": [
-    {
-      "name": "Pixel Smash",
-      "bullets": ["Designed and programmed all combat mechanics for fast paced action", "Spearheaded the creation of the CPU combat logic for ‘player vs computer’ battling in single-player mode.", "Designed the Sound Test feature that show-cased music from the game." ]
+    "content": [
+      {
+        "name": "Cox Enterprises",
+        "bullets": [
+          "Spearheaded the development of robust features on websites that receive hundred of thousands of visitors monthly using React, Arc Publishing CMS, and hooks.",
+          "Worked closely with design team in modernizing the user experience and responsive interfaces for AJC.com and sister-sites.",
+          "Collaborated with stakeholders and vendors in ensuring time-sensitive features where deployed before deadlines.",
+          "Developed paywalls, ad-blocker checks, and subscriber initiatives that increased digital revenue for AJC.com."
+        ],
+        "isContract": 1,
+        "contractor": "Brooksource",
+        "role": "Web Developer II",
+        "dateString": "Sept 2019 - Feb 2023"
+      },
+      {
+        "name": "Cox Communications",
+        "bullets": ["Developed and styled landing page, dashboards, and multiple UI components using Angular, TypeScript, and SASS for an enterprise Spring Boot application.", "Collaborated with onshore and offshore teams in identifying and resolving issues within the application."],
+        "isContract": 1,
+        "contractor": "Capgemini Sogeti",
+        "role": "Software Engineering Consultant",
+        "dateString": "April 2019 - Sept 2019"
+      }
+    ]
+  },
+  "projects": {
+    "meta": {
+      "dataType": "PROJECT"
     },
-    {
-      "name": "Service Status Dashboard",
-      "bullets": []
-    },
-    {
-      "name": "Ad-Vision",
-      "bullets": ["Developing all text, meshes, and particle emitter components that would render when triggered by animage marker.","Created reusable classes for ViroReact’s particle system that streamline particle effects development", "Constructed chained animations that brought the 3D components to life and greatly improve the user experience.", "Utilized: JavaScript, ViroReact AR, React Native, Node, Express, Google Cloud Vision"  ]
-    }
-  ],
+    "content": [
+      {
+        "name": "Pixel Smash",
+        "bullets": ["Designed and programmed all combat mechanics for fast paced action", "Spearheaded the creation of the CPU combat logic for ‘player vs computer’ battling in single-player mode.", "Designed the Sound Test feature that show-cased music from the game." ]
+      },
+      {
+        "name": "Service Status Dashboard",
+        "bullets": []
+      },
+      {
+        "name": "Ad-Vision",
+        "bullets": ["Developing all text, meshes, and particle emitter components that would render when triggered by animage marker.","Created reusable classes for ViroReact’s particle system that streamline particle effects development", "Constructed chained animations that brought the 3D components to life and greatly improve the user experience.", "Utilized: JavaScript, ViroReact AR, React Native, Node, Express, Google Cloud Vision"  ]
+      }
+    ]
+  },
   "contact": {
-    "email": "georgerincon2@gmail.com",
-    "name": "George Rincon",
-    "phone": "678-778-4904",
-    "address": "1802 Summerbrook Dr, Sandy Springs, GA, 30350"
+    "meta": {
+      "dataType": "CONTACT"
+    },
+    "content": {
+      "email": "georgerincon2@gmail.com",
+      "name": "George Rincon",
+      "phone": "678-778-4904",
+      "address": "1802 Summerbrook Dr, Sandy Springs, GA, 30350"
+    }
   },
   "education": {
+    "meta": {
+      "dataType": "EDUCATION"
+    },
     "content": [
       {
         "name": "Georgia Institue of Technology",
@@ -54,11 +72,24 @@
         "name": "University of Georgia",
         "dateString": "Aug 2011 - May 2016",
         "type" : "BBA in Risk Management",
-        "locale": "Atehns, GA"
+        "locale": "Athens, GA"
       }
     ]
   },
-  "skills": [
-    "Javascript (React, Node, jQuery), Git, React Native, HTML5, CSS/SASS, GraphQL, SQL (MySQL), AR (ViroReact)"
-  ]
+  "skills": {
+    "meta": {
+      "dataType": "SKILL",
+      "layoutType": "MULTI"
+    },
+    "content": [
+      "Javascript (React, Node, jQuery), Git, React Native, HTML5, CSS/SASS, GraphQL, SQL (MySQL), AR (ViroReact)"
+    ],
+    "categories": {
+      "languages": ["JavaScript", "TypeScript", "Java", "C#", "SQL", "XML (schema)", "MongoDB", "Node", "Express"],
+      "front_end": ["Angular 2+", "React.js", "React Native", "HTML", "CSS", "SASS", "Bootstrap", "jQuery", "Handlebars.js", "ViroReact"],
+      "cloud": ["AWS - S3, Lambda, DynamoDB", "Google Cloud - Firebase"],
+      "tools": ["Visual Studio Code", "Eclipse", "Git", "JIRA", "Spring boot"],
+      "other": []
+    }
+  }
 }
