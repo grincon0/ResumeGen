@@ -23,7 +23,7 @@
         "bullets": ["Developed and styled landing page, dashboards, and multiple UI components using Angular, TypeScript, and SASS for an enterprise Spring Boot application.", "Collaborated with onshore and offshore teams in identifying and resolving issues within the application."],
         "isContract": 1,
         "contractor": "Capgemini Sogeti",
-        "role": "Software Engineering Consultant",
+        "role": "Software Engineer",
         "dateString": "April 2019 - Sept 2019"
       }
     ]
@@ -37,19 +37,19 @@
       {
         "name": "Pixel Smash",
         "desc": "Online fighting game powered by Node and Phaser where you win by knocking your opponent off stage.",
-        "divider": "–",
+        "divider": " – ",
         "bullets": ["Designed and programmed all combat mechanics for fast paced action", "Spearheaded the creation of the CPU combat logic for ‘player vs computer’ battling in single-player mode.", "Designed the Sound Test feature that show-cased music from the game." ]
       },
       {
         "name": "Service Status Dashboard",
         "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "divider": "–",
+        "divider": " – ",
         "bullets": ["In ante metus dictum at tempor commodo ullamcorper.", "Et tortor at risus viverra adipiscing. Ipsum a arcu cursus vitae congue mauris rhoncus aenean vel. Mattis enim ut tellus elementum sagittis."]
       },
       {
         "name": "Ad-Vision",
         "desc": "Augmented Reality Mobile Application that allows users to take snapshots of objects and uses cloud-based machine learning services to return relevant information on the object images taken.",
-        "divider": "–",
+        "divider": " – ",
         "bullets": ["Developing all text, meshes, and particle emitter components that would render when triggered by animage marker.","Created reusable classes for ViroReact’s particle system that streamline particle effects development", "Constructed chained animations that brought the 3D components to life and greatly improve the user experience.", "Utilized: JavaScript, ViroReact AR, React Native, Node, Express, Google Cloud Vision"  ]
       }
     ]

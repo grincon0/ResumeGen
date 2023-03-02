@@ -30,14 +30,21 @@
     }
 
     &.is-work {
+
       .item-headline {
         margin-bottom: 25px;
+        text-align: left;
+
+        span:not(:first-child) {
+          margin-left: auto;
+        }
       }
     }
 
     &.is-project {
       display: flex;
       flex-direction: column;
+      margin-bottom: 10px;
 
       .item-headline {
         display: block;
@@ -49,6 +56,10 @@
         .c-project-title {
           float: left;
           display: flex;
+
+          span {
+            white-space: break-spaces;
+          }
         }
 
         .project-desc {
@@ -76,7 +87,7 @@
     .item-headline {
       width: 100%;
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
       font-weight: bold;
 
       .role,
@@ -93,6 +104,8 @@
 
       .bullet-list-item {
         padding-bottom: 7px;
+        text-align: left;
+        letter-spacing: .2px;
       }
 
       li::before {
