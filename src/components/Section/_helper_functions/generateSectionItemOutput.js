@@ -5,17 +5,11 @@ import rules from '../../../rules/dataTypes';
 import '../style.scss';
 
 const generateSectionItemOutput = (sectionItemData = [], type) => {
-  console.log('section item data to be mapped', sectionItemData);
   const { dataType, layoutType = '' } = sectionItemData?.meta;
   const itemClassName = dataType.toLowerCase();
   const isClassicSkillList = dataType === rules.SKILLS;
-  console.log('is classic skill likst', isClassicSkillList);
   let settings = null;
   let ItemOutputArray = [];
-  let tempOutput = [];
-
-
-  console.log('section type', dataType);
 
   if (!sectionItemData?.content) return null;
   if (isClassicSkillList) settings = {
@@ -47,7 +41,7 @@ const generateSectionItemOutput = (sectionItemData = [], type) => {
                     <span>{`${item.divider || ''}`}</span>
                   </div>
                   <span className="project-desc">{`${item.desc || ''}`}</span>
-                </>) : (<><span className="role">{item.role}</span>
+                </>) : (<><span className={`${dataType === rules.EDUCATION ? 'locale' : 'role'}`}>{`${item.role || item.locale}`}</span>
                   <span className="company">{item.name}</span>
                   <span className="date">{item.dateString}</span></>)
             }

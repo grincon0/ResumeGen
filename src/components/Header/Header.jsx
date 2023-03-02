@@ -16,7 +16,7 @@ const Header = ({ contactData }) => {
         <p>{contactData.content.address}</p>
       </div>
       <div className="name">
-        <p>{contactData.content.name}</p>
+        <h1>{contactData.content.name}</h1>
       </div>
       <div className="contact">
         <p>{contactData.content.phone}</p>

@@ -5,9 +5,14 @@
 
   &.top-bottom-border {
     border-top: 1px solid black;
+
+    .title {
+      margin: 3px 0;
+    }
   }
 
   .title {
     text-align: left;
+    margin-bottom: 5px;
   }
 }
