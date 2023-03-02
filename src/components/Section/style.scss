@@ -1,4 +1,23 @@
 .c-section {
+
+  .c-skill {
+    display: flex;
+
+    .skill-title {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .skill-row {
+      display: flex;
+      margin-left: 5px;
+
+      li {
+
+      }
+    }
+  }
+
   .c-item-output {
     &.is-work {
       .item-headline {

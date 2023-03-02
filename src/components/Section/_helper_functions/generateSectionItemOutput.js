@@ -27,7 +27,7 @@ const generateSectionItemOutput = (sectionItemData = [], type) => {
   if (isClassicSkillList) {
     ItemOutputArray = Object.entries(sectionItemData.categories).map(([key, value]) => (
       <div className="c-skill" key={key}>
-        <h3>{key}</h3>
+        <h3 className="skill-title">{`${key}: `}</h3>
         <SkillListRow data={value} />
       </div>
     ));

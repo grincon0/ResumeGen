@@ -8,7 +8,8 @@ const SkillListRow = ({ data }) => {
       {
         data.map((skill, i) => {
           console.log('skill', skill);
-          return <li key={i}>{skill}</li>;
+          const isLastItem = i === data.length - 1;
+          return <li key={i}>{`${skill}${isLastItem ? '' : ', '}`}</li>;
         })
       }
     </ul>
