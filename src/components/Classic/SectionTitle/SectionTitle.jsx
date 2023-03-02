@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './SectionTitle.scss';
 
-const SectionTitle = ({titleString}) => {
+const SectionTitle = ({ titleString, data }) => {
+  const { meta } = data;
+  const { hasTopBottomBorder } = meta;
 
   console.log(' sssection title string', titleString);
 
   return (
-    <div className="c-section-title">
-      <div>{`${titleString}`}</div>
+    <div className={`c-section-title ${hasTopBottomBorder ? 'top-bottom-border' : ''}`}>
+      <div className="title">{`${titleString}`}</div>
     </div>
   );
 };

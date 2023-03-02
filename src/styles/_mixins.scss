@@ -1,3 +1,13 @@
+/* Breakpoints: */
+$breakpoint: (
+  mobile: 0,
+  mobile-sm: 400px,
+  tablet: 768px,
+  desktop-sm: 1024px,
+  desktop-md: 1200px,
+  desktop-lg: 1280px,
+) !default;
+
 @mixin text-style($size, $line-height, $font: "") {
   font-size: $size;
   line-height: $line-height;
@@ -10,5 +20,49 @@
     font-family: "Average", "Georgia", serif;
   } @else if $font != "" {
     font-family: $font, "Arial", sans-serif;
+  }
+}
+
+@mixin breakpoint($point) {
+    @if $point == mobile-sm {
+
+      @media only screen and (min-width: map-get($breakpoint, mobile-sm)) {
+        @content;
+      }
+    }
+
+    @if $point == tablet {
+
+      @media only screen and (min-width: map-get($breakpoint, tablet)) {
+        @content;
+      }
+    }
+
+    @if $point == desktop-sm {
+
+      @media only screen and (min-width: map-get($breakpoint, desktop-sm)) {
+        @content;
+      }
+    }
+
+    @if $point == desktop-md {
+
+      @media only screen and (min-width: map-get($breakpoint, desktop-md)) {
+        @content;
+      }
+    }
+
+    @if $point == desktop-lg {
+
+      @media only screen and (min-width: map-get($breakpoint, desktop-lg)) {
+        @content;
+      }
+    }
+}
+
+@mixin between-breakpoints($pointA, $pointB) {
+
+  @media only screen and (min-width: map-get($breakpoint, $pointA)) and (max-width: map-get($breakpoint, $pointB) - 1) {
+    @content;
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Header.scss';
 
-const Header = ({contactData}) => {
+const Header = ({ contactData }) => {
   console.log('contact data', contactData);
 
   if (!contactData?.content) {
@@ -12,11 +12,15 @@ const Header = ({contactData}) => {
 
   return (
     <section className="c-header">
-      <p>{contactData.content.email}</p>
-      <p>{contactData.content.name}</p>
-      <div>
-        <p>{contactData.content.phone}</p>
+      <div class="address">
         <p>{contactData.content.address}</p>
+      </div>
+      <div className="name">
+        <p>{contactData.content.name}</p>
+      </div>
+      <div className="contact">
+        <p>{contactData.content.phone}</p>
+        <p>{contactData.content.email}</p>
       </div>
     </section>
   );

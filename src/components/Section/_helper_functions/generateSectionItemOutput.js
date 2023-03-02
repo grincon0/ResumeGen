@@ -1,12 +1,13 @@
 import React from 'react';
 import BulletList from '../_helper_components/BulletList';
-import SkillList from '../_helper_components/SkillList';
 import SkillListRow from '../_helper_components/SkillListRow';
 import rules from '../../../rules/dataTypes';
+import '../style.scss';
 
 const generateSectionItemOutput = (sectionItemData = [], type) => {
   console.log('section item data to be mapped', sectionItemData);
   const { dataType, layoutType = '' } = sectionItemData?.meta;
+  const itemClassName = dataType.toLowerCase();
   const isClassicSkillList = dataType === rules.SKILLS;
   console.log('is classic skill likst', isClassicSkillList);
   let settings = null;
@@ -24,44 +25,33 @@ const generateSectionItemOutput = (sectionItemData = [], type) => {
   }
 
   if (isClassicSkillList) {
-    /*     for (const category in sectionItemData.categories) {
-          console.log('category', sectionItemData.categories[category]);
-          ItemOutputArray.push(<SkillListRow data={sectionItemData.categories[category]} />);
-    
-          
-        } */
-
-
     ItemOutputArray = Object.entries(sectionItemData.categories).map(([key, value]) => (
-      <div key={key}>
+      <div className="c-skill" key={key}>
         <h3>{key}</h3>
         <SkillListRow data={value} />
       </div>
     ));
-    /*     return (Object.entries(sectionItemData.categories).map(([key, value]) => (
-          <div key={key}>
-            <h3>{key}</h3>
-            <SkillListRow data={value} />
-          </div>
-        )))
-     */
-
-    console.log('itemOutputArray', ItemOutputArray);
 
     return ItemOutputArray;
-    // return <SkillList settings={settings} />
+
   } else {
     ItemOutputArray = sectionItemData.content.map((item) => {
       return (
-        <div className="c-item-output">
-          <div className="item-headline">
-            <span className="role">{item.role}</span>
-            <span className="company">{item.name}</span>
-            <span className="date">{item.dateString}</span>
+        <div className={`c-item-output is-${itemClassName}`}>
+          <div className={`item-headline`}>
+            {
+              dataType === rules.PROJECTS ? (
+                <>
+                  <div className="c-project-title">
+                    <p className="project-name">{`${item.name}`}</p>
+                    <span>{`${item.divider || ''}`}</span>
+                  </div>
+                  <span>{`${item.desc || ''}`}</span>
+                </>) : (<><span className="role">{item.role}</span>
+                  <span className="company">{item.name}</span>
+                  <span className="date">{item.dateString}</span></>)
+            }
           </div>
-          {/*         {
-            dataType === rules.SKILLS ? <BulletList bulletArr={item.bullets} dataType={dataType} />: <BulletList bulletArr={item.bullets} />
-          } */}
           {<BulletList bulletArr={item.bullets} />}
         </div>
       );

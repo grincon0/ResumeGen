@@ -4,14 +4,14 @@ const SkillListRow = ({ data }) => {
   console.log('skill list row data', data);
 
   return (
-    <div className="skill-row">
+    <ul className="skill-row">
       {
         data.map((skill, i) => {
           console.log('skill', skill);
-          return <p key={i}>{skill}</p>;
+          return <li key={i}>{skill}</li>;
         })
       }
-    </div>
+    </ul>
   )
 
 

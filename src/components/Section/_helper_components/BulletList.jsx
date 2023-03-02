@@ -8,11 +8,8 @@ const BulletList = ({ bulletArr, dataType }) => {
   const output = bulletArr.map((bulletData, i) => {
     console.log('bullet data', bulletData);
     return (
-      <div className="bullet-list-item">
-        <p>{bulletData}</p>
-      </div>
+      <li className="bullet-list-item">{bulletData}</li>
     );
-
   });
 
   return (
