@@ -46,7 +46,7 @@ const generateSectionItemOutput = (sectionItemData = [], type) => {
                     <p className="project-name">{`${item.name}`}</p>
                     <span>{`${item.divider || ''}`}</span>
                   </div>
-                  <span>{`${item.desc || ''}`}</span>
+                  <span className="project-desc">{`${item.desc || ''}`}</span>
                 </>) : (<><span className="role">{item.role}</span>
                   <span className="company">{item.name}</span>
                   <span className="date">{item.dateString}</span></>)
