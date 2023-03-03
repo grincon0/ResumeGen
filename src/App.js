@@ -3,6 +3,7 @@ import './App.css';
 import JSON from './JSON/resumeContent.json'
 import ClassicLayout from './components/layouts/classic/ClassicLayout';
 import ModernLayout from './components/layouts/modern/ModernLayout';
+import './styles/_global.scss';
 
 const resumeValue = 1;
 

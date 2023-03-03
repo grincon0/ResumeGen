@@ -4,8 +4,8 @@ import SkillListRow from '../_helper_components/SkillListRow';
 import rules from '../../../rules/dataTypes';
 import '../style.scss';
 
-const generateSectionItemOutput = (sectionItemData = [], type) => {
-  const { dataType, layoutType = '' } = sectionItemData?.meta;
+const generateSectionItemOutput = (sectionItemData = []) => {
+  const { dataType } = sectionItemData?.meta;
   const itemClassName = dataType.toLowerCase();
   const isClassicSkillList = dataType === rules.SKILLS;
   let settings = null;
@@ -20,10 +20,10 @@ const generateSectionItemOutput = (sectionItemData = [], type) => {
 
   if (isClassicSkillList) {
     ItemOutputArray = Object.entries(sectionItemData.categories).map(([key, value]) => (
-      <div className="c-skill" key={key}>
+      value.length > 1 ? <div className="c-skill" key={key}>
         <h3 className="skill-title">{`${key}: `}</h3>
         <SkillListRow data={value} />
-      </div>
+      </div> : ''
     ));
 
     return ItemOutputArray;

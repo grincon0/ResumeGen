@@ -13,10 +13,7 @@
       display: flex;
       margin-left: 5px;
       white-space: break-spaces;
-
-      li {
-
-      }
+      letter-spacing: .2px;
     }
   }
 
@@ -30,10 +27,12 @@
     }
 
     &.is-work {
+      margin-bottom: 15px;
 
       .item-headline {
         margin-bottom: 25px;
         text-align: left;
+        font-size: 1.1rem;
 
         span:not(:first-child) {
           margin-left: auto;
@@ -59,16 +58,19 @@
 
           span {
             white-space: break-spaces;
+            font-weight: 100;
           }
         }
 
         .project-desc {
           font-weight: 100;
+          line-height: 1.1;
         }
       }
 
       .c-bullet-list {
         text-align: left;
+        line-height: 1.2;
 
         li::before {
           content: " - ";
@@ -89,6 +91,7 @@
       display: flex;
       justify-content: space-between;
       font-weight: bold;
+      margin-bottom: 5px;
 
       .role,
       .company,
