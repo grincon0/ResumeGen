@@ -6,7 +6,7 @@
     },
     "content": [
       {
-        "name": "Cox Enterprises",
+        "name": "Cox Enterprises, Inc",
         "bullets": [
           "Spearheaded the development of robust features on websites that receive hundred of thousands of visitors monthly using React, Arc Publishing CMS, and hooks.",
           "Worked closely with design team in modernizing the user experience and responsive interfaces for AJC.com and sister-sites.",
@@ -16,15 +16,17 @@
         "isContract": 1,
         "contractor": "Brooksource",
         "role": "Web Developer II",
-        "dateString": "Sept 2019 - Feb 2023"
+        "dateString": "Sept 2019 - Feb 2023",
+        "setAgencyAsCompanyName": false
       },
       {
         "name": "Cox Communications",
         "bullets": ["Developed and styled landing page, dashboards, and multiple UI components using Angular, TypeScript, and SASS for an enterprise Spring Boot application.", "Collaborated with onshore and offshore teams in identifying and resolving issues within the application."],
         "isContract": 1,
         "contractor": "Capgemini Sogeti",
-        "role": "Software Engineer",
-        "dateString": "April 2019 - Sept 2019"
+        "role": "Angular Developer",
+        "dateString": "April 2019 - Sept 2019",
+        "setAgencyAsCompanyName": false
       }
     ]
   },

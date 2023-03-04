@@ -37,15 +37,18 @@ const generateSectionItemOutput = (sectionItemData = []) => {
               dataType === rules.PROJECTS ? (
                 <>
                   <div className="c-project-title">
-                    <p className="project-name">{`${item.name}`}</p>
-                    <span>{`${item.divider || ''}`}</span>
+                    <p className="project-name">{`${item?.name}`}</p>
+                    <span>{`${item?.divider || ''}`}</span>
                   </div>
-                  <span className="project-desc">{`${item.desc || ''}`}</span>
-                </>) : (<><span className={`${dataType === rules.EDUCATION ? 'locale' : 'role'}`}>{`${item.role || item.locale}`}</span>
-                  <span className="company">{item.name}</span>
-                  <span className="date">{item.dateString}</span></>)
+                  <span className="project-desc">{`${item?.desc || ''}`}</span>
+                </>) : (<>
+                  <span className={`${dataType === rules.EDUCATION ? 'locale' : 'role'}`}>{`${item?.role || item?.locale}`}</span>
+                  <span className="company">{(item?.setAgencyAsCompanyName && item?.contractor) || item?.name}</span>
+                  <span className="date">{item?.dateString}</span>
+                </>)
             }
           </div>
+          {item?.contractor && <span className="is-contractor">{`Contractor: ${!(item?.setAgencyAsCompanyName) && item?.contractor}`}</span>}
           {<BulletList bulletArr={item.bullets} />}
         </div>
       );

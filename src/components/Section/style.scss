@@ -3,6 +3,7 @@
 
   .c-skill {
     display: flex;
+    margin-bottom: 3px;
 
     .skill-title {
       font-weight: bold;
@@ -13,14 +14,14 @@
       display: flex;
       margin-left: 5px;
       white-space: break-spaces;
-      letter-spacing: .2px;
+
+      li {
+      }
     }
   }
 
   .c-item-output {
-
     &:last-child {
-
       .c-item-output .c-bullet-list .bullet-list-item {
         padding-bottom: 0;
       }
@@ -30,7 +31,7 @@
       margin-bottom: 15px;
 
       .item-headline {
-        margin-bottom: 25px;
+        margin-bottom: 3px;
         text-align: left;
         font-size: 1.1rem;
 
@@ -38,19 +39,26 @@
           margin-left: auto;
         }
       }
+
+      span.is-contractor {
+        float: left;
+        color: #3b3b3b;
+        font-style: italic;
+        margin-bottom: 5px;
+      }
     }
 
     &.is-project {
       display: flex;
       flex-direction: column;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
 
       .item-headline {
         display: block;
         width: auto;
         overflow: hidden;
         text-align: left;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
 
         .c-project-title {
           float: left;
@@ -80,7 +88,6 @@
     }
 
     &.is-education {
-
       .c-bullet-list {
         text-align: left;
       }
@@ -108,7 +115,7 @@
       .bullet-list-item {
         padding-bottom: 7px;
         text-align: left;
-        letter-spacing: .2px;
+        letter-spacing: 0.2px;
       }
 
       li::before {
