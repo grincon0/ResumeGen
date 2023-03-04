@@ -1,0 +1,34 @@
+@import '../../../styles/mixins';
+
+.c-landing {
+  margin: 0 auto;
+
+  @include breakpoint(desktop-sm) {
+    width: 50vw;
+    max-width: 575px;
+  }
+
+  .headline,
+  .sub-headline,
+  .call-to-action {
+    font-family: 'DM Sans', sans-serif;
+  }
+  
+  .headline {
+    font-weight: 700;
+    font-size: 2.188rem;
+  }
+
+  .sub-headline {
+    font-weight: 400;
+  }
+
+  .call-to-action {
+    font-style: italic;
+  }
+
+  button {
+    background-color: cadetblue;
+    color: cornsilk;
+  }
+}
