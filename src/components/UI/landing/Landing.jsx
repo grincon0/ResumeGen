@@ -8,7 +8,7 @@ const Landing = ({ propFunc }) => {
     if (!click) {
       return setClickState(true);
     }
-    setClickState(false)
+    setClickState(false);
   }
 
   const callPropFunction = () => {

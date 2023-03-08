@@ -26,9 +26,14 @@
       transform: translateX(70vw);
     }
 
+    .c-button button {
+      transform: translateX(80vw);
+    }
+
     .headline,
     .sub-headline,
-    .call-to-action {
+    .call-to-action,
+    .c-button button {
       opacity: 0;
     }
   }
@@ -57,7 +62,7 @@
     display: inline-block;
     height: auto;
     margin-bottom: 10px;
-    transition: all .8s, opacity .4s;
+    transition: transform .8s, opacity .4s;
   }
 
   .call-to-action {
@@ -66,7 +71,7 @@
     color: #cdcdcd;
     margin-bottom: 25px;
     font-size: 1.2rem;
-    transition: all .7s, opacity .3s;
+    transition: transform .7s, opacity .3s;
   }
 
   .c-button button {
@@ -78,5 +83,8 @@
     border-radius: 9px;
     font-size: 1rem;
     cursor: pointer;
+    transition: transform .6s, opacity .2s;
   }
+
+
 }

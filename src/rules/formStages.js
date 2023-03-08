@@ -1,0 +1,1 @@
+export default ['contact', 'work', 'project', 'education', 'skills' ];
