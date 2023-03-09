@@ -19,7 +19,7 @@ const Form = () => {
     <div className="c-resume-form">
       <div className="form-messaging"></div>
       <ProgressMeter />
-      <form id="resume-form">
+      <form id="resume-form" className="resume-form">
         {stageValue === 0 && (
           <>
             <label for="user-name">Name</label>
@@ -50,7 +50,7 @@ const Form = () => {
 
       </form>
       <div className="c-form-nav">
-        <button className="back-btn">Back</button>
+        { stageValue > 0 && <button className="back-btn">Back</button>}
         <button className="next-btn">Next</button>
       </div>
     </div>
