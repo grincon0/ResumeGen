@@ -9,7 +9,24 @@
 }
 
 .App {
+  overflow: hidden;
+
   div.hide {
     display: none;
+  }
+
+  .form-block {
+    position: relative;
+    transition: all .7s;
+
+    &.hide-form {
+      opacity: 0;
+      z-index: -1;
+    }
+
+    &.show-form {
+      opacity: 1;
+      z-index: 2;
+    }
   }
 }

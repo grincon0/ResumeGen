@@ -9,41 +9,69 @@
   }
 
   .form-messaging {
+
   }
 
   .resume-form {
     display: flex;
     flex-direction: column;
 
-    label,
-    input {
-      letter-spacing: $letter-space;
-    }
+    .segment {
+      transition: all .7s;
 
-    label {
-      color: #cdcdcd;
-      margin-bottom: 10px;
-    }
+      &.phase-zero,
+      &.phase-one,
+      &.phase-two,
+      &.phase-three {
 
-    input {
-      margin-bottom: 15px;
-      color: $white;
-      caret-color: $white;
-      margin-right: $ruler/2;
-      box-shadow: inset 2px 2px 5px $color-shadow,
-        inset -5px -5px 10px $color-white;
-      width: 100%;
-      box-sizing: border-box;
-      transition: all 0.2s ease-in-out;
-      appearance: none;
-      -webkit-appearance: none;
-      border: 0;
-      outline: 0;
-      font-size: $ruler;
-      border-radius: $ruler * 20;
-      padding: $ruler;
-      background-color: $color-bg;
-      text-shadow: 1px 1px 0 $color-white;
+        &.show {
+          transform: translateX(0);
+          z-index: 2;
+        }
+
+        &.hidden {
+          display: none;
+          transform: translateX(100vw);
+          z-index: -1;
+        }
+
+        &.transition-out {
+          transform: translateX(-100vw)
+        }
+      }
+  
+      label,
+      input {
+        letter-spacing: $letter-space;
+      }
+  
+      label {
+        display: inline-block;
+        color: #cdcdcd;
+        margin: 0 0 10px 15px;
+      }
+  
+      input {
+        margin-bottom: 15px;
+        color: $white;
+        caret-color: $white;
+        margin-right: $ruler/2;
+        box-shadow: inset 2px 2px 5px $color-shadow,
+          inset -5px -5px 10px $color-white;
+        width: 100%;
+        box-sizing: border-box;
+        transition: all 0.2s ease-in-out;
+        appearance: none;
+        -webkit-appearance: none;
+        border: 0;
+        outline: 0;
+        font-size: $ruler;
+        border-radius: $ruler * 20;
+        padding: $ruler;
+        background-color: $color-bg;
+        text-shadow: 1px 1px 0 $color-white;
+        margin-bottom: 20px;
+      }
     }
   }
 

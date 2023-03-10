@@ -1,10 +1,10 @@
 import React from 'react';
 import Form from '../form/Form';
 
-const FormWrapper = () => {
+const FormWrapper = ({pageValue}) => {
 
     return (<div className="c-form-wrapper">
-        <Form />
+        <Form pageValue={pageValue} />
     </div>);
 
 };

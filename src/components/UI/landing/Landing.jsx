@@ -12,6 +12,7 @@ const Landing = ({ propFunc }) => {
   }
 
   const callPropFunction = () => {
+    console.log('call prop fucn');
     propFunc();
   }
 

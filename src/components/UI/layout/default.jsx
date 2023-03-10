@@ -31,8 +31,8 @@ const DefaultLayout = () => {
         <div className={`${pageValue !== 1 ? 'hide' : ''}`}>
           <Landing propFunc={switchToForm} />
         </div>
-        <div className={`form-block ${pageValue !== 2 ? 'hide' : 'show'}`}>
-          <FormWrapper />
+        <div className={`form-block ${pageValue !== 2 ? 'hide-form' : 'show-form'}`}>
+          <FormWrapper pageValue={pageValue} />
         </div>
         {/* {resumeValue === 1 ? <ClassicLayout resumeData={JSON} /> : <ModernLayout resumeData={JSON} /> } */}
       </div>
