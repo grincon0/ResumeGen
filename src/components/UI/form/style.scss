@@ -25,18 +25,23 @@
       &.phase-three {
 
         &.show {
+          position: relative;
           transform: translateX(0);
+          opacity: 1;
           z-index: 2;
         }
 
         &.hidden {
-          display: none;
+          // display: none;
+          position: absolute;
+          opacity: 0;
           transform: translateX(100vw);
-          z-index: -1;
+          z-index: -2;
         }
 
         &.transition-out {
-          transform: translateX(-100vw)
+          transform: translateX(-100vw);
+          opacity: 0;
         }
       }
   
