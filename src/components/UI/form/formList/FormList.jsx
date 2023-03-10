@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import FormListItem from './formListItem/FormListItem';
-import { WorkListItem } from './formListItem/workListItem/WorkListItem';
+import { WorkListItem } from './formListItem/index';
 import FormListAdd from './FormListAdd/FormListAdd';
 
-const FormList = ({ transitionFunc, classOutputFunc }) => {
+const FormList = ({ transitionFunc = '', classOutputFunc }) => {
   /* Testing work list item first */
   const [formListItems, setFormListItems] = useState([<WorkListItem />]);
 
 
-/*   const handleAddListClick = () => {
+  const handleAddListClick = () => {
     console.log('adding new list');
     const newList = [...formListItems];
     newList.push(<WorkListItem />);
-    console.log('current list', currentList);
+    console.log('current list', newList);
     setFormListItems(newList);
-  }; */
+  };
 
 /*   useEffect(() => {
 
@@ -22,15 +22,15 @@ const FormList = ({ transitionFunc, classOutputFunc }) => {
   console.log('formListItemState', formListItems);
 
   return (
-    <div>
+    <>
       <div className="c-form-list">
         {formListItems}
       </div>
-{/*       <div className="c-form-list-add">
+      <div className="c-form-list-add">
         <FormListAdd propFunc={handleAddListClick} />
-      </div> */}
-    </div>
+      </div>
+    </>
   );
 };
 
-export default Formlist;
+export default FormList;

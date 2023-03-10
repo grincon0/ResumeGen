@@ -5,7 +5,7 @@ const FormListAdd = ({propFunc}) => {
 
   return (
     <div className="c-form-list-add">
-      <button onClick={propFunc}>+</button>
+      <i className="add-form-list" onClick={propFunc}>+</i>
     </div>
   )
 };

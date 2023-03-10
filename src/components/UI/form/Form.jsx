@@ -70,9 +70,10 @@ const Form = ({ pageValue }) => {
           <label for="email">Email</label>
           <input id="email" type="text" placeholder="Email Address" />
         </div>
-        <div id="work-exp" onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${handleClassOutput(1)}`}>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${handleClassOutput(1)}`}>
           <FormList />
         </div>
+        {/* <FormList transitionFunc={handleTransitionEnd} classOutputFunc={handleClassOutput(1)} /> */}
         {/*         <div id="projects" onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>
 
         </div> */}
