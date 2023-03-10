@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import formStage from '../../../rules/formStages';
 import FormList from './formList/FormList';
 import ProgressMeter from './progessMeter/ProgressMeter';
+import getResumeFormSection from './_helper_functions/getResumeFormSection';
 import './style.scss';
 
 const Form = ({ pageValue }) => {
@@ -42,13 +43,10 @@ const Form = ({ pageValue }) => {
     }
   };
 
-  /*   useEffect(() => {
-      if (formStageValue > 0 && hasFormInit && !isAnimating) {
-        let currentVal = formStageValue;
-        setformStageValue(currentVal + 1);
-      }
-  
-    }, [isAnimating, formStageValue]); */
+  useEffect(() => {
+      console.log('current Resume stage', getResumeFormSection(formStageValue));
+
+    }, [formStageValue]);
 
 
   console.log('isAnimating', isAnimating);
@@ -71,7 +69,16 @@ const Form = ({ pageValue }) => {
           <input id="email" type="text" placeholder="Email Address" />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${handleClassOutput(1)}`}>
-          <FormList />
+          <FormList formListType={getResumeFormSection(1)} />
+        </div>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>
+          <FormList formListType={getResumeFormSection(2)} />
+        </div>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${handleClassOutput(3)}`}>
+          <FormList formListType={getResumeFormSection(3)} />
+        </div>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${handleClassOutput(3)}`}>
+          <FormList formListType={getResumeFormSection(4)} />
         </div>
         {/* <FormList transitionFunc={handleTransitionEnd} classOutputFunc={handleClassOutput(1)} /> */}
         {/*         <div id="projects" onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>

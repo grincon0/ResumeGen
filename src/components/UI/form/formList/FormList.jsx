@@ -3,7 +3,7 @@ import FormListItem from './formListItem/FormListItem';
 import { WorkListItem } from './formListItem/index';
 import FormListAdd from './FormListAdd/FormListAdd';
 
-const FormList = ({ transitionFunc = '', classOutputFunc }) => {
+const FormList = ({ formListType }) => {
   /* Testing work list item first */
   const [formListItems, setFormListItems] = useState([<WorkListItem />]);
 
