@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import BulletItem from './bulletItem/BulletItem';
-import BulletTextArea from './BulletTextArea/BulletTextArea';
+import BulletItem from '../bulletItem/BulletItem';
+import BulletTextArea from '../BulletTextArea/BulletTextArea';
 
 const WorkListItem = ({ key, transitionFunc, classOutputFunc }) => {
   const [bulletList, setBulletList] = useState([]);

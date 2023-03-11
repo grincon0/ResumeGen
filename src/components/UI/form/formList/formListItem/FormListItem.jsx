@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormListItem = ({ key }) => {
+const FormListItem = ({ targetSection }) => {
 
   return (
     <>

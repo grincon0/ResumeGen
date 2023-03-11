@@ -50,7 +50,10 @@ const Form = ({ pageValue }) => {
 
 
   console.log('isAnimating', isAnimating);
-  console.log('formStageValue', formStageValue);
+  console.log('getResumeFormSection(1)', getResumeFormSection(1));
+  console.log('getResumeFormSection(2)', getResumeFormSection(2));
+  console.log('getResumeFormSection(3)', getResumeFormSection(3));
+  console.log('getResumeFormSection(4)', getResumeFormSection(4));
   console.log('hasFormInit', hasFormInit);
 
   return (
@@ -69,9 +72,12 @@ const Form = ({ pageValue }) => {
           <input id="email" type="text" placeholder="Email Address" />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${handleClassOutput(1)}`}>
-          <FormList formListType={getResumeFormSection(1)} />
+          <FormList targetSection={getResumeFormSection(1)} />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>
+          <FormList targetSection={getResumeFormSection(2)} />
+        </div>
+{/*         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>
           <FormList formListType={getResumeFormSection(2)} />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${handleClassOutput(3)}`}>
@@ -79,7 +85,7 @@ const Form = ({ pageValue }) => {
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${handleClassOutput(3)}`}>
           <FormList formListType={getResumeFormSection(4)} />
-        </div>
+        </div> */}
         {/* <FormList transitionFunc={handleTransitionEnd} classOutputFunc={handleClassOutput(1)} /> */}
         {/*         <div id="projects" onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>
 
