@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import formStage from '../../../rules/formStages';
 import FormList from './formList/FormList';
+import { SkillList } from './skillList/SkillList';
 import ProgressMeter from './progessMeter/ProgressMeter';
 import getResumeFormSection from './_helper_functions/getResumeFormSection';
 import './style.scss';
@@ -76,6 +77,12 @@ const Form = ({ pageValue }) => {
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>
           <FormList targetSection={getResumeFormSection(2)} />
+        </div>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${handleClassOutput(3)}`}>
+          <FormList formListType={getResumeFormSection(3)} />
+        </div>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${handleClassOutput(4)}`}>
+          <SkillList />
         </div>
 {/*         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>
           <FormList formListType={getResumeFormSection(2)} />

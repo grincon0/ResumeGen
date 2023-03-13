@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import FormListItem from './formListItem/FormListItem';
-import { EduListItem, ProjectListItem, SkillListItem, WorkListItem } from './formListItem/index';
+import { EduListItem, ProjectListItem, SkillList, WorkListItem } from './formListItem/index';
 import FormListAdd from './formListAdd/FormListAdd';
 import formStages from '../../../../rules/formStages';
+import dataTypes from '../../../../rules/dataTypes';
 
 const FormList = ({ targetSection }) => {
   /* Testing work list item first */
@@ -19,7 +20,7 @@ const FormList = ({ targetSection }) => {
       case 'EDUCATION':
         return <EduListItem />;
       case 'SKILLS':
-        return <SkillListItem />;
+        return <SkillList />;
       default:
         break;
     }
