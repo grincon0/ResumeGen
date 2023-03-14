@@ -7,10 +7,10 @@
   margin-left: 10%;
 
   @include breakpoint(desktop-sm) {
-    width: 50vw;
+    width: 80vw;
     max-width: 575px;
     float: left;
-    margin-top: 50%;
+    margin-top: 80%;
   }
 
   &.has-transition {

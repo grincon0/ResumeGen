@@ -1,1 +1,1 @@
-export default ['contact', 'work', 'project', 'education', 'skills' ];
+export default ['CONTACT', 'WORK', 'PROJECTS', 'EDUCATION', 'SKILLS' ];

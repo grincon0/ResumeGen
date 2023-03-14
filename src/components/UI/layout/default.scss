@@ -11,6 +11,10 @@
 .App {
   overflow: hidden;
 
+  &.form-active {
+    overflow-y: scroll;
+  }
+
   div.hide {
     display: none;
   }

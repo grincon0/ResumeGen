@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import formStage from '../../../rules/formStages';
+import FormList from './formList/FormList';
+import { SkillList } from './skillList/SkillList';
 import ProgressMeter from './progessMeter/ProgressMeter';
+import getResumeFormSection from './_helper_functions/getResumeFormSection';
 import './style.scss';
 
 const Form = ({ pageValue }) => {
@@ -35,25 +38,24 @@ const Form = ({ pageValue }) => {
     if (!isAnimating && hasFormInit && formStageValue === formStageLimit) {
       return 'show';
     } else if (isAnimating && hasFormInit && formStageValue === formStageLimit) {
-      return 'transition-out'
+      return 'transition-out';
     } else {
-      return 'hidden'
+      return 'hidden';
     }
   };
 
-/*   useEffect(() => {
-    if (formStageValue > 0 && hasFormInit && !isAnimating) {
-      let currentVal = formStageValue;
-      setformStageValue(currentVal + 1);
-    }
+  useEffect(() => {
+      console.log('current Resume stage', getResumeFormSection(formStageValue));
 
-  }, [isAnimating, formStageValue]); */
+    }, [formStageValue]);
 
 
   console.log('isAnimating', isAnimating);
-  console.log('formStageValue', formStageValue);
-  console.log('hasFormInit',hasFormInit);
-
+  console.log('getResumeFormSection(1)', getResumeFormSection(1));
+  console.log('getResumeFormSection(2)', getResumeFormSection(2));
+  console.log('getResumeFormSection(3)', getResumeFormSection(3));
+  console.log('getResumeFormSection(4)', getResumeFormSection(4));
+  console.log('hasFormInit', hasFormInit);
 
   return (
     <div className="c-resume-form">
@@ -71,6 +73,34 @@ const Form = ({ pageValue }) => {
           <input id="email" type="text" placeholder="Email Address" />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${handleClassOutput(1)}`}>
+          <FormList targetSection={getResumeFormSection(1)} />
+        </div>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>
+          <FormList targetSection={getResumeFormSection(2)} />
+        </div>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${handleClassOutput(3)}`}>
+          <FormList formListType={getResumeFormSection(3)} />
+        </div>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${handleClassOutput(4)}`}>
+          <SkillList />
+        </div>
+{/*         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>
+          <FormList formListType={getResumeFormSection(2)} />
+        </div>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${handleClassOutput(3)}`}>
+          <FormList formListType={getResumeFormSection(3)} />
+        </div>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${handleClassOutput(3)}`}>
+          <FormList formListType={getResumeFormSection(4)} />
+        </div> */}
+        {/* <FormList transitionFunc={handleTransitionEnd} classOutputFunc={handleClassOutput(1)} /> */}
+        {/*         <div id="projects" onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>
+
+        </div> */}
+        {/*         <div id="projects" onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${handleClassOutput(3)}`}>
+
+        </div> */}
+        {/*         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${handleClassOutput(1)}`}>
           <label for="workname">Company Name</label>
           <input type="text" id="workname" name="workname" placeholder="Company Name" />
 
@@ -80,7 +110,7 @@ const Form = ({ pageValue }) => {
           <input type="text" id="datetext" name="datetext" placeholder="Type date range as you like it to appear" />
           <input type="checkbox" id="is-contractor" name="is-contractor" value="is-contractor" />
           <label for="is-contractor">Is this contractor role?</label>
-        </div>
+        </div> */}
       </form>
       <div className="c-form-nav">
         {formStageValue > 0 && <button className="back-btn" onClick={handleBackBtnClick}>Back</button>}
