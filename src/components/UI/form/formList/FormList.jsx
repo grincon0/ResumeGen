@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import FormListItem from './formListItem/FormListItem';
-import { EduListItem, ProjectListItem, SkillList, WorkListItem } from './formListItem/index';
+import { EduListItem, ProjectListItem, WorkListItem } from './formListItem/index';
+import SkillList from '../skillList/SkillList';
 import FormListAdd from './formListAdd/FormListAdd';
 import formStages from '../../../../rules/formStages';
 import dataTypes from '../../../../rules/dataTypes';

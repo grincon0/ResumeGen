@@ -2,7 +2,7 @@ import React from 'react';
 
 const SkillRow = ({ index, skillSetLabel, skillString }) => {
 
-  return (<div>
+  return (<div className="c-skill-row">
     <label for={`skillRowTitle-${index}`}>Skill Set Category</label>
     <input type="text" id={`skillRowTitle-${index}`} name={`skillRowTitle-${index}`} placeholder="Category of Skill Set. (i.e. Frontend, Cloud, etc.)" />
     <label for={`skill-items-${index}`}>Skills</label>
