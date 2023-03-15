@@ -2,7 +2,7 @@ import React from 'react'
 import BulletItem from '../bulletItem/BulletItem';
 import BulletTextArea from '../BulletTextArea/BulletTextArea';
 
-const ProjectListItem = ({ key }) => {
+const ProjectListItem = ({ key, handleInputChangeFunc }) => {
 
   return (
     <>

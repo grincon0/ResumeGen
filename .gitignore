@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/JSON/*
+/src/components/UI/DEMO_DELETE/*
 

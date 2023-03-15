@@ -5,8 +5,9 @@ import FormListAdd from './formListAdd/FormListAdd';
 import formStages from '../../../../rules/formStages';
 import dataTypes from '../../../../rules/dataTypes';
 
-const FormList = ({ targetSection }) => {
+const FormList = ({ targetSection, functions = {}, handleInputChange, stateFunc }) => {
   /* Testing work list item first */
+  // const { handleInputChange } = functions;
   const [formListItems, setFormListItems] = useState([]);
 
   console.log('TARGET SECTION', targetSection);
@@ -14,7 +15,7 @@ const FormList = ({ targetSection }) => {
   const handleTargetListItem = (targetSection) => {
     switch (targetSection) {
       case 'WORK':
-        return <WorkListItem />;
+        return <WorkListItem handleInputChangeFunc={} />;
       case 'PROJECTS':
         return <ProjectListItem />;
       case 'EDUCATION':
@@ -48,7 +49,9 @@ const FormList = ({ targetSection }) => {
   return (
     <>
       <div className="c-form-list">
-        {formListItems}
+        {formListItems.map((el, i) => {
+          return el 
+        })}
       </div>
       <div className="c-form-list-add">
         <FormListAdd propFunc={handleAddListClick} />
