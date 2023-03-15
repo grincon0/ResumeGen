@@ -41,7 +41,9 @@ const Form = ({ pageValue }) => {
   };
 
   const handleClassOutput = (formStageLimit) => {
-    if (!isAnimating && hasFormInit && formStageValue === formStageLimit) {
+    if (formStageValue === maxFormStageValue) {
+      return '';
+    } else if (!isAnimating && hasFormInit && formStageValue === formStageLimit) {
       return 'show';
     } else if (isAnimating && hasFormInit && formStageValue === formStageLimit) {
       return 'transition-out';
@@ -89,16 +91,16 @@ const Form = ({ pageValue }) => {
           <label for="email">Email</label>
           <input id="email" type="text" placeholder="Email Address" />
         </div>
-        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${handleClassOutput(1)}`}>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${isReviewing ? 'in-review' : ''} ${handleClassOutput(1)}`}>
           <FormList targetSection={getResumeFormSection(1)} />
         </div>
-        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${handleClassOutput(2)}`}>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${isReviewing ? 'in-review' : ''} ${handleClassOutput(2)}`}>
           <FormList targetSection={getResumeFormSection(2)} />
         </div>
-        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${handleClassOutput(3)}`}>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${isReviewing ? 'in-review' : ''} ${handleClassOutput(3)}`}>
           <FormList targetSection={getResumeFormSection(3)} />
         </div>
-        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${handleClassOutput(4)}`}>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${isReviewing ? 'in-review' : ''} ${handleClassOutput(4)}`}>
           <SkillList />
         </div>
         {isReviewing && <button type="submit" onClick={handleFormSubmission}>Finish</button>}
