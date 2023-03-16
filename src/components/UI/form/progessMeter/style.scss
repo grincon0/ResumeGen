@@ -1,0 +1,24 @@
+.c-progress-bar {
+  width: 100%;
+  height: 32px;
+  border: 7px solid rgb(54,54,54);
+  border-radius: 30px;
+  box-shadow: inset 3px 5px 15px rgba(0,0,0,0.63),
+  -3px -5px 5px rgba(255,255,255,0.164),
+  3px 5px 15px rgba(0,0,0,0.63),
+  inset -3px -5px 5px rgba(255,255,255,0.164);
+  overflow: hidden;
+  margin-bottom: 25px;
+
+  .progress-bar {
+    background: rgb(255,173,0);
+    background: linear-gradient(225deg, rgba(255,173,0,1) 34%, rgba(255,0,187,1) 86%);
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px black;
+    position: relative;
+    width: 20%;
+    content: " ";
+    height: inherit;
+    transition: width .7s ease-out;
+  }
+}

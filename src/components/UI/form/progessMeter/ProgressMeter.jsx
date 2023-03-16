@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.scss';
 
-const ProgressMeter = () => {
+const ProgressMeter = ({ currentValue, maxValue}) => {
+  const [width, setWidth] = useState(0);
+
+  const convertWidthToPercentage = () => {
+    return (currentValue / maxValue) * 100;
+  }
+
+  useEffect(() => {
+    const newWidth = convertWidthToPercentage();
+    if (newWidth !== width) setWidth(newWidth);
+  }, [currentValue]); 
 
   return (
-    <div className="c-progress-meter">
-      <div className="progress-thumb"></div>
+    <div className="c-progress-bar">
+      <div className="progress-bar" style={{width : `${width}%`}}></div>
     </div>
   )
 };
