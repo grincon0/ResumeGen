@@ -1,43 +1,50 @@
 import React, { useState } from 'react';
-import BulletItem from '../bulletItem/BulletItem';
 import BulletTextArea from '../BulletTextArea/BulletTextArea';
 
-const WorkListItem = ({ key, transitionFunc, classOutputFunc, handleInputChangeFunc }) => {
-  const [workName, setWorkName] = useState('');
-  const [roleTitle, setRoleTitle] = useState('');
-  const [dateString, setDateString] = useState('');
+const WorkListItem = ({ element, index, functions, reducerState, dispatch }) => {
   const [isContractor, setIsContractor] = useState(false);
-  const [workBulletString, setWorkBulletString] = useState('');
+  const { handleWorkFunc } = functions;
+
+  console.log('element for work list instance', element)
+  console.log('reducer state', reducerState);
+  console.log('reducer function', handleWorkFunc);
+  console.log('dispatcher in worklistitem', dispatch);
+
+  const handleInputChange = (name, value, elIndex) => {
+    dispatch({
+      type: 'UPDATE_ENTRY',
+      payload: { index: elIndex, name, value }
+    });
+  };
 
   return (
     <>
-      {/* <div onTransitionEnd={transitionFunc} className={`segment phase-one ${classOutputFunc}`}> */}
-      <label for="workname">Company Name</label>
+      <label for={`workname-${index}`}>Company Name</label>
       <input
         type="text"
-        id="workname"
-        name="workname"
+        id={`workname-${index}`}
+        name="workName"
         placeholder="Company Name"
-        value={workName}
-        onChange={(e) => setWorkName(e.target.value)}
+        value={element.workName}
+        onChange={(e) => handleInputChange(e.target.name, e.target.value, index)}
       />
-      <label for="rolename">Title</label>
+      <label for={`roleTitle-${index}`}>Title</label>
       <input
         type="text"
-        id="rolename"
-        name="rolename"
+        id={`roleTitle-${index}`}
+        name="roleTitle"
         placeholder="Role Title"
-        value={roleTitle}
-        onChange={(e) => setRoleTitle(e.target.value)}
+        value={element.roleTitle}
+        onChange={(e) => handleInputChange(e.target.name, e.target.value, index)}
       />
-      <label for="datetext">Date</label>
+      <label for={`dateString-${index}`}>Date</label>
       <input
         type="text"
-        id="datetext"
-        name="datetext"
+        id={`dateString-${index}`}
+        name="dateString"
         placeholder="Type date range as you like it to appear"
-        value={dateString}
-        onChange={(e) => setDateString(e.target.value)}
+        value={element.dateString}
+        onChange={(e) => handleInputChange(e.target.name, e.target.value, index)}
       />
       <div className="c-contractor">
         <input
@@ -50,12 +57,15 @@ const WorkListItem = ({ key, transitionFunc, classOutputFunc, handleInputChangeF
         <label for="is-contractor">Is this contractor role?</label>
       </div>
       <div className="c-bullet">
-        <BulletTextArea workBulletString={workBulletString} setWorkBulletString={setWorkBulletString} />
-        {/* <button onClick={handleButtonClick}>Add</button> */}
+        <BulletTextArea
+          index={index}
+          element={element}
+          dispatch={handleInputChange}
+          reducerState={reducerState}
+          workBulletString={element.workBulletString} />
       </div>
-      {/* </div> */}
     </>
-  );
+  )
 };
 
 export default WorkListItem;

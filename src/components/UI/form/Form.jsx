@@ -15,55 +15,86 @@ const Form = ({ pageValue }) => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
 
-  const initalWorkFormState = {
-    workExperience: []
-
-  };
-  const initalProjectFormState = {
-    projectExperience: []
-  };
-  const initalEduFormState = {
-    eduArray: []
-  };
-
-  const initalSkillFormState = {
-    skillsArray: []
-  };
-
-  const addNewWorkExperience = () => {
-
-  };
-
-  const addNewProjectExperience = () => {
-
+  /* ADD_ENTRY will push new obj, which will in turn allow for the comp to render another set of list item inputs */
+  const workReducer = (state, action) => {
+    switch (action.type) {
+      case 'ADD_ENTRY':
+        return [...state, { workName: '', roleTitle: '', dateString: '', isContractor: '', workBulletString: '' }];
+      case 'UPDATE_ENTRY':
+        const { index, name, value } = action.payload;
+        console.log('action', action);
+        const updatedDiv = Object.assign({}, state[index], { [name]: value });
+        return [
+          ...state.slice(0, index),
+          updatedDiv,
+          ...state.slice(index + 1)
+        ];
+      default:
+        throw new Error();
+    }
   };
 
-  const addEduEntry = () => {
-
+  const projectReducer = (state, action) => {
+    switch (action.type) {
+      case 'ADD_ENTRY':
+        return [...state, { projectName: '', description: '', projectBulletString: '' }];
+      case 'UPDATE_ENTRY':
+        const { index, name, value } = action.payload;
+        console.log('action', action);
+        const updatedDiv = Object.assign({}, state[index], { [name]: value });
+        return [
+          ...state.slice(0, index),
+          updatedDiv,
+          ...state.slice(index + 1)
+        ];
+      default:
+        throw new Error();
+    }
   };
 
-  const addSkillEntry = () => {
-
+  const eduReducer = (state, action) => {
+    switch (action.type) {
+      case 'ADD_ENTRY':
+        return [...state, { eduName: '', dateString: '', eduType: '', locale: '', eduBulletString: '' }];
+      case 'UPDATE_ENTRY':
+        const { index, name, value } = action.payload;
+        console.log('action', action);
+        const updatedDiv = Object.assign({}, state[index], { [name]: value });
+        return [
+          ...state.slice(0, index),
+          updatedDiv,
+          ...state.slice(index + 1)
+        ];
+      default:
+        throw new Error();
+    }
   };
 
-  const [workInputFields, setWorkInputFields] = useState([{ value: "" }]);
+  const skillReducer = (state, action) => {
+    switch (action.type) {
+      case 'ADD_ENTRY':
+        return [...state, { skillRowTitle: '', skillRowString: '' }];
+      case 'UPDATE_ENTRY':
+        const { index, name, value } = action.payload;
+        console.log('action', action);
+        const updatedDiv = Object.assign({}, state[index], { [name]: value });
+        return [
+          ...state.slice(0, index),
+          updatedDiv,
+          ...state.slice(index + 1)
+        ];
+      default:
+        throw new Error();
+    }
+  };
+
+  const [workState, dispatchWorkEntry] = useReducer(workReducer, [{ workName: '', roleTitle: '', dateString: '', isContractor: '', workBulletString: '' }]);
+  const [projectState, dispatchProjectEntry] = useReducer(projectReducer, [{ projectName: '', projectDescription: '', projectBulletString: '' }]);
+  const [eduState, dispatchEduEntry] = useReducer(eduReducer, [{ eduName: '', dateString: '', eduType: '', locale: '', eduBulletString: '' }]);
+  const [skillState, dispatchSkillEntry] = useReducer(skillReducer, [{ skillRowTitle: '', skillRowString: '' }]);
 
   const maxFormStageValue = 5;
   const hasFormInit = pageValue >= 2;
-
-  const initialState = {};
-
-  const eduFuncs = {
-
-  }
-
-  const workFuncs = {
-
-  }
-
-  const skillFuncs = {
-
-  }
 
   const handleNextBtnClick = () => {
     if (formStageValue >= 0 && hasFormInit && !isAnimating) {
@@ -75,12 +106,6 @@ const Form = ({ pageValue }) => {
 
   const handleBackBtnClick = () => {
     // if (formStageValue > 0) formStageValue -= 1;
-  };
-
-  const handleInputChange = (index, event) => {
-    const newInputFields = [...inputFields];
-    newInputFields[index].value = event.target.value;
-    setInputFields(newInputFields);
   };
 
   const handleTransitionEnd = (event) => {
@@ -120,16 +145,7 @@ const Form = ({ pageValue }) => {
     }
   }, [formStageValue]);
 
-
-
-
-  console.log('isAnimating', isAnimating);
-  console.log('getResumeFormSection(1)', getResumeFormSection(1));
-  console.log('getResumeFormSection(2)', getResumeFormSection(2));
-  console.log('getResumeFormSection(3)', getResumeFormSection(3));
-  console.log('getResumeFormSection(4)', getResumeFormSection(4));
-  console.log('hasFormInit', hasFormInit);
-  console.log('isReviewing', isReviewing);
+  console.log('form level work state', workState);
 
   return (
     <div className="c-resume-form">
@@ -144,20 +160,20 @@ const Form = ({ pageValue }) => {
           <label for="phone">Contact Number</label>
           <input id="phone" type="text" placeholder="Phone #" value={phone} onChange={(event) => setPhone(event.target.value)} />
           <label for="email">Email</label>
-          <input id="email" type="text" placeholder="Email Address" value={email} onChange={(event) => setEmail(event.target.value)}  />
+          <input id="email" type="text" placeholder="Email Address" value={email} onChange={(event) => setEmail(event.target.value)} />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${isReviewing ? 'in-review' : ''} ${handleClassOutput(1)}`}>
-          <FormList handleInputChange={handleInputChange} targetSection={getResumeFormSection(1)} />
+          <FormList dispatch={dispatchWorkEntry} reducerState={workState} targetSection={getResumeFormSection(1)} />
         </div>
-        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${isReviewing ? 'in-review' : ''} ${handleClassOutput(2)}`}>
-          <FormList handleInputChange={handleInputChange} targetSection={getResumeFormSection(2)} />
+         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${isReviewing ? 'in-review' : ''} ${handleClassOutput(2)}`}>
+          <FormList dispatch={dispatchProjectEntry} reducerState={projectState} targetSection={getResumeFormSection(2)} />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${isReviewing ? 'in-review' : ''} ${handleClassOutput(3)}`}>
-          <FormList handleInputChange={handleInputChange} targetSection={getResumeFormSection(3)} />
+          <FormList dispatch={dispatchEduEntry} reducerState={eduState} targetSection={getResumeFormSection(3)} />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${isReviewing ? 'in-review' : ''} ${handleClassOutput(4)}`}>
-          <SkillList handleInputChange={handleInputChange} />
-        </div>
+          <FormList dispatch={dispatchSkillEntry} reducerState={skillState} targetSection={getResumeFormSection(4)}/>
+        </div> 
         {isReviewing && <button type="submit" onClick={handleFormSubmission}>Finish</button>}
       </form>
       <div className="c-form-nav">
