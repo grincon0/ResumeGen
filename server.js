@@ -23,7 +23,12 @@ app.get('/*', function(req, res) {
   })
 
 // Add routes, both API and View
-//app.use(routes);
+app.post('/submit-form', (req, res) => {
+    const jsonData = req.body;
+    console.log('Received JSON data:', jsonData);
+    res.send('Data received!');
+  });
+  
 
 // Start the API server
 const PORT = process.env.PORT || 3001;
