@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useRef } from 'react';
+import axios from 'axios';
 import formStage from '../../../rules/formStages';
 import FormList from './formList/FormList';
 import SkillList from './skillList/SkillList';
@@ -10,10 +11,12 @@ const Form = ({ pageValue }) => {
   const [formStageValue, setformStageValue] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
+  const [buttonClickType, setButtonClickType] = useState(null);
   const [userName, setUserName] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const backBtn = useRef(null);
 
   /* ADD_ENTRY will push new obj, which will in turn allow for the comp to render another set of list item inputs */
   const workReducer = (state, action) => {
@@ -96,6 +99,17 @@ const Form = ({ pageValue }) => {
   const maxFormStageValue = 5;
   const hasFormInit = pageValue >= 2;
 
+  const formData = {
+    userName,
+    address,
+    phone,
+    email,
+    workEntries: workState,
+    projectEntries: projectState,
+    eduEntries: eduState,
+    skillEntries: skillState
+  };
+
   const handleNextBtnClick = () => {
     if (formStageValue >= 0 && hasFormInit && !isAnimating) {
       // let currentVal = formStageValue;
@@ -104,16 +118,36 @@ const Form = ({ pageValue }) => {
     }
   };
 
-  const handleBackBtnClick = () => {
-    // if (formStageValue > 0) formStageValue -= 1;
+  const handleBackBtnClick = (event) => {
+    event.preventDefault();
+    if (formStageValue >= 0 && hasFormInit && !isAnimating) {
+      setButtonClickType(backBtn.current.dataset.btnType);
+      setIsAnimating(true);
+    }
   };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    axios.post('/submit-form', formData)
+    .then((response) => {
+      console.log('backend response', response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
 
   const handleTransitionEnd = (event) => {
     // Access the propertyName attribute of the event
     console.log('Transition ended for property:', event);
     if (hasFormInit && isAnimating) {
       const currentValue = formStageValue;
-      setformStageValue(currentValue + 1);
+      if (buttonClickType === 'back') {
+        setformStageValue(currentValue - 1);
+      } else {
+        setformStageValue(currentValue + 1);
+      }
+      setButtonClickType(null);
       setIsAnimating(false);
     }
   };
@@ -128,10 +162,6 @@ const Form = ({ pageValue }) => {
     } else {
       return 'hidden';
     }
-  };
-
-  const handleFormSubmission = () => {
-
   };
 
   useEffect(() => {
@@ -151,7 +181,7 @@ const Form = ({ pageValue }) => {
     <div className="c-resume-form">
       <div className="form-messaging"></div>
       <ProgressMeter currentValue={formStageValue} maxValue={maxFormStageValue} />
-      <form id="resume-form" className={`resume-form ${isReviewing ? 'reviewing' : ''}`} method="post">
+      <form id="resume-form" className={`resume-form ${isReviewing ? 'reviewing' : ''}`} onSubmit={handleFormSubmit}>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-zero ${handleClassOutput(0)}`}>
           <label for="user-name">Name</label>
           <input id="user-name" type="text" placeholder="Name" value={userName} onChange={(event) => setUserName(event.target.value)} />
@@ -174,11 +204,11 @@ const Form = ({ pageValue }) => {
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${isReviewing ? 'in-review' : ''} ${handleClassOutput(4)}`}>
           <FormList dispatch={dispatchSkillEntry} reducerState={skillState} targetSection={getResumeFormSection(4)}/>
         </div> 
-        {isReviewing && <button type="submit" onClick={handleFormSubmission}>Finish</button>}
+        {isReviewing && <button type="submit">Finish</button>}
       </form>
       <div className="c-form-nav">
-        {formStageValue > 0 && <button className="back-btn" onClick={handleBackBtnClick}>Back</button>}
-        <button className="next-btn" onClick={handleNextBtnClick}>Next</button>
+        {formStageValue > 0 && <button ref={backBtn} data-btn-type="back" className="back-btn" onClick={(event) => handleBackBtnClick(event)}>Back</button>}
+        {formStageValue < maxFormStageValue && <button data-btn-type="next" className="next-btn" onClick={handleNextBtnClick}>Next</button>}
       </div>
     </div>
   )

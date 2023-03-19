@@ -10,7 +10,7 @@ const BulletTextArea = ({ workBulletString, index, dispatch }) => {
         name="workBulletString"
         rows="6"
         cols="50"
-        placeholder="Type in bullets points here - each seperated by a comma."
+        placeholder="Type in bullets points here - each seperated by a period."
         value={workBulletString}
         onChange={(e) => dispatch(e.target.name, e.target.value, index)}
       ></textarea>
