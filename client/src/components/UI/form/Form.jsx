@@ -22,7 +22,7 @@ const Form = ({ pageValue }) => {
   const workReducer = (state, action) => {
     switch (action.type) {
       case 'ADD_ENTRY':
-        return [...state, { workName: '', roleTitle: '', dateString: '', isContractor: '', workBulletString: '' }];
+        return [...state, { workName: '', roleTitle: '', dateString: '', isContractor: false, showContractor: false, workBulletString: '' }];
       case 'UPDATE_ENTRY':
         const { index, name, value } = action.payload;
         console.log('action', action);
@@ -91,7 +91,7 @@ const Form = ({ pageValue }) => {
     }
   };
 
-  const [workState, dispatchWorkEntry] = useReducer(workReducer, [{ workName: '', roleTitle: '', dateString: '', isContractor: '', workBulletString: '' }]);
+  const [workState, dispatchWorkEntry] = useReducer(workReducer, [{ workName: '', roleTitle: '', dateString: '', isContractor: false, showContractor: false,  workBulletString: '' }]);
   const [projectState, dispatchProjectEntry] = useReducer(projectReducer, [{ projectName: '', projectDescription: '', projectBulletString: '' }]);
   const [eduState, dispatchEduEntry] = useReducer(eduReducer, [{ eduName: '', dateString: '', eduType: '', locale: '', eduBulletString: '' }]);
   const [skillState, dispatchSkillEntry] = useReducer(skillReducer, [{ skillRowTitle: '', skillRowString: '' }]);
@@ -129,12 +129,13 @@ const Form = ({ pageValue }) => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     axios.post('/submit-form', formData)
-    .then((response) => {
-      console.log('backend response', response.data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+      .then(response => response.data)
+      .then((data) => {
+        console.log('data recieved', data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   const handleTransitionEnd = (event) => {
@@ -195,15 +196,15 @@ const Form = ({ pageValue }) => {
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${isReviewing ? 'in-review' : ''} ${handleClassOutput(1)}`}>
           <FormList dispatch={dispatchWorkEntry} reducerState={workState} targetSection={getResumeFormSection(1)} />
         </div>
-         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${isReviewing ? 'in-review' : ''} ${handleClassOutput(2)}`}>
+        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${isReviewing ? 'in-review' : ''} ${handleClassOutput(2)}`}>
           <FormList dispatch={dispatchProjectEntry} reducerState={projectState} targetSection={getResumeFormSection(2)} />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${isReviewing ? 'in-review' : ''} ${handleClassOutput(3)}`}>
           <FormList dispatch={dispatchEduEntry} reducerState={eduState} targetSection={getResumeFormSection(3)} />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${isReviewing ? 'in-review' : ''} ${handleClassOutput(4)}`}>
-          <FormList dispatch={dispatchSkillEntry} reducerState={skillState} targetSection={getResumeFormSection(4)}/>
-        </div> 
+          <FormList dispatch={dispatchSkillEntry} reducerState={skillState} targetSection={getResumeFormSection(4)} />
+        </div>
         {isReviewing && <button type="submit">Finish</button>}
       </form>
       <div className="c-form-nav">

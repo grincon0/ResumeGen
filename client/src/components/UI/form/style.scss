@@ -66,6 +66,29 @@
         display: flex;
         align-items: center;
       }
+
+      .c-show-contractor {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        transition: all 0.3s;
+        opacity: 1;
+
+        &.hide-field {
+          opacity: 0;
+        }
+      }
+
+      .c-contractor-field {
+        transition: all 0.3s;
+        opacity: 1;
+        height: 115px;
+
+        &.hide-field {
+          height: 0;
+          opacity: 0;
+        }
+      }
   
       label,
       input,

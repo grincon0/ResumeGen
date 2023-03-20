@@ -14,6 +14,8 @@ const EduListItem = ({ element, index, reducerState, dispatch }) => {
     <>
       <label for={`eduname-${index}`}>Edu. Institution Name</label>
       <input type="text" id={`eduname-${index}`} name="eduName" placeholder="Name of Educational Institution" onChange={(e) => handleInputChange(e.target.name, e.target.value, index)} />
+      <label for={`edutype-${index}`}>Edu. Crednetial</label>
+      <input type="text" id={`edutype-${index}`} name="eduType" placeholder="Name of Educational Crendential (i.e. BS in X, etc.)" onChange={(e) => handleInputChange(e.target.name, e.target.value, index)} />
       <label for={`edudatetext-${index}`}>Enrollment Date Range</label>
       <input type="text" id={`edudatetext-${index}`} name="eduDateText" placeholder="Type date range as you like it to appear. i.e. Aug 2011 - May 2015" onChange={(e) => handleInputChange(e.target.name, e.target.value, index)} />
       <label for={`edulocale-${index}`}>Locale</label>

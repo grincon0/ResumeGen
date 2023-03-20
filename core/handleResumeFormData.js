@@ -18,10 +18,10 @@ const handleResumeFormData = (formData) => {
         'hasTopBottomBorder': false
       },
       content: {
-        'email': formData.address,
-        'name': formData.userName,
-        'phone': formData.phone,
-        'address': formData.address
+        'email': formData?.address,
+        'name': formData?.userName,
+        'phone': formData?.phone,
+        'address': formData?.address
       }
     },
     companies: {
@@ -34,7 +34,9 @@ const handleResumeFormData = (formData) => {
           name: el?.workName,
           role: el?.roleTitle,
           dateString: el?.dateString,
-          bullets: el?.workBulletString.split('.')
+          bullets: el?.workBulletString?.split('.'),
+          isContract: el?.isContractor,
+          setAgencyAsCompanyName: el?.showContractor
         }
       })
     },
@@ -48,7 +50,7 @@ const handleResumeFormData = (formData) => {
           name: el?.projectName,
           desc: el?.projectDescription,
           divider: ' - ',
-          bullets: el?.workBulletString.split('.')
+          bullets: el?.workBulletString?.split('.')
         }
       })
     },
@@ -57,13 +59,13 @@ const handleResumeFormData = (formData) => {
         dataType: 'EDUCATION',
         hasTopBottomBorder: false
       },
-      content: el?.eduEntries.map((el) => {
+      content: formData?.eduEntries.map((el) => {
         return {
           name: el?.eduName,
           dateString: el?.eduDateText,
-          type: '',
+          type: el?.eduType,
           locale: el?.eduLocale,
-          bullets: el?.workBulletString.split('.')
+          bullets: el?.workBulletString?.split('.')
         }
       })
     },
@@ -72,9 +74,9 @@ const handleResumeFormData = (formData) => {
         dataType: 'SKILL',
         layoutType: 'MULTI',
         hasTopBottomBorder: true
-      }
-    },
-    categories: buildSkillCategories(el?.skillEntries)
+      },
+      categories: buildSkillCategories(formData?.skillEntries)
+    }
   };
 
   return transformedData;
