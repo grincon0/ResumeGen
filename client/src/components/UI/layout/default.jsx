@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import JSON from '../../../JSON/content.json'
-import Landing from '../../../components/UI/landing/Landing';
+import Landing from '../landing/Landing';
 import '../../../styles/_index.scss';
 import './default.scss';
-import FormWrapper from '../../../components/UI/formWrapper/FormWrapper';
+import FormWrapper from '../formWrapper/FormWrapper';
 
 
 console.log('json app level', JSON);
 const DefaultLayout = () => {
 
   const [pageValue, setPageValue] = useState(1);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const switchToForm = () => {
     console.log('func called');

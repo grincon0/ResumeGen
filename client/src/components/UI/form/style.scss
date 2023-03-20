@@ -13,19 +13,22 @@
     flex-direction: column;
     margin-bottom: 20px;
 
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+    }
+
     .segment,
-    .segment .c-form-list
-    {
-      transition: all .7s;
+    .segment .c-form-list {
+      transition: all 0.7s;
 
       &.reviewing {
-
         &.phase-zero,
         &.phase-one,
         &.phase-two,
         &.phase-three,
         &.phase-four {
-
           &.in-review {
             position: relative;
             transform: translateX(0);
@@ -40,7 +43,6 @@
       &.phase-two,
       &.phase-three,
       &.phase-four {
-
         &.show {
           position: relative;
           transform: translateX(0);
@@ -89,22 +91,21 @@
           opacity: 0;
         }
       }
-  
+
       label,
       input,
       textarea {
         letter-spacing: $letter-space;
       }
-  
+
       label {
         display: inline-block;
         color: #cdcdcd;
         margin: 0 0 10px 15px;
       }
-  
+
       input,
-      textarea
-      {
+      textarea {
 
         &.contractor {
           width: 40px;
@@ -138,40 +139,37 @@
     }
   }
 
-  .c-form-nav {
+  button, i {
+    border: 0;
+    outline: 0;
+    font-size: $ruler;
+    border-radius: $ruler * 20;
+    padding: $ruler;
+    background-color: $color-bg;
+    text-shadow: 1px 1px 0 $color-white;
+    border-radius: $ruler/2;
+    line-height: 0;
+    width: $ruler * 3;
+    height: $ruler * 3;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 $ruler/2;
+    font-size: $ruler * 1.2;
+    color: #61677c;
+    font-weight: bold;
+    box-shadow: -5px -5px 20px $color-white, 5px 5px 20px $color-shadow;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    font-weight: 600;
 
-    button {
-      border: 0;
-      outline: 0;
-      font-size: $ruler;
-      border-radius: $ruler * 20;
-      padding: $ruler;
-      background-color: $color-bg;
-      text-shadow: 1px 1px 0 $color-white;
-      border-radius: $ruler/2;
-      line-height: 0;
-      width: $ruler*3;
-      height: $ruler*3;
-      display:inline-flex;
-      justify-content: center;
-      align-items:center;
-      margin: 0 $ruler/2;
-      font-size: $ruler*1.2;
-      color: #61677c;
-      font-weight: bold;
-      box-shadow: -5px -5px 20px $color-white, 5px 5px 20px $color-shadow;
-      transition: all 0.2s ease-in-out;
-      cursor: pointer;
-      font-weight: 600;
+    &:hover {
+      box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
+    }
 
-      &:hover {
-        box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
-      }
-
-      &:active {
-        box-shadow: inset 1px 1px 2px $color-shadow,
-          inset -1px -1px 2px $color-white;
-      }
+    &:active {
+      box-shadow: inset 1px 1px 2px $color-shadow,
+        inset -1px -1px 2px $color-white;
     }
   }
 }

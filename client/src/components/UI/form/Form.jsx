@@ -7,7 +7,7 @@ import ProgressMeter from './progessMeter/ProgressMeter';
 import getResumeFormSection from './_helper_functions/getResumeFormSection';
 import './style.scss';
 
-const Form = ({ pageValue }) => {
+const Form = ({ pageValue, isDarkMode }) => {
   const [formStageValue, setformStageValue] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
@@ -32,6 +32,10 @@ const Form = ({ pageValue }) => {
           updatedDiv,
           ...state.slice(index + 1)
         ];
+      case 'DELETE_ENTRY':
+        return [
+          ...state.slice(0, state.length - 1)
+        ];
       default:
         throw new Error();
     }
@@ -49,6 +53,10 @@ const Form = ({ pageValue }) => {
           ...state.slice(0, index),
           updatedDiv,
           ...state.slice(index + 1)
+        ];
+      case 'DELETE_ENTRY':
+        return [
+          ...state.slice(0, state.length - 1)
         ];
       default:
         throw new Error();
@@ -68,6 +76,10 @@ const Form = ({ pageValue }) => {
           updatedDiv,
           ...state.slice(index + 1)
         ];
+      case 'DELETE_ENTRY':
+        return [
+          ...state.slice(0, state.length - 1)
+        ];
       default:
         throw new Error();
     }
@@ -86,12 +98,16 @@ const Form = ({ pageValue }) => {
           updatedDiv,
           ...state.slice(index + 1)
         ];
+      case 'DELETE_ENTRY':
+        return [
+          ...state.slice(0, state.length - 1)
+        ];
       default:
         throw new Error();
     }
   };
 
-  const [workState, dispatchWorkEntry] = useReducer(workReducer, [{ workName: '', roleTitle: '', dateString: '', isContractor: false, showContractor: false,  workBulletString: '' }]);
+  const [workState, dispatchWorkEntry] = useReducer(workReducer, [{ workName: '', roleTitle: '', dateString: '', isContractor: false, showContractor: false, workBulletString: '' }]);
   const [projectState, dispatchProjectEntry] = useReducer(projectReducer, [{ projectName: '', projectDescription: '', projectBulletString: '' }]);
   const [eduState, dispatchEduEntry] = useReducer(eduReducer, [{ eduName: '', dateString: '', eduType: '', locale: '', eduBulletString: '' }]);
   const [skillState, dispatchSkillEntry] = useReducer(skillReducer, [{ skillRowTitle: '', skillRowString: '' }]);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { EduListItem, ProjectListItem, WorkListItem } from './formListItem/index';
 import SkillList from '../skillList/SkillList';
 import SkillRow from '../skillList/_helper_components/SkillRow';
-import FormListAdd from './formListAdd/FormListAdd';
+import FormListAddSubButton from './formListAddSub/FormListAddSub';
 import formStages from '../../../../rules/formStages';
 import dataTypes from '../../../../rules/dataTypes';
 
@@ -59,8 +59,9 @@ const FormList = ({ targetSection, functions = {}, reducerState, dispatch }) => 
           return handleTargetListItem(targetSection, el, i);
         })}
       </div>
-      <div className="c-form-list-add">
-        <FormListAdd propFunc={() => dispatch({ type: 'ADD_ENTRY' })} />
+      <div className="c-form-list-add-sub">
+        {reducerState.length > 0 && <FormListAddSubButton text={'-'} propFunc={() => dispatch({ type: 'DELETE_ENTRY' })} /> }
+        <FormListAddSubButton text={'+'} propFunc={() => dispatch({ type: 'ADD_ENTRY' })} />
       </div>
     </>
   );
