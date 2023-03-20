@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import BulletTextArea from '../BulletTextArea/BulletTextArea';
 
 const WorkListItem = ({ element, index, functions, reducerState, dispatch }) => {
-  const [isContractor, setIsContractor] = useState(false);
   const { handleWorkFunc } = functions;
 
   console.log('element for work list instance', element)
@@ -11,6 +10,7 @@ const WorkListItem = ({ element, index, functions, reducerState, dispatch }) => 
   console.log('dispatcher in worklistitem', dispatch);
 
   const handleInputChange = (name, value, elIndex) => {
+    console.log(name, value, elIndex);
     dispatch({
       type: 'UPDATE_ENTRY',
       payload: { index: elIndex, name, value }
@@ -49,12 +49,34 @@ const WorkListItem = ({ element, index, functions, reducerState, dispatch }) => 
       <div className="c-contractor">
         <input
           className="contractor"
-          type="checkbox" id="is-contractor"
-          name="is-contractor"
-          checked={isContractor}
-          onChange={setIsContractor}
+          type="checkbox" id={`is-contractor-${index}`}
+          name="isContractor"
+          checked={element.isContractor}
+          onChange={(e) => handleInputChange(e.target.name, e.target.checked, index)}
         />
-        <label for="is-contractor">Is this contractor role?</label>
+        <label for={`is-contractor-${index}`}>Is this contractor role?</label>
+        <div className={`c-show-contractor ${!element.isContractor ? 'hide-field' : ''}`}>
+          <input
+            className="contractor"
+            type="checkbox" id={`show-contractor-${index}`}
+            name="showContractor"
+            checked={element.showContractor}
+            onChange={(e) => handleInputChange(e.target.name, e.target.checked, index)}
+          />
+          <label for={`show-contractor-${index}`}>Set Contractor/Agency name as Company?</label>
+        </div>
+      </div>
+      <div className={`c-contractor-field ${!element.isContractor || !element.showContractor ? 'hide-field' : ''}`}>
+        <label for={`contractor-name-${index}`}>What's the name of the contractor/agency?</label>
+        <input
+          className="contractor-name"
+          type="text"
+          id={`contractor-name-${index}`}
+          name="agencyName"
+          placeholder="Contractor/Agency Name"
+          value={element.agencyName}
+          onChange={(e) => handleInputChange(e.target.name, e.target.value, index)}
+        ></input>
       </div>
       <div className="c-bullet">
         <BulletTextArea
