@@ -1,7 +1,10 @@
 import React from 'react';
 import BulletTextArea from '../BulletTextArea/BulletTextArea';
+import getNumberSuffix from '../../../_helper_functions/getNumberSuffix';
 
-const EduListItem = ({ element, index, reducerState, dispatch }) => {
+const EduListItem = ({ element, index, reducerState, functions, transitionOut, dispatch }) => {
+  const { handleTransitionEnd } = functions;
+  const numPlacement = index + 1;
   const handleInputChange = (name, value, elIndex) => {
     console.log('dispatching', name, value, elIndex);
     dispatch({
@@ -11,8 +14,8 @@ const EduListItem = ({ element, index, reducerState, dispatch }) => {
   };
 
   return (
-    <>
-      <label for={`eduname-${index}`}>Edu. Institution Name</label>
+    <div className={`c-edu-items ${transitionOut ? 'transition-out' : ''}`}>
+      <label for={`eduname-${index}`}>{`${numPlacement.toString()}${getNumberSuffix(numPlacement)} Edu. Institution Name`}</label>
       <input type="text" id={`eduname-${index}`} name="eduName" placeholder="Name of Educational Institution" onChange={(e) => handleInputChange(e.target.name, e.target.value, index)} />
       <label for={`edutype-${index}`}>Edu. Crednetial</label>
       <input type="text" id={`edutype-${index}`} name="eduType" placeholder="Name of Educational Crendential (i.e. BS in X, etc.)" onChange={(e) => handleInputChange(e.target.name, e.target.value, index)} />
@@ -28,7 +31,7 @@ const EduListItem = ({ element, index, reducerState, dispatch }) => {
           reducerState={reducerState}
           workBulletString={element.workBulletString} />
       </div>
-    </>
+    </div>
   );
 };
 

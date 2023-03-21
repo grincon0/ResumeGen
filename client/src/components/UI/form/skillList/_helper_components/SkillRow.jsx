@@ -1,7 +1,9 @@
 import React from 'react';
+import getNumberSuffix from '../../_helper_functions/getNumberSuffix';
 
-const SkillRow = ({ dispatch, index }) => {
-
+const SkillRow = ({ dispatch, index, functions, transitionOut }) => {
+  const { handleTransitionEnd } = functions;
+  const numPlacement = index + 1;
   const handleInputChange = (name, value, elIndex) => {
     dispatch({
       type: 'UPDATE_ENTRY',
@@ -9,13 +11,13 @@ const SkillRow = ({ dispatch, index }) => {
     });
   };
 
-  return (<div className="c-skill-row">
-    <label for={`skillRowTitle-${index}`}>Skill Set Category</label>
+  return (<div className={`c-skill-row ${transitionOut ? '' : ''}`} >
+    <label for={`skillRowTitle-${index}`}>{`${numPlacement.toString()}${getNumberSuffix(numPlacement)} Skillset Category`}</label>
     <input
       type="text"
       id={`skillRowTitle-${index}`}
       name="skillRowTitle"
-      placeholder="Category of Skill Set. (i.e. Frontend, Cloud, etc.)"
+      placeholder="Category of Skill. (i.e. Frontend, Cloud, etc.)"
       onChange={(e) => handleInputChange(e.target.name, e.target.value, index)} />
     <label for={`skill-items-${index}`}>Skills</label>
     <textarea

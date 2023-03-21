@@ -13,7 +13,6 @@
     flex-direction: column;
     margin-bottom: 20px;
 
-
     button {
       width: 100%;
       margin-top: 25px;
@@ -21,6 +20,7 @@
 
     .segment,
     .segment .c-form-list {
+      margin-bottom: 25px;
       transition: all 0.7s;
 
       &.reviewing {
@@ -92,54 +92,80 @@
         }
       }
 
-      label,
-      input,
-      textarea {
-        letter-spacing: $letter-space;
-      }
+      .c-contact-items,
+      .c-work-items,
+      .c-project-items,
+      .c-skill-row,
+      .c-edu-items {
+        background: #292929;
+        overflow: hidden;
+        border-radius: 70px;
+        padding: 65px;
+        margin-bottom: 40px;
+        
 
-      label {
-        display: inline-block;
-        color: #cdcdcd;
-        margin: 0 0 10px 15px;
-      }
 
-      input,
-      textarea {
+        &.transition-out {
 
-        &.contractor {
-          width: 40px;
-          height: 40px;
+          .content-wrapper {
+            height: 0;
+          }
         }
 
-        margin-bottom: 15px;
-        color: $white;
-        caret-color: $white;
-        margin-right: $ruler/2;
-        box-shadow: inset 2px 2px 5px $color-shadow,
-          inset -5px -5px 10px $color-white;
-        width: 100%;
-        box-sizing: border-box;
-        transition: all 0.2s ease-in-out;
-        appearance: none;
-        -webkit-appearance: none;
-        border: 0;
-        outline: 0;
-        font-size: $ruler;
-        border-radius: $ruler * 20;
-        padding: $ruler;
-        background-color: $color-bg;
-        text-shadow: 1px 1px 0 $color-white;
-        margin-bottom: 20px;
-      }
+        .content-wrapper {
+          height: auto;
+          transition: all .7s;
+        }
 
-      textarea {
-        border-radius: 30px;
+        label,
+        input,
+        textarea {
+          letter-spacing: $letter-space;
+        }
+
+        label {
+          display: inline-block;
+          color: #cdcdcd;
+          margin: 0 0 10px 15px;
+        }
+
+        input,
+        textarea {
+          &.contractor {
+            width: 40px;
+            height: 40px;
+          }
+
+          margin-bottom: 15px;
+          color: $white;
+          caret-color: $white;
+          margin-right: $ruler/2;
+          box-shadow: inset 2px 2px 5px $color-shadow,
+            inset -5px -5px 10px $color-white;
+          width: 100%;
+          box-sizing: border-box;
+          transition: all 0.2s ease-in-out;
+          appearance: none;
+          -webkit-appearance: none;
+          border: 0;
+          outline: 0;
+          font-size: $ruler;
+          border-radius: $ruler * 20;
+          padding: $ruler;
+          background-color: $color-bg;
+          text-shadow: 1px 1px 0 $color-white;
+          margin-bottom: 20px;
+        }
+
+        textarea {
+          border-radius: 30px;
+        }
       }
     }
   }
 
-  button, i {
+  button,
+  i {
     border: 0;
     outline: 0;
     font-size: $ruler;

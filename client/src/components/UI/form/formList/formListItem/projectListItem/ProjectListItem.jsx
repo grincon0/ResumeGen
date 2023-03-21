@@ -1,8 +1,10 @@
 import React from 'react'
 import BulletTextArea from '../BulletTextArea/BulletTextArea';
+import getNumberSuffix from '../../../_helper_functions/getNumberSuffix';
 
-const ProjectListItem = ({ dispatch, reducerState, element, index }) => {
-
+const ProjectListItem = ({ dispatch, reducerState, functions, element, index, transitionOut }) => {
+  const { handleTransitionEnd } = functions;
+  const numPlacement = index + 1;
   const handleInputChange = (name, value, elIndex) => {
     dispatch({
       type: 'UPDATE_ENTRY',
@@ -11,8 +13,8 @@ const ProjectListItem = ({ dispatch, reducerState, element, index }) => {
   };
 
   return (
-    <>
-      <label for={`projectname-${index}`}>Project Name</label>
+    <div className={`c-project-items ${transitionOut ? '' : ''}`}>
+      <label for={`projectname-${index}`}>{`${numPlacement.toString()}${getNumberSuffix(numPlacement)} Project Name`}</label>
       <input
         type="text"
         id={`projectname-${index}`}
@@ -38,7 +40,7 @@ const ProjectListItem = ({ dispatch, reducerState, element, index }) => {
           reducerState={reducerState}
           workBulletString={element.workBulletString} />
       </div>
-    </>
+    </div>
   );
 };
 
