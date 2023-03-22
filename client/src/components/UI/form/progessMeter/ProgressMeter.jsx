@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
 
-const ProgressMeter = ({ currentValue, maxValue}) => {
+const ProgressMeter = ({ currentValue, maxValue, isLightMode}) => {
   const [width, setWidth] = useState(0);
+  console.log('isLightMode in ProgressBar', isLightMode);
 
   const convertWidthToPercentage = () => {
     return (currentValue / maxValue) * 100;
@@ -14,7 +15,7 @@ const ProgressMeter = ({ currentValue, maxValue}) => {
   }, [currentValue]); 
 
   return (
-    <div className="c-progress-bar">
+    <div className={`c-progress-bar ${isLightMode ? 'light-mode' : ''}`}>
       <div className="progress-bar" style={{width : `${width}%`}}></div>
     </div>
   )

@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import './Header.scss';
 
 const Header = ({ contactData }) => {
-  console.log('contact data', contactData);
 
   if (!contactData?.content) {
-    console.log('no contact data found');
     return null;
   }
 

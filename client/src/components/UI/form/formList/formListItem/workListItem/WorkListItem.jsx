@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import BulletTextArea from '../BulletTextArea/BulletTextArea';
 import getNumberSuffix from '../../../_helper_functions/getNumberSuffix';
+import ItemDeleteButton from '../_helper_components/itemDeleteButton/ItemDeleteButton';
 
 const WorkListItem = ({ element, transitionOut = false, index, functions, reducerState, dispatch }) => {
   // const { handleTransitionEnd, numberOfListItems } = functions;
-  console.log('index prop', index);
   const numPlacement = index + 1;
-
-  console.log('numPlacement', numPlacement);
   const handleInputChange = (name, value, elIndex) => {
-    console.log(name, value, elIndex);
     dispatch({
       type: 'UPDATE_ENTRY',
       payload: { index: elIndex, name, value }
     });
   };
 
+  const handleDeleteButtonClick = (index) => {
+    dispatch({
+      type: 'DELETE_ENTRY',
+      payload: { elIndex: index }
+    })
+  };
+
   return (
-    <div className={`c-work-items ${transitionOut ? '' : ''}`} >
+    <div className={`c-work-items list-items ${transitionOut ? '' : ''}`} key={`${index}`} >
+      <ItemDeleteButton propFunc={() => handleDeleteButtonClick(index)}/>
       <div className="content-wrapper">
         <label for={`workname-${index}`}>{`${numPlacement.toString()}${getNumberSuffix(numPlacement)} Company Name`}</label>
         <input

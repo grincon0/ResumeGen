@@ -7,7 +7,7 @@ import ProgressMeter from './progessMeter/ProgressMeter';
 import getResumeFormSection from './_helper_functions/getResumeFormSection';
 import './style.scss';
 
-const Form = ({ pageValue, isDarkMode }) => {
+const Form = ({ pageValue, isLightMode }) => {
   const [formStageValue, setformStageValue] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
@@ -17,8 +17,6 @@ const Form = ({ pageValue, isDarkMode }) => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const backBtn = useRef(null);
-
-  console.log('dark mode in Form', isDarkMode);
 
   /* ADD_ENTRY will push new obj, which will in turn allow for the comp to render another set of list item inputs */
   const workReducer = (state, action) => {
@@ -34,30 +32,8 @@ const Form = ({ pageValue, isDarkMode }) => {
           ...state.slice(index + 1)
         ];
       case 'DELETE_ENTRY':
-        return [
-          ...state.slice(0, state.length - 1)
-        ];
-      default:
-        throw new Error();
-    }
-  };
-
-  const projectReducer = (state, action) => {
-    switch (action.type) {
-      case 'ADD_ENTRY':
-        return [...state, { projectName: '', description: '', projectBulletString: '' }];
-      case 'UPDATE_ENTRY':
-        const { index, name, value } = action.payload;
-        const updatedDiv = Object.assign({}, state[index], { [name]: value });
-        return [
-          ...state.slice(0, index),
-          updatedDiv,
-          ...state.slice(index + 1)
-        ];
-      case 'DELETE_ENTRY':
-        return [
-          ...state.slice(0, state.length - 1)
-        ];
+        const { elIndex } = action.payload;
+        return state.filter((_, index) => index !== elIndex);
       default:
         throw new Error();
     }
@@ -76,13 +52,33 @@ const Form = ({ pageValue, isDarkMode }) => {
           ...state.slice(index + 1)
         ];
       case 'DELETE_ENTRY':
-        return [
-          ...state.slice(0, state.length - 1)
-        ];
+        const { elIndex } = action.payload;
+        return state.filter((_, index) => index !== elIndex);
       default:
         throw new Error();
     }
   };
+
+  const projectReducer = (state, action) => {
+    switch (action.type) {
+      case 'ADD_ENTRY':
+        return [...state, { projectName: '', description: '', projectBulletString: '' }];
+      case 'UPDATE_ENTRY':
+        const { index, name, value } = action.payload;
+        const updatedDiv = Object.assign({}, state[index], { [name]: value });
+        return [
+          ...state.slice(0, index),
+          updatedDiv,
+          ...state.slice(index + 1)
+        ];
+      case 'DELETE_ENTRY':
+        const { elIndex } = action.payload;
+        return state.filter((_, index) => index !== elIndex);
+      default:
+        throw new Error();
+    }
+  };
+
 
   const skillReducer = (state, action) => {
     switch (action.type) {
@@ -97,9 +93,9 @@ const Form = ({ pageValue, isDarkMode }) => {
           ...state.slice(index + 1)
         ];
       case 'DELETE_ENTRY':
-        return [
-          ...state.slice(0, state.length - 1)
-        ];
+        const { elIndex } = action.payload;
+        debugger;
+        return state.filter((_, index) => index !== elIndex);
       default:
         throw new Error();
     }
@@ -124,10 +120,10 @@ const Form = ({ pageValue, isDarkMode }) => {
     skillEntries: skillState
   };
 
+  console.log('workState', workState)
+
   const handleNextBtnClick = () => {
     if (formStageValue >= 0 && hasFormInit && !isAnimating) {
-      // let currentVal = formStageValue;
-      // setformStageValue(currentVal + 1);
       setIsAnimating(true);
     }
   };
@@ -188,12 +184,12 @@ const Form = ({ pageValue, isDarkMode }) => {
   }, [formStageValue]);
 
   return (
-    <div className="c-resume-form">
+    <div className={`c-resume-form ${isLightMode ? 'light-mode' : ''}`}>
       <div className="form-messaging"></div>
-      <ProgressMeter currentValue={formStageValue} maxValue={maxFormStageValue} />
+      <ProgressMeter currentValue={formStageValue} maxValue={maxFormStageValue} isLightMode={isLightMode} />
       <form id="resume-form" className={`resume-form ${isReviewing ? 'reviewing' : ''}`} onSubmit={handleFormSubmit}>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-zero ${handleClassOutput(0)}`}>
-          <div className="c-contact-items">
+          <div className="c-contact-items list-items">
             <label for="user-name">Name</label>
             <input id="user-name" type="text" placeholder="Name" value={userName} onChange={(event) => setUserName(event.target.value)} />
             <label for="address">Address</label>

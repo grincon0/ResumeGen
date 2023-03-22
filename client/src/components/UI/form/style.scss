@@ -2,6 +2,27 @@
 @import "../../../styles/neumorph";
 
 .c-resume-form {
+  &.light-mode {
+    .resume-form .segment .list-items {
+      border-radius: 50px;
+      background: linear-gradient(145deg, #f3ffff, #ccd9e1);
+      box-shadow: 7px 7px 14px #bcc8d0, -7px -7px 14px #ffffff;
+
+      label {
+        color: #90a7be;
+        font-size: 1.25rem;
+        font-weight: 900;
+      }
+
+      input {
+        border-radius: 49px;
+        background: #d9eaf4;
+        box-shadow: inset -5px -5px 10px #c8d7e0, inset 5px 5px 10px #eafdff;
+        text-shadow: none;
+      }
+    }
+  }
+
   @include breakpoint(tablet) {
     width: 50%;
     margin-left: 25%;
@@ -102,11 +123,8 @@
         border-radius: 70px;
         padding: 65px;
         margin-bottom: 40px;
-        
-
 
         &.transition-out {
-
           .content-wrapper {
             height: 0;
           }
@@ -114,7 +132,7 @@
 
         .content-wrapper {
           height: auto;
-          transition: all .7s;
+          transition: all 0.7s;
         }
 
         label,
@@ -194,8 +212,8 @@
     }
 
     &:active {
-      box-shadow: inset 1px 1px 2px $color-shadow,
-        inset -1px -1px 2px $color-white;
+      background: #272727;
+      box-shadow: inset 21px 21px 49px #1a1a1a, inset -21px -21px 49px #343434;
     }
   }
 }
