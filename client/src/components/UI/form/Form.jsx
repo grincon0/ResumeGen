@@ -212,7 +212,7 @@ const Form = ({ pageValue, isLightMode }) => {
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${isReviewing ? 'in-review' : ''} ${handleClassOutput(4)}`}>
           <FormList isLightMode={isLightMode} dispatch={dispatchSkillEntry} reducerState={skillState} targetSection={getResumeFormSection(4)} />
         </div>
-        {isReviewing && <button type="submit">Finish</button>}
+        {isReviewing && <button className="submit-btn" type="submit">Finish</button>}
       </form>
       <div className={`c-form-nav ${formStageValue === 0 ? 'on-contact-form' : ''}`}>
         {formStageValue > 0 && <button ref={backBtn} data-btn-type="back" className="back-btn" onClick={(event) => handleBackBtnClick(event)}>Back</button>}
