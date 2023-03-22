@@ -7,7 +7,7 @@ import ProgressMeter from './progessMeter/ProgressMeter';
 import getResumeFormSection from './_helper_functions/getResumeFormSection';
 import './style.scss';
 
-const Form = ({ pageValue, isDarkMode }) => {
+const Form = ({ pageValue, isLightMode }) => {
   const [formStageValue, setformStageValue] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
@@ -25,7 +25,6 @@ const Form = ({ pageValue, isDarkMode }) => {
         return [...state, { workName: '', roleTitle: '', dateString: '', isContractor: false, showContractor: false, workBulletString: '' }];
       case 'UPDATE_ENTRY':
         const { index, name, value } = action.payload;
-        console.log('action', action);
         const updatedDiv = Object.assign({}, state[index], { [name]: value });
         return [
           ...state.slice(0, index),
@@ -33,31 +32,8 @@ const Form = ({ pageValue, isDarkMode }) => {
           ...state.slice(index + 1)
         ];
       case 'DELETE_ENTRY':
-        return [
-          ...state.slice(0, state.length - 1)
-        ];
-      default:
-        throw new Error();
-    }
-  };
-
-  const projectReducer = (state, action) => {
-    switch (action.type) {
-      case 'ADD_ENTRY':
-        return [...state, { projectName: '', description: '', projectBulletString: '' }];
-      case 'UPDATE_ENTRY':
-        const { index, name, value } = action.payload;
-        console.log('action', action);
-        const updatedDiv = Object.assign({}, state[index], { [name]: value });
-        return [
-          ...state.slice(0, index),
-          updatedDiv,
-          ...state.slice(index + 1)
-        ];
-      case 'DELETE_ENTRY':
-        return [
-          ...state.slice(0, state.length - 1)
-        ];
+        const { elIndex } = action.payload;
+        return state.filter((_, index) => index !== elIndex);
       default:
         throw new Error();
     }
@@ -69,7 +45,6 @@ const Form = ({ pageValue, isDarkMode }) => {
         return [...state, { eduName: '', dateString: '', eduType: '', locale: '', eduBulletString: '' }];
       case 'UPDATE_ENTRY':
         const { index, name, value } = action.payload;
-        console.log('action', action);
         const updatedDiv = Object.assign({}, state[index], { [name]: value });
         return [
           ...state.slice(0, index),
@@ -77,13 +52,33 @@ const Form = ({ pageValue, isDarkMode }) => {
           ...state.slice(index + 1)
         ];
       case 'DELETE_ENTRY':
-        return [
-          ...state.slice(0, state.length - 1)
-        ];
+        const { elIndex } = action.payload;
+        return state.filter((_, index) => index !== elIndex);
       default:
         throw new Error();
     }
   };
+
+  const projectReducer = (state, action) => {
+    switch (action.type) {
+      case 'ADD_ENTRY':
+        return [...state, { projectName: '', description: '', projectBulletString: '' }];
+      case 'UPDATE_ENTRY':
+        const { index, name, value } = action.payload;
+        const updatedDiv = Object.assign({}, state[index], { [name]: value });
+        return [
+          ...state.slice(0, index),
+          updatedDiv,
+          ...state.slice(index + 1)
+        ];
+      case 'DELETE_ENTRY':
+        const { elIndex } = action.payload;
+        return state.filter((_, index) => index !== elIndex);
+      default:
+        throw new Error();
+    }
+  };
+
 
   const skillReducer = (state, action) => {
     switch (action.type) {
@@ -91,7 +86,6 @@ const Form = ({ pageValue, isDarkMode }) => {
         return [...state, { skillRowTitle: '', skillRowString: '' }];
       case 'UPDATE_ENTRY':
         const { index, name, value } = action.payload;
-        console.log('action', action);
         const updatedDiv = Object.assign({}, state[index], { [name]: value });
         return [
           ...state.slice(0, index),
@@ -99,9 +93,9 @@ const Form = ({ pageValue, isDarkMode }) => {
           ...state.slice(index + 1)
         ];
       case 'DELETE_ENTRY':
-        return [
-          ...state.slice(0, state.length - 1)
-        ];
+        const { elIndex } = action.payload;
+        debugger;
+        return state.filter((_, index) => index !== elIndex);
       default:
         throw new Error();
     }
@@ -126,10 +120,10 @@ const Form = ({ pageValue, isDarkMode }) => {
     skillEntries: skillState
   };
 
+  console.log('workState', workState)
+
   const handleNextBtnClick = () => {
     if (formStageValue >= 0 && hasFormInit && !isAnimating) {
-      // let currentVal = formStageValue;
-      // setformStageValue(currentVal + 1);
       setIsAnimating(true);
     }
   };
@@ -156,7 +150,6 @@ const Form = ({ pageValue, isDarkMode }) => {
 
   const handleTransitionEnd = (event) => {
     // Access the propertyName attribute of the event
-    console.log('Transition ended for property:', event);
     if (hasFormInit && isAnimating) {
       const currentValue = formStageValue;
       if (buttonClickType === 'back') {
@@ -182,8 +175,6 @@ const Form = ({ pageValue, isDarkMode }) => {
   };
 
   useEffect(() => {
-    console.log('current Resume stage', getResumeFormSection(formStageValue));
-
     // Allows user to review form before submitting
     if (formStageValue >= maxFormStageValue) {
       setIsReviewing(true)
@@ -192,22 +183,22 @@ const Form = ({ pageValue, isDarkMode }) => {
     }
   }, [formStageValue]);
 
-  console.log('form level work state', workState);
-
   return (
-    <div className="c-resume-form">
+    <div className={`c-resume-form ${isLightMode ? 'light-mode' : ''}`}>
       <div className="form-messaging"></div>
-      <ProgressMeter currentValue={formStageValue} maxValue={maxFormStageValue} />
+      <ProgressMeter currentValue={formStageValue} maxValue={maxFormStageValue} isLightMode={isLightMode} />
       <form id="resume-form" className={`resume-form ${isReviewing ? 'reviewing' : ''}`} onSubmit={handleFormSubmit}>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-zero ${handleClassOutput(0)}`}>
-          <label for="user-name">Name</label>
-          <input id="user-name" type="text" placeholder="Name" value={userName} onChange={(event) => setUserName(event.target.value)} />
-          <label for="address">Address</label>
-          <input id="address" type="text" placeholder="Address" value={address} onChange={(event) => setAddress(event.target.value)} />
-          <label for="phone">Contact Number</label>
-          <input id="phone" type="text" placeholder="Phone #" value={phone} onChange={(event) => setPhone(event.target.value)} />
-          <label for="email">Email</label>
-          <input id="email" type="text" placeholder="Email Address" value={email} onChange={(event) => setEmail(event.target.value)} />
+          <div className="c-contact-items list-items">
+            <label for="user-name">Name</label>
+            <input id="user-name" type="text" placeholder="Name" value={userName} onChange={(event) => setUserName(event.target.value)} />
+            <label for="address">Address</label>
+            <input id="address" type="text" placeholder="Address" value={address} onChange={(event) => setAddress(event.target.value)} />
+            <label for="phone">Contact Number</label>
+            <input id="phone" type="text" placeholder="Phone #" value={phone} onChange={(event) => setPhone(event.target.value)} />
+            <label for="email">Email</label>
+            <input id="email" type="text" placeholder="Email Address" value={email} onChange={(event) => setEmail(event.target.value)} />
+          </div>
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${isReviewing ? 'in-review' : ''} ${handleClassOutput(1)}`}>
           <FormList dispatch={dispatchWorkEntry} reducerState={workState} targetSection={getResumeFormSection(1)} />

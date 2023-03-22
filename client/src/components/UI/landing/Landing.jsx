@@ -12,11 +12,9 @@ const Landing = ({ propFunc }) => {
   }
 
   const callPropFunction = () => {
-    console.log('call prop fucn');
     propFunc();
   }
 
-  console.log('click state', click);
   return (
     <div className={`c-landing ${click ? 'has-transition' : ''}`}>
       <h1 onTransitionEnd={callPropFunction} className="headline">{`{ Hello World }`}</h1>

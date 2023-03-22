@@ -11,6 +11,11 @@
 .App {
   overflow: hidden;
 
+  &.light-mode {
+    background: rgb(188,237,255);
+    background: linear-gradient(331deg, rgb(227,241,250) 0%, rgb(209,228,240) 62%);
+  }
+
   &.form-active {
     overflow-y: scroll;
   }
