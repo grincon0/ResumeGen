@@ -59,7 +59,7 @@ const WorkListItem = ({ element, transitionOut = false, index, functions, reduce
             checked={element.isContractor}
             onChange={(e) => handleInputChange(e.target.name, e.target.checked, index)}
           />
-          <label for={`is-contractor-${index}`}>Is this contractor role?</label>
+          <label for={`is-contractor-${index}`}>Agency role?</label>
           <div className={`c-show-contractor ${!element.isContractor ? 'hide-field' : ''}`}>
             <input
               className="contractor"
@@ -68,7 +68,7 @@ const WorkListItem = ({ element, transitionOut = false, index, functions, reduce
               checked={element.showContractor}
               onChange={(e) => handleInputChange(e.target.name, e.target.checked, index)}
             />
-            <label for={`show-contractor-${index}`}>Set Contractor/Agency name as Company?</label>
+            <label for={`show-contractor-${index}`}>Set Agency name as Company?</label>
           </div>
         </div>
         <div className={`c-contractor-field ${!element.isContractor || !element.showContractor ? 'hide-field' : ''}`}>

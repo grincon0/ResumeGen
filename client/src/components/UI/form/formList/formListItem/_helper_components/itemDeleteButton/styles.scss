@@ -1,21 +1,44 @@
-.c-resume-form .resume-form .segment .c-form-list,
-.c-resume-form .resume-form .segment .c-skill-list {
+.c-resume-form {
+  &.light-mode {
+    .resume-form .segment .c-form-list,
+    .resume-form .segment .c-skill-list {
+      border-radius: 50%;
+      background: #d9eaf4;
+      box-shadow: -24px -24px 47px #a9b7be, 24px 24px 47px #ffffff;
 
-  button.delete-button {
-    border-radius: 49px;
-    background: linear-gradient(225deg, #2c2c2c, #252525);
-    position: relative;
-    left: 92%;
-    width: 40px;
-    height: 40px;
-    margin: 0;
+      button.delete-button {
+        border-radius: 50%;
+        background: #d9eaf4;
+        box-shadow: -24px -24px 47px #a9b7be, 24px 24px 47px #ffffff;
 
-    &:active {
-      background: #272727;
-      box-shadow: inset 21px 21px 49px #1a1a1a,
+        &:active {
+          background: #272727;
+          box-shadow: inset 21px 21px 49px #1a1a1a,
             inset -21px -21px 49px #343434;
+        }
+      }
+    }
+  }
+
+  .resume-form .segment .c-form-list,
+  .resume-form .segment .c-skill-list {
+    border-radius: 50%;
+    background: #d9eaf4;
+    box-shadow: -24px -24px 47px #a9b7be, 24px 24px 47px #ffffff;
+
+    button.delete-button {
+      border-radius: 49px;
+      background: linear-gradient(225deg, #2c2c2c, #252525);
+      position: relative;
+      left: 92%;
+      width: 40px;
+      height: 40px;
+      margin: 0;
+
+      &:active {
+        background: #272727;
+        box-shadow: inset 21px 21px 49px #1a1a1a, inset -21px -21px 49px #343434;
+      }
     }
   }
 }
-
-
