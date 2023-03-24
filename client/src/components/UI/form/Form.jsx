@@ -215,7 +215,7 @@ const Form = ({ pageValue, isLightMode }) => {
         {isReviewing && <button className="submit-btn" type="submit">Finish</button>}
       </form>
       <div className={`c-form-nav ${formStageValue === 0 ? 'on-contact-form' : ''}`}>
-        {formStageValue > 0 && <button ref={backBtn} data-btn-type="back" className="back-btn" onClick={(event) => handleBackBtnClick(event)}>Back</button>}
+        {formStageValue < maxFormStageValue && formStageValue > 0 && <button ref={backBtn} data-btn-type="back" className="back-btn" onClick={(event) => handleBackBtnClick(event)}>Back</button>}
         {formStageValue < maxFormStageValue && <button data-btn-type="next" className="next-btn" onClick={handleNextBtnClick}>Next</button>}
       </div>
     </div>

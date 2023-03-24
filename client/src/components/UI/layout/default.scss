@@ -1,3 +1,5 @@
+@import '../../../styles//mixins';
+
 .c-default-layout {
   background: rgb(92, 92, 92);
   background: linear-gradient(
@@ -25,13 +27,30 @@
   }
 
   .c-color-mode {
-    position: absolute;
+    position: relative;
+
+/*     @include breakpoint(desktop-sm) {
+      position: relative;
+    } */
 
     img {
-      width: 75px;
-      margin-left: 89vw;
+      width: 50px;
+      margin-left: 76vw;
       margin-top: 22px;
       filter: drop-shadow(2px 4px 6px #e47373);
+      position: relative;
+      z-index: 99;
+      cursor: pointer;
+
+      @include breakpoint(tablet) {
+        margin-left: 87vw;
+        width: 75px;
+      }
+
+      @include breakpoint(desktop-lg) {
+        margin-left: 92vw;
+        width: 55px;
+      }
     }
   }
 
@@ -42,6 +61,8 @@
   .form-block {
     position: relative;
     transition: all 0.7s;
+    max-width: 1800px;
+    margin: 0 auto;
 
     &.hide-form {
       opacity: 0;

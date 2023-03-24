@@ -16,9 +16,9 @@ function App() {
     pageValue = 2;
   }
   return (
-    <div className="root-app">
+    <>
       <DefaultLayout />
-    </div>
+    </>
   );
 }
 

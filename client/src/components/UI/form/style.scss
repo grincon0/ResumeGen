@@ -3,25 +3,40 @@
 
 .c-resume-form {
 
+  @include breakpoint(tablet) {
+    width: 50%;
+    margin-left: 25%;
+    /* margin-top: 25%; */
+  }
+
+  @include breakpoint(desktop-sm) {
+    margin: 0 auto;
+    width: 39%;
+  }
+
+  @include breakpoint(desktop-xl) {
+    max-width: 500px;
+  }
+
   &.light-mode {
 
     .c-form-nav button {
       height: 75px;
       width: 75px;
-      background: linear-gradient(145deg, #FFFFFF, #B0BEC6);
+      background: linear-gradient(145deg, #ffffff, #b0bec6);
       border-radius: 100%;
-      box-shadow: 8.11px 8.11px 15px #C5D5DE, -8.11px -8.11px 15px #EDFFFF;
+      box-shadow: 8.11px 8.11px 15px #c5d5de, -8.11px -8.11px 15px #edffff;
 
       &:active {
         background: #d9eaf4;
         border-radius: 100%;
-        box-shadow: 8.11px 8.11px 15px #C5D5DE, -8.11px -8.11px 15px #EDFFFF;
+        box-shadow: 8.11px 8.11px 15px #c5d5de, -8.11px -8.11px 15px #edffff;
       }
     }
 
     .submit-btn {
       background: #d9eaf4;
-      box-shadow: 8.11px 8.11px 15px #C5D5DE, -8.11px -8.11px 15px #EDFFFF;
+      box-shadow: 8.11px 8.11px 15px #c5d5de, -8.11px -8.11px 15px #edffff;
       text-shadow: none;
     }
 
@@ -53,28 +68,39 @@
     }
   }
 
-  @include breakpoint(tablet) {
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 25%;
-  }
-
   .c-form-nav {
     position: relative;
     transform: translateY(-123px);
     width: 50%;
     z-index: 10;
+    margin-left: 10vw;
 
     &.on-contact-form {
       transform: translateY(-57px);
+      width: 100%;
 
       button.next-btn {
         /* margin-left: 82%; */
+        // margin-left: 71%;
+        @include breakpoint(tablet) {
+          transform: translateY(40px);
+        }
       }
+    }
+
+    @include breakpoint(tablet) {
+      margin-left: 0;
+    }
+
+    @include breakpoint(desktop-lg) {
+      transform: translateY(-140px);
     }
 
     button {
       text-shadow: none;
+      height: 75px;
+      width: 75px;
+      border-radius: 100%;
     }
   }
 
@@ -84,9 +110,23 @@
     margin-bottom: 20px;
 
     &.reviewing {
+
       + .c-form-nav {
         transform: translateY(-193px);
+
+        @include breakpoint(desktop-lg) {
+          transform: translateY(-214px);
+
+        }
       }
+
+      .segment .c-contact-items {
+
+        @include breakpoint(tablet) {
+          margin-bottom: 40px;
+        }
+      }
+
     }
 
     button {
@@ -94,13 +134,27 @@
       margin-top: 25px;
     }
 
+/*     .segment .list-items {
+
+      @include breakpoint(desktop-sm) {
+        margin-bottom: 0;
+      }
+    } */
+
+    .segment.phase-zero {
+      margin-bottom: 0;
+    }
+
     .segment,
     .segment .c-form-list {
       margin-bottom: 25px;
       transition: all 0.7s;
 
-      &.reviewing {
+      @include breakpoint(desktop-lg) {
+        margin-bottom: 45px;
+      }
 
+      &.reviewing {
         &.phase-zero,
         &.phase-one,
         &.phase-two,
@@ -168,6 +222,12 @@
           opacity: 0;
         }
       }
+      .c-contact-items {
+        
+        @include breakpoint(desktop-sm) {
+          margin: 0 auto;
+        }
+      }
 
       .c-contact-items,
       .c-work-items,
@@ -177,8 +237,23 @@
         background: #292929;
         overflow: hidden;
         border-radius: 70px;
-        padding: 65px;
-        margin-bottom: 40px;
+        margin: 0 auto 40px;
+        width: 58%;
+        padding: 41px;
+
+        @include breakpoint(tablet) {
+          padding: 65px;
+          width: auto;
+        }
+
+        @include breakpoint(desktop-sm) {
+          padding: 55px;
+          
+
+          &:not(.c-skill-row) {
+            margin-bottom: 40px;
+          }
+        }
 
         &.transition-out {
           .content-wrapper {
@@ -197,19 +272,44 @@
           letter-spacing: $letter-space;
         }
 
+        .c-contractor label {
+          font-size: 0.7rem;
+          margin-left: 0;
+
+          @include breakpoint(desktop-sm) {
+            font-size: 1rem;
+          }
+
+          &.contractor-label {
+            margin-right: 10px;
+          }
+        }
+
         label {
+          font-size: 1rem;
+          font-weight: 900;
           display: inline-block;
           color: #cdcdcd;
           margin: 0 0 10px 15px;
+
+          @include breakpoint(tablet) {
+            font-size: 1.25rem;
+          }
+        }
+
+        input {
+          height: 43px;
         }
 
         input,
         textarea {
+
           &.contractor {
             width: 40px;
             height: 40px;
           }
 
+          font-size: 1rem;
           margin-bottom: 15px;
           color: $white;
           caret-color: $white;
@@ -223,12 +323,16 @@
           -webkit-appearance: none;
           border: 0;
           outline: 0;
-          font-size: $ruler;
           border-radius: $ruler * 20;
           padding: $ruler;
           background-color: $color-bg;
           text-shadow: 1px 1px 0 $color-white;
           margin-bottom: 20px;
+
+          @include breakpoint(tablet) {
+            font-size: $ruler;
+            height: auto;
+          }
         }
 
         textarea {
@@ -246,7 +350,6 @@
     border-radius: $ruler * 20;
     padding: $ruler;
     background-color: $color-bg;
-    text-shadow: 1px 1px 0 $color-white;
     border-radius: $ruler/2;
     line-height: 0;
     width: $ruler * 3;
