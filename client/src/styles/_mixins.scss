@@ -5,7 +5,15 @@ $breakpoint: (
   tablet: 768px,
   desktop-sm: 1024px,
   desktop-lg: 1280px,
+  desktop-xl: 1360px,
 ) !default;
+
+@mixin between-breakpoints($pointA, $pointB) {
+  /* stylelint-disable-next-line */
+  @media only screen and (min-width: map-get($breakpoint, $pointA)) and (max-width: map-get($breakpoint, $pointB) - 1) {
+    @content;
+  }
+}
 
 @mixin breakpoint($point) {
     @if $point == mobile-sm {
@@ -29,16 +37,16 @@ $breakpoint: (
       }
     }
 
-    @if $point == desktop-md {
+    @if $point == desktop-lg {
 
-      @media only screen and (min-width: map-get($breakpoint, desktop-md)) {
+      @media only screen and (min-width: map-get($breakpoint, desktop-lg)) {
         @content;
       }
     }
 
-    @if $point == desktop-lg {
+    @if $point == desktop-xl {
 
-      @media only screen and (min-width: map-get($breakpoint, desktop-lg)) {
+      @media only screen and (min-width: map-get($breakpoint, desktop-xl)) {
         @content;
       }
     }

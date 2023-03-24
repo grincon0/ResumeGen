@@ -3,7 +3,10 @@ import moonSVG from '../../../../resources/icons/crescent-moon.svg';
 import sunSVG from '../../../../resources/icons/sun.svg';
 
 const ColorModeIcon = ({isLightMode, handleColorMode}) => {
-  return <div className="c-color-mode" onClick={handleColorMode}>{isLightMode ? <sunSVG /> : <moonSVG />}</div>
+  const svgIconSrc = isLightMode ? sunSVG : moonSVG;
+  return (<div className="c-color-mode">
+    {<img src={svgIconSrc} onClick={handleColorMode} />}
+  </div>);
 };
 
 export default ColorModeIcon;

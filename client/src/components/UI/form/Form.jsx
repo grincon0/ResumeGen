@@ -201,21 +201,21 @@ const Form = ({ pageValue, isLightMode }) => {
           </div>
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${isReviewing ? 'in-review' : ''} ${handleClassOutput(1)}`}>
-          <FormList dispatch={dispatchWorkEntry} reducerState={workState} targetSection={getResumeFormSection(1)} />
+          <FormList isLightMode={isLightMode} dispatch={dispatchWorkEntry} reducerState={workState} targetSection={getResumeFormSection(1)} />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${isReviewing ? 'in-review' : ''} ${handleClassOutput(2)}`}>
-          <FormList dispatch={dispatchProjectEntry} reducerState={projectState} targetSection={getResumeFormSection(2)} />
+          <FormList isLightMode={isLightMode} dispatch={dispatchProjectEntry} reducerState={projectState} targetSection={getResumeFormSection(2)} />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${isReviewing ? 'in-review' : ''} ${handleClassOutput(3)}`}>
-          <FormList dispatch={dispatchEduEntry} reducerState={eduState} targetSection={getResumeFormSection(3)} />
+          <FormList isLightMode={isLightMode} dispatch={dispatchEduEntry} reducerState={eduState} targetSection={getResumeFormSection(3)} />
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${isReviewing ? 'in-review' : ''} ${handleClassOutput(4)}`}>
-          <FormList dispatch={dispatchSkillEntry} reducerState={skillState} targetSection={getResumeFormSection(4)} />
+          <FormList isLightMode={isLightMode} dispatch={dispatchSkillEntry} reducerState={skillState} targetSection={getResumeFormSection(4)} />
         </div>
-        {isReviewing && <button type="submit">Finish</button>}
+        {isReviewing && <button className="submit-btn" type="submit">Finish</button>}
       </form>
-      <div className="c-form-nav">
-        {formStageValue > 0 && <button ref={backBtn} data-btn-type="back" className="back-btn" onClick={(event) => handleBackBtnClick(event)}>Back</button>}
+      <div className={`c-form-nav ${formStageValue === 0 ? 'on-contact-form' : ''}`}>
+        {formStageValue < maxFormStageValue && formStageValue > 0 && <button ref={backBtn} data-btn-type="back" className="back-btn" onClick={(event) => handleBackBtnClick(event)}>Back</button>}
         {formStageValue < maxFormStageValue && <button data-btn-type="next" className="next-btn" onClick={handleNextBtnClick}>Next</button>}
       </div>
     </div>

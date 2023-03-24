@@ -1,5 +1,9 @@
 @import './styles/_mixins.scss';
 
+#root {
+  background: #000;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,6 +13,6 @@ body {
   background: rgb(92,92,92);
   background: linear-gradient(52deg, rgba(92,92,92,1) 0%, rgba(0,0,0,1) 0%, rgba(33,33,33,1) 89%);
   min-height: 100vh;
-  overflow: hidden;
+  overflow-y: scroll;
   max-height: 100vh;
 }

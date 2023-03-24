@@ -59,7 +59,7 @@ const WorkListItem = ({ element, transitionOut = false, index, functions, reduce
             checked={element.isContractor}
             onChange={(e) => handleInputChange(e.target.name, e.target.checked, index)}
           />
-          <label for={`is-contractor-${index}`}>Is this contractor role?</label>
+          <label className="contractor-label" for={`is-contractor-${index}`}>Agency role?</label>
           <div className={`c-show-contractor ${!element.isContractor ? 'hide-field' : ''}`}>
             <input
               className="contractor"
@@ -68,17 +68,17 @@ const WorkListItem = ({ element, transitionOut = false, index, functions, reduce
               checked={element.showContractor}
               onChange={(e) => handleInputChange(e.target.name, e.target.checked, index)}
             />
-            <label for={`show-contractor-${index}`}>Set Contractor/Agency name as Company?</label>
+            <label for={`show-contractor-${index}`}>Set Agency name as Company?</label>
           </div>
         </div>
         <div className={`c-contractor-field ${!element.isContractor || !element.showContractor ? 'hide-field' : ''}`}>
-          <label for={`contractor-name-${index}`}>What's the name of the contractor/agency?</label>
+          <label for={`contractor-name-${index}`}>What's the name of the agency?</label>
           <input
             className="contractor-name"
             type="text"
             id={`contractor-name-${index}`}
             name="agencyName"
-            placeholder="Contractor/Agency Name"
+            placeholder="Agency Name"
             value={element.agencyName}
             onChange={(e) => handleInputChange(e.target.name, e.target.value, index)}
           ></input>

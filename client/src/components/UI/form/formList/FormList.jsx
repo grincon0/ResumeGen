@@ -4,7 +4,7 @@ import SkillList from '../skillList/SkillList';
 import SkillRow from '../skillList/_helper_components/SkillRow';
 import FormListAddSubButton from './formListAddSub/FormListAddSub';
 
-const FormList = ({ targetSection, reducerState, dispatch }) => {
+const FormList = ({ targetSection, reducerState, dispatch, isLightMode }) => {
   const [listIsAnimating, setListIsAnimation] = useState(false);
   const numberOfListItems = reducerState?.length;
 
@@ -73,7 +73,7 @@ const FormList = ({ targetSection, reducerState, dispatch }) => {
           return handleTargetListItem(targetSection, el, i);
         })}
       </div>
-      <div className="c-form-list-add-sub">
+      <div className={`c-form-list-add-sub ${isLightMode ? 'light-mode' : ''}`}>
         <FormListAddSubButton text={'+'} propFunc={() => handleButtonClick('ADD')} />
       </div>
     </>

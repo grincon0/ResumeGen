@@ -1,3 +1,5 @@
+@import '../../../styles//mixins';
+
 .c-default-layout {
   background: rgb(92, 92, 92);
   background: linear-gradient(
@@ -12,12 +14,44 @@
   overflow: hidden;
 
   &.light-mode {
-    background: rgb(188,237,255);
-    background: linear-gradient(331deg, rgb(227,241,250) 0%, rgb(209,228,240) 62%);
+    background: rgb(188, 237, 255);
+    background: linear-gradient(
+      331deg,
+      rgb(227, 241, 250) 0%,
+      rgb(209, 228, 240) 62%
+    );
   }
 
   &.form-active {
     overflow-y: scroll;
+  }
+
+  .c-color-mode {
+    position: relative;
+
+/*     @include breakpoint(desktop-sm) {
+      position: relative;
+    } */
+
+    img {
+      width: 50px;
+      margin-left: 76vw;
+      margin-top: 22px;
+      filter: drop-shadow(2px 4px 6px #e47373);
+      position: relative;
+      z-index: 99;
+      cursor: pointer;
+
+      @include breakpoint(tablet) {
+        margin-left: 87vw;
+        width: 75px;
+      }
+
+      @include breakpoint(desktop-lg) {
+        margin-left: 92vw;
+        width: 55px;
+      }
+    }
   }
 
   div.hide {
@@ -26,7 +60,9 @@
 
   .form-block {
     position: relative;
-    transition: all .7s;
+    transition: all 0.7s;
+    max-width: 1800px;
+    margin: 0 auto;
 
     &.hide-form {
       opacity: 0;
