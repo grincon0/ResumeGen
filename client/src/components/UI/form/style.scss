@@ -78,10 +78,14 @@
     &.on-contact-form {
       transform: translateY(-57px);
       width: 100%;
+      margin-top: 40px;
+
+      @include breakpoint(tablet) {
+        margin-top: 20px;
+      }
 
       button.next-btn {
-        /* margin-left: 82%; */
-        // margin-left: 71%;
+       
         @include breakpoint(tablet) {
           transform: translateY(40px);
         }
