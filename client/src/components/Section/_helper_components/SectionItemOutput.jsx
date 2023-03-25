@@ -1,5 +1,6 @@
 import React from 'react';
 import generateSectionItemOutput from '../_helper_functions/generateSectionItemOutput';
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 const SectionItemOutput = ({ sectionItemData = [] , settings = {}}) => {
 
@@ -13,7 +14,7 @@ const SectionItemOutput = ({ sectionItemData = [] , settings = {}}) => {
 
   console.log('section skill list', sectionContentList);
 
-  return <>{sectionContentList}</>;
+  return <View>{sectionContentList}</View>;
 };
 
 export default SectionItemOutput;
