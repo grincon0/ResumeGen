@@ -24,7 +24,6 @@ const FormList = ({ targetSection, reducerState, dispatch, isLightMode }) => {
   }
 
   const handleTargetListItem = (targetSection, element, index) => {
-    console.log('iterated reducer state by index:', index, 'data', reducerState[index])
     switch (targetSection) {
       case 'WORK':
         return <WorkListItem
@@ -63,8 +62,6 @@ const FormList = ({ targetSection, reducerState, dispatch, isLightMode }) => {
         break;
     }
   };
-
-  console.log('form list component - print reducer state for work entries', reducerState);
 
   return (
     <>

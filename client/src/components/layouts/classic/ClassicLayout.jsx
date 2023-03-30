@@ -7,15 +7,23 @@ import './ClassicLayout.scss';
 
 const ClassicLayout = ({ resumeData }) => {
 
+  const styles = StyleSheet.create({
+    cWrapper : {
+      margin: '0 auto',
+      textAlign: 'center',
+      paddingLeft: '30px',
+      paddingRight: '30px',
+      maxWidth: '95%'
+    }
+  })
+
   return (
-    <View className="c-wrapper classic">
+    <View style={styles.cWrapper} className="c-wrapper classic">
         <Header contactData={resumeData?.contact} />
-      <View>
         <Section title={'Employment'} data={resumeData?.companies} dataType={rules.WORK} />
         <Section title={'Projects'} data={resumeData?.projects} dataType={rules.PROJECTS} />
         <Section title={'Education'} data={resumeData?.education} dataType={rules.EDUCATION} /> 
         <Section title={'Technology and Skills'} data={resumeData?.skills} dataType={rules.SKILLS} />
-      </View>
     </View>
   );
 /*   return (

@@ -5,13 +5,16 @@ import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 import './style.scss';
 
 const Section = ({ title = '', data, dataType = '' }) => {
-
-  console.log('section title', title);
-  console.log('section data', data);
   const settings = { dataType };
 
+  const styles = StyleSheet.create({
+    cSection: {
+      marginBottom: '15px',
+    }
+  });
+
   return (
-    <View className="c-section">
+    <View style={styles.cSection} className="c-section">
       {title && <SectionTitle titleString={title} data={data} />}
       <SectionItemOutput sectionItemData={data} settings={settings} />
     </View>

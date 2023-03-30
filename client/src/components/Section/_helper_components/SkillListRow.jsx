@@ -2,13 +2,20 @@ import React from 'react';
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 const SkillListRow = ({ data }) => {
-  console.log('skill list row data', data);
+
+  const styles = StyleSheet.create({
+    skillRow: {
+      marginLeft: '5px',
+      whiteSpace: 'break-spaces',
+      flexDirection: 'row',
+      fontSize: '8px'
+    }
+  });
 
   return (
-    <View className="skill-row">
+    <View style={styles.skillRow} className="skill-row">
       {
         data.map((skill, i) => {
-          console.log('skill', skill);
           const isLastItem = i === data.length - 1;
           return <Text key={i}>{`${skill}${isLastItem ? '' : ', '}`}</Text>;
         })

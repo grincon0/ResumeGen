@@ -14,13 +14,11 @@
       display: flex;
       margin-left: 5px;
       white-space: break-spaces;
-
-      li {
-      }
     }
   }
 
   .c-item-output {
+
     &:last-child {
       .c-item-output .c-bullet-list .bullet-list-item {
         padding-bottom: 0;

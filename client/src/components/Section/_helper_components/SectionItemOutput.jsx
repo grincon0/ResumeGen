@@ -6,13 +6,7 @@ const SectionItemOutput = ({ sectionItemData = [] , settings = {}}) => {
 
   const {bulletType, dataType} = settings;
 
-  console.log('section item block data type', dataType);
-
-  console.log('SectionItemOutput Data', sectionItemData);
-
   const sectionContentList = generateSectionItemOutput(sectionItemData, dataType);
-
-  console.log('section skill list', sectionContentList);
 
   return <View>{sectionContentList}</View>;
 };
