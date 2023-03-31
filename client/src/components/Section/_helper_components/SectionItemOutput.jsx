@@ -4,7 +4,7 @@ import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 const SectionItemOutput = ({ sectionItemData = [] , settings = {}}) => {
 
-  const {bulletType, dataType} = settings;
+  const {dataType} = settings;
 
   const sectionContentList = generateSectionItemOutput(sectionItemData, dataType);
 

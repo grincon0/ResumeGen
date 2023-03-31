@@ -2,7 +2,7 @@ import React from 'react';
 import BulletList from '../_helper_components/BulletList';
 import SkillListRow from '../_helper_components/SkillListRow';
 import rules from '../../../rules/dataTypes';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 import '../style.scss';
 
 const generateSectionItemOutput = (sectionItemData = []) => {
@@ -23,14 +23,17 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     instituteName: {
       fontSize: '11px',
       fontWeight: 'bold',
-      marginLeft: 'auto'
+      marginLeft: 'auto',
+      fontFamily: 'Helvetica-Bold',
     },
     roleName: {
-      fontSize: '11px'
+      fontSize: '11px',
+      fontFamily: 'Helvetica-Bold',
     },
     date: {
       fontSize: '11px',
-      marginLeft: 'auto'
+      marginLeft: 'auto',
+      fontFamily: 'Helvetica-Bold',
     },
     rowWrapper: {
       flexDirection: 'row'
@@ -74,6 +77,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     },
     projectTitle: {
       whiteSpace: 'break-spaces',
+      fontFamily: 'Helvetica-Bold',
       fontWeight: 'bold',
       fontSize: '10px',
     },
@@ -84,7 +88,9 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       wordWrap: 'break-word',
       width: '400px',
       textAlign: 'left',
-      whiteSpace: 'break-spaces'
+      whiteSpace: 'break-spaces',
+      fontFamily: 'Helvetica-Oblique',
+      fontStyle: 'italics'
     },
     divider: {
       fontSize: '10px',
@@ -123,7 +129,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       fontStyle: 'italic',
       marginBottom: '5px',
       fontSize: '9px',
-      textAlign:'left'
+      textAlign: 'left'
     }
   });
 
@@ -172,7 +178,6 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     return ItemOutputArray;
 
   } else {
-
     ItemOutputArray = sectionItemData.content.map((item, index) => {
       const companyString = generateCompanyString(item);
       console.log('companyString', companyString);
@@ -183,7 +188,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
 
       if (isLastChild) {
         lastChildStyle = {
-          lastEl : {
+          lastEl: {
             marginBottom: 0
           }
         }
@@ -201,9 +206,9 @@ const generateSectionItemOutput = (sectionItemData = []) => {
                     <Text style={projectItemStyles.projectInfo} className="project-desc">{`${item?.desc ? item.desc : ''}`}</Text>
                   </View>
                 </View>) : (<View style={targetStyles.rowWrapper}>
-                  <Text style={targetStyles.roleName} className={`${dataType === rules.EDUCATION ? 'locale' : 'role'}`}>{`${item?.role ? item.role : item?.locale}`}</Text>
-                  <Text style={targetStyles.instituteName} className="company">{`${companyString ? companyString : ''}`}</Text>
-                  <Text style={targetStyles.date} className="date">{item?.dateString ? item.dateString : ''}</Text>
+                    <Text style={targetStyles.roleName} className={`${dataType === rules.EDUCATION ? 'locale' : 'role'}`}>{`${item?.role ? item.role : item?.locale}`}</Text>
+                    <Text style={targetStyles.instituteName} className="company">{`${companyString ? companyString : ''}`}</Text>
+                    <Text style={targetStyles.date} className="date">{item?.dateString ? item.dateString : ''}</Text>
                 </View>)
             }
           </View>

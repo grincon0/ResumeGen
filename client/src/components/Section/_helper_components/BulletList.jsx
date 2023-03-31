@@ -16,7 +16,8 @@ const BulletList = ({ bulletArr, dataType, bulletStyles }) => {
       flexDirection: 'row',
     },
     bulletIcon: {
-      fontSize: '9px'
+      fontSize: '9px',
+      marginRight: '5px'
     },
     bulletListItem: {
       paddingBottom: '7px',

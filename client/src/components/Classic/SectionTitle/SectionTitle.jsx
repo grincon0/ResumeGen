@@ -10,15 +10,18 @@ const SectionTitle = ({ titleString, data }) => {
   let styles = {
     cSectionTitle: {
       fontWeight: 'bold',
+      color: '#000',
       borderBottom: '1px solid #000',
       margin: '0 -5px 10px -5px'
     },
     sectionTitle: {
       textAlign: 'left',
       marginBottom: '5px',
-      fontSize: '9px',
+      fontSize: '10px',
       marginLeft: '4px',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      fontFamily: 'Helvetica-Bold',
+      lineHeight: '0.7'
     },
   };
 
