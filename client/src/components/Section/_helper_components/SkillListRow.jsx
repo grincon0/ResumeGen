@@ -8,7 +8,12 @@ const SkillListRow = ({ data }) => {
       marginLeft: '5px',
       whiteSpace: 'break-spaces',
       flexDirection: 'row',
-      fontSize: '8px'
+      fontSize: '8px',
+      marginTop: '2px',
+      textAlign: 'center'
+    },
+    text: {
+      position: 'relative'
     }
   });
 

@@ -12,7 +12,8 @@ const SectionTitle = ({ titleString, data }) => {
       fontWeight: 'bold',
       color: '#000',
       borderBottom: '1px solid #000',
-      margin: '0 -5px 10px -5px'
+      margin: '0 -5px 5px -5px',
+      lineHeight: '1.1'
     },
     sectionTitle: {
       textAlign: 'left',
@@ -29,7 +30,8 @@ const SectionTitle = ({ titleString, data }) => {
     borderTop: '1px solid black',
     fontSize: '12px',
     fontWeight: 'bold',
-    padding: '2px 0'
+    padding: '2px 0',
+    fontFamily: 'Helvetica-Bold',
   };
 
   const titleMarginStyles = {

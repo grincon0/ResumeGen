@@ -29,6 +29,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     roleName: {
       fontSize: '11px',
       fontFamily: 'Helvetica-Bold',
+      width: 'auto',
     },
     date: {
       fontSize: '11px',
@@ -94,7 +95,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     },
     divider: {
       fontSize: '10px',
-      transform: 'translateY(1px)',
+      transform: 'translateY(-1px)',
       fontWeight: 'light',
     }
   };
@@ -118,6 +119,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     skillTitle: {
       fontWeight: 'bold',
       fontSize: '10px',
+      fontFamily: 'Helvetica-Bold',
       textTransform: 'capitalize'
     },
   });
@@ -168,13 +170,6 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       </View> : ''
     ));
 
-    /*     ItemOutputArray = Object.entries(sectionItemData.categories).map(([key, value]) => (
-          value.length > 1 ? <div className="c-skill" key={key}>
-            <h3 className="skill-title">{`${key}: `}</h3>
-            <SkillListRow data={value} />
-          </div> : ''
-        )); */
-
     return ItemOutputArray;
 
   } else {
@@ -217,31 +212,6 @@ const generateSectionItemOutput = (sectionItemData = []) => {
         </View>
       );
     });
-
-    /*     ItemOutputArray = sectionItemData.content.map((item) => {
-          return (
-            <div className={`c-item-output is-${itemClassName}`}>
-              <div className={`item-headline`}>
-                {
-                  dataType === rules.PROJECTS ? (
-                    <>
-                      <div className="c-project-title">
-                        <p className="project-name">{`${item?.name}`}</p>
-                        <span>{`${item?.divider || ''}`}</span>
-                      </div>
-                      <span className="project-desc">{`${item?.desc || ''}`}</span>
-                    </>) : (<>
-                      <span className={`${dataType === rules.EDUCATION ? 'locale' : 'role'}`}>{`${item?.role || item?.locale}`}</span>
-                      <span className="company">{(item?.setAgencyAsCompanyName && item?.contractor) || item?.name}</span>
-                      <span className="date">{item?.dateString}</span>
-                    </>)
-                }
-              </div>
-              {item?.contractor && <span className="is-contractor">{`Contractor: ${!(item?.setAgencyAsCompanyName) && item?.contractor}`}</span>}
-              {<BulletList bulletArr={item.bullets} />}
-            </div>
-          );
-        }); */
   }
 
   return ItemOutputArray;

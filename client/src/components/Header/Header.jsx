@@ -78,7 +78,7 @@ const Header = ({ contactData }) => {
       fontWeight: 'bold',
     },
     name : {
-      fontWeight: 'extrabold'
+      fontFamily: 'Helvetica-Bold',
     },
     viewContact: {
       flex: 1,
