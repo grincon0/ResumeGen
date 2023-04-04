@@ -202,8 +202,6 @@
       .c-contractor {
         display: flex;
         align-items: center;
-
-        
       }
 
       .c-show-contractor {
@@ -313,6 +311,7 @@
           &.contractor {
             width: 40px;
             height: 40px;
+            cursor: pointer;
           }
 
           font-size: 1rem;

@@ -209,7 +209,7 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
             <label for="gitLink">Github Url</label>
             <input id="gitLink" type="text" placeholder="Github Url" value={gitLink} onChange={(event) => setGitLink(event.target.value)} />
             <label for="portfolioLink">Portfolio Site Url</label>
-            <input id="portfolioLink" type="text" placeholder="Profolio Site Url" value={portfolioLink} onChange={(event) => setPortfolioLink(event.target.value)} />
+            <input id="portfolioLink" type="text" placeholder="Portfolio Site Url" value={portfolioLink} onChange={(event) => setPortfolioLink(event.target.value)} />
           </div>
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${isReviewing ? 'in-review' : ''} ${handleClassOutput(1)}`}>
