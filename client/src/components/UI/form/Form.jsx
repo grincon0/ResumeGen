@@ -5,9 +5,11 @@ import FormList from './formList/FormList';
 import SkillList from './skillList/SkillList';
 import ProgressMeter from './progessMeter/ProgressMeter';
 import getResumeFormSection from './_helper_functions/getResumeFormSection';
+import PDFResume from '../../PDF/PDFResume';
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import './style.scss';
 
-const Form = ({ pageValue, isLightMode }) => {
+const Form = ({ pageValue, setPageValue, isLightMode }) => {
   const [formStageValue, setformStageValue] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
@@ -16,6 +18,10 @@ const Form = ({ pageValue, isLightMode }) => {
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [gitLink, setGitLink] = useState('');
+  const [portfolioLink, setPortfolioLink] = useState('');
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [resumeData, setResumeData] = useState(null);
   const backBtn = useRef(null);
 
   /* ADD_ENTRY will push new obj, which will in turn allow for the comp to render another set of list item inputs */
@@ -114,13 +120,13 @@ const Form = ({ pageValue, isLightMode }) => {
     address,
     phone,
     email,
+    gitLink,
+    portfolioLink,
     workEntries: workState,
     projectEntries: projectState,
     eduEntries: eduState,
     skillEntries: skillState
   };
-
-  console.log('workState', workState)
 
   const handleNextBtnClick = () => {
     if (formStageValue >= 0 && hasFormInit && !isAnimating) {
@@ -138,10 +144,12 @@ const Form = ({ pageValue, isLightMode }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+    setFormSubmitted(true);
     axios.post('/submit-form', formData)
       .then(response => response.data)
       .then((data) => {
         console.log('data recieved', data);
+        setResumeData(data);
       })
       .catch((error) => {
         console.error(error);
@@ -198,6 +206,10 @@ const Form = ({ pageValue, isLightMode }) => {
             <input id="phone" type="text" placeholder="Phone #" value={phone} onChange={(event) => setPhone(event.target.value)} />
             <label for="email">Email</label>
             <input id="email" type="text" placeholder="Email Address" value={email} onChange={(event) => setEmail(event.target.value)} />
+            <label for="gitLink">Github Url</label>
+            <input id="gitLink" type="text" placeholder="Github Url" value={gitLink} onChange={(event) => setGitLink(event.target.value)} />
+            <label for="portfolioLink">Portfolio Site Url</label>
+            <input id="portfolioLink" type="text" placeholder="Profolio Site Url" value={portfolioLink} onChange={(event) => setPortfolioLink(event.target.value)} />
           </div>
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${isReviewing ? 'in-review' : ''} ${handleClassOutput(1)}`}>
@@ -212,7 +224,10 @@ const Form = ({ pageValue, isLightMode }) => {
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${isReviewing ? 'in-review' : ''} ${handleClassOutput(4)}`}>
           <FormList isLightMode={isLightMode} dispatch={dispatchSkillEntry} reducerState={skillState} targetSection={getResumeFormSection(4)} />
         </div>
-        {isReviewing && <button className="submit-btn" type="submit">Finish</button>}
+        {(isReviewing && !formSubmitted) && <button className="submit-btn" type="submit">Submit Form</button>}
+        {(formSubmitted && resumeData) && (<PDFDownloadLink document={<PDFResume resumeJSON={resumeData} />} filename="FORM">
+            {({ loading }) => (loading ? <button className="submit-btn">Generating Resume...</button> : <button className="submit-btn">Download Resume</button>)}
+          </PDFDownloadLink>)}
       </form>
       <div className={`c-form-nav ${formStageValue === 0 ? 'on-contact-form' : ''}`}>
         {formStageValue < maxFormStageValue && formStageValue > 0 && <button ref={backBtn} data-btn-type="back" className="back-btn" onClick={(event) => handleBackBtnClick(event)}>Back</button>}

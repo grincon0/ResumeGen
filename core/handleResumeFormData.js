@@ -45,6 +45,10 @@ const handleResumeFormData = (formData) => {
         dataType: 'PROJECT',
         hasTopBottomBorder: false
       },
+      links: {
+        repo: formData?.gitLink,
+        portfolio: formData?.portfolioLink
+      },
       content: formData?.projectEntries.map((el) => {
         return {
           name: el?.projectName,

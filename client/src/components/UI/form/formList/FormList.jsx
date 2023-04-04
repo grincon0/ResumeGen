@@ -8,8 +8,6 @@ const FormList = ({ targetSection, reducerState, dispatch, isLightMode }) => {
   const [listIsAnimating, setListIsAnimation] = useState(false);
   const numberOfListItems = reducerState?.length;
 
-  // console.log('targetIndexToDelete', targetIndexToDelete);
-
   const handleButtonClick = (btnType) => {
     return dispatch({ type: 'ADD_ENTRY' });
   }

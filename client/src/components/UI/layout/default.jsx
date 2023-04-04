@@ -5,17 +5,11 @@ import '../../../styles/_index.scss';
 import './default.scss';
 import FormWrapper from '../formWrapper/FormWrapper';
 import ColorModeIcon from './_helper_components/ColorModeIcon';
-import PDFResume from '../../PDF/BuildPDF';
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import PDFResume from '../../PDF/PDFResume';
 
 const DefaultLayout = () => {
-
-  const [pageValue, setPageValue] = useState(3);
+  const [viewValue, setViewValue] = useState(1);
   const [isLightMode, setIsLightMode] = useState(true);
-
-  const switchToForm = () => {
-    setPageValue(2);
-  }
 
   const handleColorMode = () => {
     if (isLightMode) {
@@ -32,24 +26,23 @@ const DefaultLayout = () => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
       </head>
-      <div className={`App ${pageValue === 2 ? 'form-active' : ''} ${isLightMode ? 'light-mode' : ''}`}>
-        {pageValue === 2 &&
+      <div className={`App ${viewValue === 2 ? 'form-active' : ''} ${isLightMode ? 'light-mode' : ''}`}>
+        {(viewValue <= 2) &&
           (<>
             <ColorModeIcon isLightMode={isLightMode} handleColorMode={handleColorMode} />
-            <div className={`${pageValue !== 1 ? 'hide' : ''}`}>
-              <Landing propFunc={switchToForm} />
+            <div className={`${viewValue !== 1 ? 'hide' : ''}`}>
+              <Landing propFunc={() => setViewValue(2)} />
             </div>
-            <div className={`form-block ${pageValue !== 2 ? 'hide-form' : 'show-form'}`}>
-              <FormWrapper isLightMode={isLightMode} pageValue={pageValue} />
+            <div className={`form-block ${viewValue !== 2 ? 'hide-form' : 'show-form'}`}>
+              <FormWrapper isLightMode={isLightMode} viewValue={viewValue} setViewValue={() => setViewValue()} />
             </div>
           </>)
         }
-
-        {pageValue === 3 && (<>
+{/*         {viewValue === 3 && (<>
           <PDFDownloadLink document={<PDFResume resumeJSON={JSON} />} filename="FORM">
             {({ loading }) => (loading ? <button>Loading Document...</button> : <button>Download</button>)}
           </PDFDownloadLink>
-        </>)}
+        </>)} */}
 
         {/* ReactPDF.render(<MyDocument />, `${__dirname}/example.pdf`); */}
 
