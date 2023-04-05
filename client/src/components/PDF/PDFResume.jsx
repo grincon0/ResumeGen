@@ -8,6 +8,8 @@ const PDFResume = ({resumeJSON = null}) => {
 
   const resumeData = resumeJSON ? resumeJSON : contentJSON;
 
+  console.log('resumeJson in PDF', resumeJSON);
+
   return (
     <Document>
       <Page size="A4">

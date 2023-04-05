@@ -112,6 +112,8 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
   const [eduState, dispatchEduEntry] = useReducer(eduReducer, [{ eduName: '', dateString: '', eduType: '', locale: '', eduBulletString: '' }]);
   const [skillState, dispatchSkillEntry] = useReducer(skillReducer, [{ skillRowTitle: '', skillRowString: '' }]);
 
+  console.log('skillState', skillState);
+
   const maxFormStageValue = 5;
   const hasFormInit = pageValue >= 2;
 
@@ -182,6 +184,13 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
     }
   };
 
+  const handleFormClick = () => {
+    if(resumeData || formSubmitted) {
+      setResumeData(null);
+      setFormSubmitted(false);
+    }
+  }
+
   useEffect(() => {
     // Allows user to review form before submitting
     if (formStageValue >= maxFormStageValue) {
@@ -191,11 +200,13 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
     }
   }, [formStageValue]);
 
+  console.log('formData', formData);
   return (
     <div className={`c-resume-form ${isLightMode ? 'light-mode' : ''}`}>
       <div className="form-messaging"></div>
       <ProgressMeter currentValue={formStageValue} maxValue={maxFormStageValue} isLightMode={isLightMode} />
       <form id="resume-form" className={`resume-form ${isReviewing ? 'reviewing' : ''}`} onSubmit={handleFormSubmit}>
+        <div onClick={handleFormClick}>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-zero ${handleClassOutput(0)}`}>
           <div className="c-contact-items list-items">
             <label for="user-name">Name</label>
@@ -223,6 +234,7 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
         </div>
         <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${isReviewing ? 'in-review' : ''} ${handleClassOutput(4)}`}>
           <FormList isLightMode={isLightMode} dispatch={dispatchSkillEntry} reducerState={skillState} targetSection={getResumeFormSection(4)} />
+        </div>
         </div>
         {(isReviewing && !formSubmitted) && <button className="submit-btn" type="submit">Submit Form</button>}
         {(formSubmitted && resumeData) && (<PDFDownloadLink document={<PDFResume resumeJSON={resumeData} />} filename="FORM">

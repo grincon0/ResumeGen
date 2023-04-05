@@ -52,6 +52,22 @@
         font-weight: 900;
       }
 
+      input[type="checkbox"] {
+
+        &:not(:checked) {
+          background: linear-gradient(145deg, #FFFFFF, #B4BEC1);
+          border-radius: 100%;
+          box-shadow: 9.91px 9.91px 15px #C9D5D9, -9.91px -9.91px 15px #F1FFFF;
+        }
+
+        &:checked {
+          background: linear-gradient(145deg, #A9B2B5, #FFFFFF);
+          border-radius: 100%;
+          box-shadow: 8.11px 8.11px 22px #C9D5D9, -8.11px -8.11px 22px #F1FFFF;
+        }
+      }
+
+
       input,
       textarea {
         color: #474747;

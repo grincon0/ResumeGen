@@ -17,6 +17,9 @@ const SkillListRow = ({ data }) => {
     }
   });
 
+  console.log('SKILL LIST ROW', data);
+  debugger;
+
   return (
     <View style={styles.skillRow} className="skill-row">
       {

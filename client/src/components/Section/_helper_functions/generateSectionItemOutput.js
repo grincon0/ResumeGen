@@ -9,6 +9,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
   const { dataType } = sectionItemData?.meta;
   const itemClassName = dataType.toLowerCase();
   const isClassicSkillList = dataType === rules.SKILLS;
+  console.log('isClassic skill list', isClassicSkillList, 'dataType', dataType, sectionItemData);
   let settings = null;
   let ItemOutputArray = [];
   let targetStyles = null;
@@ -37,7 +38,8 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       fontFamily: 'Helvetica-Bold',
     },
     rowWrapper: {
-      flexDirection: 'row'
+      flexDirection: 'row',
+      marginBottom: '5px'
     }
   };
 
@@ -117,11 +119,22 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       width: '100%'
     },
     skillTitle: {
-      fontWeight: 'bold',
       fontSize: '10px',
       fontFamily: 'Helvetica-Bold',
       textTransform: 'capitalize'
     },
+    skillRow: {
+      marginLeft: '5px',
+      whiteSpace: 'break-spaces',
+      flexDirection: 'row',
+      fontSize: '8px',
+      marginTop: '2px',
+      textAlign: 'left',
+      width: '300px'
+    },
+    text: {
+      position: 'relative'
+    }
   });
 
 
@@ -147,7 +160,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     targetStyles = StyleSheet.create({ ...standardStyles, ...workItemStyles });
   }
 
-  if (!sectionItemData?.content) return null;
+  if (!sectionItemData?.content && !sectionItemData?.categories) return null;
   if (isClassicSkillList) settings = {
     isMulti: true,
     isUniform: false,
@@ -163,12 +176,19 @@ const generateSectionItemOutput = (sectionItemData = []) => {
   };
 
   if (isClassicSkillList) {
-    ItemOutputArray = Object.entries(sectionItemData.categories).map(([key, value]) => (
-      value.length > 1 ? <View style={skillStyles.cSkill} className="c-skill" key={key}>
+    console.log('isClassicSkillList AHHHHHHHHHHHHH', isClassicSkillList, sectionItemData.categories);
+    ItemOutputArray = Object.entries(sectionItemData.categories).map(([key, value], i) => {
+
+      return (value.length > 1 ? <View style={skillStyles.cSkill} key={key}>
         <Text style={skillStyles.skillTitle} className="skill-title">{`${key}: `}</Text>
-        <SkillListRow data={value} />
-      </View> : ''
-    ));
+        <View style={skillStyles.skillRow}>
+          <Text style={skillStyles.text}>{value ? value : ''}</Text>
+        </View>
+      </View> : '');
+    }
+    );
+
+    console.log('item out for skills', ItemOutputArray);
 
     return ItemOutputArray;
 
@@ -201,9 +221,9 @@ const generateSectionItemOutput = (sectionItemData = []) => {
                     <Text style={projectItemStyles.projectInfo} className="project-desc">{`${item?.desc ? item.desc : ''}`}</Text>
                   </View>
                 </View>) : (<View style={targetStyles.rowWrapper}>
-                    <Text style={targetStyles.roleName} className={`${dataType === rules.EDUCATION ? 'locale' : 'role'}`}>{`${item?.role ? item.role : item?.locale}`}</Text>
-                    <Text style={targetStyles.instituteName} className="company">{`${companyString ? companyString : ''}`}</Text>
-                    <Text style={targetStyles.date} className="date">{item?.dateString ? item.dateString : ''}</Text>
+                  <Text style={targetStyles.roleName} className={`${dataType === rules.EDUCATION ? 'locale' : 'role'}`}>{`${item?.role ? item.role : item?.locale}`}</Text>
+                  <Text style={targetStyles.instituteName} className="company">{`${companyString ? companyString : ''}`}</Text>
+                  <Text style={targetStyles.date} className="date">{item?.dateString ? item.dateString : ''}</Text>
                 </View>)
             }
           </View>
