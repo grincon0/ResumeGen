@@ -2,11 +2,14 @@ const handleResumeFormData = (formData) => {
   console.log('backend form data before tansformation', formData);
 
   const buildSkillCategories = (skillArray) => {
+    console.log('skillArray', skillArray);
     if (!skillArray) return null;
     const result = skillArray.reduce((result, entry) => {
       const { skillRowTitle = '', skillRowString = '' } = entry;
       return Object.assign(result, { [skillRowTitle]: skillRowString });
     }, {});
+
+    console.log('result', result);
 
     return result;
   }
@@ -18,7 +21,7 @@ const handleResumeFormData = (formData) => {
         'hasTopBottomBorder': false
       },
       content: {
-        'email': formData?.address,
+        'email': formData?.email,
         'name': formData?.userName,
         'phone': formData?.phone,
         'address': formData?.address
@@ -36,7 +39,8 @@ const handleResumeFormData = (formData) => {
           dateString: el?.dateString,
           bullets: el?.workBulletString?.split('.'),
           isContract: el?.isContractor,
-          setAgencyAsCompanyName: el?.showContractor
+          setAgencyAsCompanyName: el?.showContractor,
+          contractor: el?.agencyName
         }
       })
     },
@@ -44,6 +48,10 @@ const handleResumeFormData = (formData) => {
       meta: {
         dataType: 'PROJECT',
         hasTopBottomBorder: false
+      },
+      links: {
+        repo: formData?.gitLink,
+        portfolio: formData?.portfolioLink
       },
       content: formData?.projectEntries.map((el) => {
         return {

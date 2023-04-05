@@ -3,8 +3,6 @@ import './style.scss';
 
 const ProgressMeter = ({ currentValue, maxValue, isLightMode}) => {
   const [width, setWidth] = useState(0);
-  console.log('isLightMode in ProgressBar', isLightMode);
-
   const convertWidthToPercentage = () => {
     return (currentValue / maxValue) * 100;
   }

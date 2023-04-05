@@ -6,9 +6,7 @@ import ItemDeleteButton from '../_helper_components/itemDeleteButton/ItemDeleteB
 const EduListItem = ({ element, index, reducerState, functions, transitionOut, dispatch }) => {
   const { handleTransitionEnd } = functions;
   const numPlacement = index + 1;
-  console.log('EDU LIST IEM INDEX', index);
   const handleInputChange = (name, value, elIndex) => {
-    console.log('dispatching', name, value, elIndex);
     dispatch({
       type: 'UPDATE_ENTRY',
       payload: { index: elIndex, name, value }

@@ -25,7 +25,6 @@ app.get('/*', function (req, res) {
 // Add routes, both API and View
 app.post('/submit-form', (req, res) => {
     const jsonData = req.body;
-    console.log('Received JSON data:', jsonData);
     res.status(200).send(handleResumeFormData(jsonData));
 });
 

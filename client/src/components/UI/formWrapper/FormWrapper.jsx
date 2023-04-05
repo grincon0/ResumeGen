@@ -1,10 +1,10 @@
 import React from 'react';
 import Form from '../form/Form';
 
-const FormWrapper = ({ pageValue, isLightMode }) => {
+const FormWrapper = ({ viewValue, isLightMode }) => {
 
   return (<div className="c-form-wrapper">
-    <Form pageValue={pageValue} isLightMode={isLightMode} />
+    <Form pageValue={viewValue} isLightMode={isLightMode} />
   </div>);
 };
 

@@ -71,7 +71,7 @@ const WorkListItem = ({ element, transitionOut = false, index, functions, reduce
             <label for={`show-contractor-${index}`}>Set Agency name as Company?</label>
           </div>
         </div>
-        <div className={`c-contractor-field ${!element.isContractor || !element.showContractor ? 'hide-field' : ''}`}>
+        <div className={`c-contractor-field ${!element.isContractor ? 'hide-field' : ''}`}>
           <label for={`contractor-name-${index}`}>What's the name of the agency?</label>
           <input
             className="contractor-name"
