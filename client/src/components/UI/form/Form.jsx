@@ -130,6 +130,8 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
     skillEntries: skillState
   };
 
+  console.log('RESUME FORM DATA', formData);
+
   const handleNextBtnClick = () => {
     if (formStageValue >= 0 && hasFormInit && !isAnimating) {
       setIsAnimating(true);

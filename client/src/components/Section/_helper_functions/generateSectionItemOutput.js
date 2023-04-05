@@ -119,7 +119,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       width: '100%'
     },
     skillTitle: {
-      fontSize: '10px',
+      fontSize: '11px',
       fontFamily: 'Helvetica-Bold',
       textTransform: 'capitalize'
     },
@@ -127,10 +127,11 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       marginLeft: '5px',
       whiteSpace: 'break-spaces',
       flexDirection: 'row',
-      fontSize: '8px',
+      fontSize: '10px',
       marginTop: '2px',
       textAlign: 'left',
-      width: '300px'
+      width: 'auto',
+      maxWidth: '550px'
     },
     text: {
       position: 'relative'
@@ -144,7 +145,10 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       fontStyle: 'italic',
       marginBottom: '5px',
       fontSize: '9px',
-      textAlign: 'left'
+      textAlign: 'left',
+      fontFamily: 'Helvetica-Oblique',
+      position:'relative',
+      top: '-2px'
     }
   });
 
@@ -167,8 +171,10 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     data: sectionItemData
   }
 
-  const generateCompanyString = (iterable) => {
-    let string = iterable?.setAgencyAsCompanyName && iterable?.contractor ? iterable.contractor : '';
+  const generateCompanyString = (iterable, forSubText = false) => {
+    let string = (!forSubText && iterable?.setAgencyAsCompanyName && iterable?.contractor) ? iterable.contractor : '';
+
+    if (forSubText && !string && !(iterable?.setAgencyAsCompanyName) && iterable?.contractor) string = iterable.contractor;
 
     if (!string) string = iterable?.name || '';
 
@@ -180,7 +186,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     ItemOutputArray = Object.entries(sectionItemData.categories).map(([key, value], i) => {
 
       return (value.length > 1 ? <View style={skillStyles.cSkill} key={key}>
-        <Text style={skillStyles.skillTitle} className="skill-title">{`${key}: `}</Text>
+        <Text style={skillStyles.skillTitle} className="skill-title">{key ? `${key} : ` : ''}</Text>
         <View style={skillStyles.skillRow}>
           <Text style={skillStyles.text}>{value ? value : ''}</Text>
         </View>
@@ -195,7 +201,8 @@ const generateSectionItemOutput = (sectionItemData = []) => {
   } else {
     ItemOutputArray = sectionItemData.content.map((item, index) => {
       const companyString = generateCompanyString(item);
-      console.log('companyString', companyString);
+      const agencyString = generateCompanyString(item, true);
+
       const isLastChild = ((index + 1) == sectionItemData.content.length);
       let lastChildStyle = {};
       console.log('index', index, 'sectionArray.length', sectionItemData.content.length);
@@ -227,7 +234,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
                 </View>)
             }
           </View>
-          {item?.contractor && <Text style={contractorTextStyles.text} className="is-contractor">{`Agency: ${!(item?.setAgencyAsCompanyName) && item?.contractor}`}</Text>}
+          {(item?.isContract && agencyString) ? <Text style={contractorTextStyles.text} className="is-contractor">{`Agency: ${agencyString}`}</Text> : ''}
           {<BulletList dataType={dataType} bulletArr={item.bullets} />}
         </View>
       );

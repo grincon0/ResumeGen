@@ -38,6 +38,8 @@
       background: #d9eaf4;
       box-shadow: 8.11px 8.11px 15px #c5d5de, -8.11px -8.11px 15px #edffff;
       text-shadow: none;
+      text-decoration: none;
+      text-transform: none;
     }
 
     .resume-form .segment .list-items,
@@ -74,7 +76,6 @@
         border-radius: 49px;
         background: #d9eaf4;
         box-shadow: inset 7px 7px 14px #bcc8d0, inset -7px -7px 14px #ffffff;
-        /* box-shadow: inset -5px -5px 10px #c8d7e0, inset 5px 5px 10px #eafdff; */
         text-shadow: none;
       }
 
@@ -136,7 +137,6 @@
 
         @include breakpoint(desktop-lg) {
           transform: translateY(-214px);
-
         }
       }
 
@@ -146,20 +146,12 @@
           margin-bottom: 40px;
         }
       }
-
     }
 
     button {
       width: 100%;
       margin-top: 25px;
     }
-
-/*     .segment .list-items {
-
-      @include breakpoint(desktop-sm) {
-        margin-bottom: 0;
-      }
-    } */
 
     .segment.phase-zero {
       margin-bottom: 0;
@@ -319,6 +311,15 @@
 
         input {
           height: 43px;
+        }
+
+        input[type="checkbox"] {
+
+          &:not(:checked) {
+            background: linear-gradient(145deg, #333333, #1F1F1F);
+            border-radius: 100%;
+            box-shadow: 9.91px 9.91px 15px #151515, -9.91px -9.91px 15px #3E3E3E;
+          }
         }
 
         input,

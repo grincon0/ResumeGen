@@ -39,7 +39,8 @@ const handleResumeFormData = (formData) => {
           dateString: el?.dateString,
           bullets: el?.workBulletString?.split('.'),
           isContract: el?.isContractor,
-          setAgencyAsCompanyName: el?.showContractor
+          setAgencyAsCompanyName: el?.showContractor,
+          contractor: el?.agencyName
         }
       })
     },
