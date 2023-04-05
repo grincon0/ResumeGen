@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Text, View, StyleSheet } from '@react-pdf/renderer';
 import dataTypes from '../../../rules/dataTypes';
 import rules from '../../../rules/dataTypes';
 
@@ -67,9 +67,6 @@ const BulletList = ({ bulletArr, dataType, bulletStyles }) => {
         <Text style={targetBulletStyles.bulletListItem} className="bullet-list-item">{bulletData ? bulletData : ''}</Text>
       </View>
     );
-    /*     return (
-          <li className="bullet-list-item">{bulletData}</li>
-        ); */
   });
 
   return (

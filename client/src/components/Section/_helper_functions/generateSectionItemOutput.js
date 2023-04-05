@@ -1,16 +1,13 @@
 import React from 'react';
 import BulletList from '../_helper_components/BulletList';
-import SkillListRow from '../_helper_components/SkillListRow';
 import rules from '../../../rules/dataTypes';
-import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import { Text, View, StyleSheet } from '@react-pdf/renderer';
 import '../style.scss';
 
 const generateSectionItemOutput = (sectionItemData = []) => {
   const { dataType } = sectionItemData?.meta;
   const itemClassName = dataType.toLowerCase();
   const isClassicSkillList = dataType === rules.SKILLS;
-  console.log('isClassic skill list', isClassicSkillList, 'dataType', dataType, sectionItemData);
-  let settings = null;
   let ItemOutputArray = [];
   let targetStyles = null;
 
@@ -108,10 +105,6 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     }
   };
 
-  const workItemTextNotFirstItemStyle = {
-    marginLeft: 'auto'
-  };
-
   const skillStyles = StyleSheet.create({
     cSkill: {
       marginBottom: '3px',
@@ -147,7 +140,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       fontSize: '9px',
       textAlign: 'left',
       fontFamily: 'Helvetica-Oblique',
-      position:'relative',
+      position: 'relative',
       top: '-2px'
     }
   });
@@ -182,7 +175,6 @@ const generateSectionItemOutput = (sectionItemData = []) => {
   };
 
   if (isClassicSkillList) {
-    console.log('isClassicSkillList AHHHHHHHHHHHHH', isClassicSkillList, sectionItemData.categories);
     ItemOutputArray = Object.entries(sectionItemData.categories).map(([key, value], i) => {
 
       return (value.length > 1 ? <View style={skillStyles.cSkill} key={key}>
@@ -194,8 +186,6 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     }
     );
 
-    console.log('item out for skills', ItemOutputArray);
-
     return ItemOutputArray;
 
   } else {
@@ -205,8 +195,6 @@ const generateSectionItemOutput = (sectionItemData = []) => {
 
       const isLastChild = ((index + 1) == sectionItemData.content.length);
       let lastChildStyle = {};
-      console.log('index', index, 'sectionArray.length', sectionItemData.content.length);
-      console.log('is this last child of array?', isLastChild, 'item', item);
 
       if (isLastChild) {
         lastChildStyle = {
@@ -217,20 +205,20 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       }
 
       return (
-        <View style={targetStyles.cItemOutput, lastChildStyle?.lastEl} className={`c-item-output is-${itemClassName}`}>
-          <View style={targetStyles.itemHeadline} className={`item-headline`}>
+        <View style={targetStyles.cItemOutput, lastChildStyle?.lastEl}>
+          <View style={targetStyles.itemHeadline}>
             {
               dataType === rules.PROJECTS ? (
                 <View style={projectItemStyles.projectWrapper}>
-                  <View style={projectItemStyles.cProjectTitle} className="c-project-title">
-                    <Text style={projectItemStyles.projectTitle} className="project-name">{`${item?.name ? item.name : ''}`}</Text>
+                  <View style={projectItemStyles.cProjectTitle}>
+                    <Text style={projectItemStyles.projectTitle}>{`${item?.name ? item.name : ''}`}</Text>
                     <Text style={projectItemStyles.divider}>{`${item?.divider ? item.divider : ''}`}</Text>
-                    <Text style={projectItemStyles.projectInfo} className="project-desc">{`${item?.desc ? item.desc : ''}`}</Text>
+                    <Text style={projectItemStyles.projectInfo}>{`${item?.desc ? item.desc : ''}`}</Text>
                   </View>
                 </View>) : (<View style={targetStyles.rowWrapper}>
                   <Text style={targetStyles.roleName} className={`${dataType === rules.EDUCATION ? 'locale' : 'role'}`}>{`${item?.role ? item.role : item?.locale}`}</Text>
-                  <Text style={targetStyles.instituteName} className="company">{`${companyString ? companyString : ''}`}</Text>
-                  <Text style={targetStyles.date} className="date">{item?.dateString ? item.dateString : ''}</Text>
+                  <Text style={targetStyles.instituteName}>{`${companyString ? companyString : ''}`}</Text>
+                  <Text style={targetStyles.date}>{item?.dateString ? item.dateString : ''}</Text>
                 </View>)
             }
           </View>

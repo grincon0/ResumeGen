@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useReducer, useRef } from 'react';
 import axios from 'axios';
-import formStage from '../../../rules/formStages';
 import FormList from './formList/FormList';
-import SkillList from './skillList/SkillList';
 import ProgressMeter from './progessMeter/ProgressMeter';
 import getResumeFormSection from './_helper_functions/getResumeFormSection';
 import PDFResume from '../../PDF/PDFResume';
@@ -112,8 +110,6 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
   const [eduState, dispatchEduEntry] = useReducer(eduReducer, [{ eduName: '', dateString: '', eduType: '', locale: '', eduBulletString: '' }]);
   const [skillState, dispatchSkillEntry] = useReducer(skillReducer, [{ skillRowTitle: '', skillRowString: '' }]);
 
-  console.log('skillState', skillState);
-
   const maxFormStageValue = 5;
   const hasFormInit = pageValue >= 2;
 
@@ -129,8 +125,6 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
     eduEntries: eduState,
     skillEntries: skillState
   };
-
-  console.log('RESUME FORM DATA', formData);
 
   const handleNextBtnClick = () => {
     if (formStageValue >= 0 && hasFormInit && !isAnimating) {
@@ -152,7 +146,6 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
     axios.post('/submit-form', formData)
       .then(response => response.data)
       .then((data) => {
-        console.log('data recieved', data);
         setResumeData(data);
       })
       .catch((error) => {
@@ -202,7 +195,6 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
     }
   }, [formStageValue]);
 
-  console.log('formData', formData);
   return (
     <div className={`c-resume-form ${isLightMode ? 'light-mode' : ''}`}>
       <div className="form-messaging"></div>

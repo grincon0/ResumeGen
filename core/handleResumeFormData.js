@@ -1,15 +1,11 @@
 const handleResumeFormData = (formData) => {
-  console.log('backend form data before tansformation', formData);
 
   const buildSkillCategories = (skillArray) => {
-    console.log('skillArray', skillArray);
     if (!skillArray) return null;
     const result = skillArray.reduce((result, entry) => {
       const { skillRowTitle = '', skillRowString = '' } = entry;
       return Object.assign(result, { [skillRowTitle]: skillRowString });
     }, {});
-
-    console.log('result', result);
 
     return result;
   }

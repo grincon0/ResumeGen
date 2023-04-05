@@ -1,14 +1,12 @@
 import React from 'react';
 import generateSectionItemOutput from '../_helper_functions/generateSectionItemOutput';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { View } from '@react-pdf/renderer';
 import WebLinks from '../../Section/_helper_components/WebLinks';
 import dataTypes from '../../../rules/dataTypes';
 
 const SectionItemOutput = ({ sectionItemData = {}, settings = {} }) => {
-
   const { dataType } = settings;
   const linkData = sectionItemData?.links || null;
-
   const sectionContentList = generateSectionItemOutput(sectionItemData, dataType);
 
   return (

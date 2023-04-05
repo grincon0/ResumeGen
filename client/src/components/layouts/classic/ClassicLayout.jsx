@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { View, StyleSheet } from '@react-pdf/renderer';
 import Header from '../../Header/Header';
 import Section from '../../Section/Section';
 import dataTypes from '../../../rules/dataTypes';
@@ -18,7 +18,7 @@ const ClassicLayout = ({ resumeData }) => {
   })
 
   return (
-    <View style={styles.cWrapper} className="c-wrapper classic">
+    <View style={styles.cWrapper}>
         <Header contactData={resumeData?.contact} />
         <Section title={'Employment'} data={resumeData?.companies} dataType={dataTypes.WORK} />
         <Section title={'Projects'} data={resumeData?.projects} dataType={dataTypes.PROJECTS} />
@@ -26,19 +26,6 @@ const ClassicLayout = ({ resumeData }) => {
         <Section title={'Technology and Skills'} data={resumeData?.skills} dataType={dataTypes.SKILLS} />
     </View>
   );
-/*   return (
-    <div className="c-wrapper classic">
-      <header>
-        <Header contactData={resumeData?.contact} />
-      </header>
-      <main>
-        <Section title={'Employment'} data={resumeData?.companies} dataType={rules.WORK} />
-        <Section title={'Projects'} data={resumeData?.projects} dataType={rules.PROJECTS} />
-        <Section title={'Education'} data={resumeData?.education} dataType={rules.EDUCATION} /> 
-        <Section title={'Technology and Skills'} data={resumeData?.skills} dataType={rules.SKILLS} />
-      </main>
-    </div>
-  ); */
 };
 
 export default ClassicLayout;
