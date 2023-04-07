@@ -10,6 +10,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
   const isClassicSkillList = dataType === rules.SKILLS;
   let ItemOutputArray = [];
   let targetStyles = null;
+  let settings = null;
 
   const standardStyles = {
     itemHeadline: {
@@ -42,7 +43,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
 
   const workItemStyles = {
     cItemOutput: {
-      marginBottom: '15px'
+      marginBottom: '12px'
     },
     itemHeadline: {
       marginBottom: '3px',
@@ -109,25 +110,22 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     cSkill: {
       marginBottom: '3px',
       flexDirection: 'row',
+      flexWrap: 'wrap',
       width: '100%'
     },
     skillTitle: {
-      fontSize: '11px',
+      flex: 0,
+      fontSize: '10px',
       fontFamily: 'Helvetica-Bold',
       textTransform: 'capitalize'
     },
-    skillRow: {
-      marginLeft: '5px',
-      whiteSpace: 'break-spaces',
-      flexDirection: 'row',
-      fontSize: '10px',
-      marginTop: '2px',
-      textAlign: 'left',
-      width: 'auto',
-      maxWidth: '550px'
-    },
     text: {
-      position: 'relative'
+      flex: 1,
+      position: 'relative',
+      fontSize: '9px',
+      textAlign: 'left',
+      whiteSpace: 'break-spaces',
+      marginLeft: '5px',
     }
   });
 
@@ -158,6 +156,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
   }
 
   if (!sectionItemData?.content && !sectionItemData?.categories) return null;
+
   if (isClassicSkillList) settings = {
     isMulti: true,
     isUniform: false,
@@ -166,9 +165,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
 
   const generateCompanyString = (iterable, forSubText = false) => {
     let string = (!forSubText && iterable?.setAgencyAsCompanyName && iterable?.contractor) ? iterable.contractor : '';
-
     if (forSubText && !string && !(iterable?.setAgencyAsCompanyName) && iterable?.contractor) string = iterable.contractor;
-
     if (!string) string = iterable?.name || '';
 
     return string;
@@ -178,13 +175,12 @@ const generateSectionItemOutput = (sectionItemData = []) => {
     ItemOutputArray = Object.entries(sectionItemData.categories).map(([key, value], i) => {
 
       return (value.length > 1 ? <View style={skillStyles.cSkill} key={key}>
-        <Text style={skillStyles.skillTitle} className="skill-title">{key ? `${key} : ` : ''}</Text>
-        <View style={skillStyles.skillRow}>
-          <Text style={skillStyles.text}>{value ? value : ''}</Text>
+        <View>
+          <Text style={skillStyles.skillTitle} className="skill-title">{key ? `${key}: ` : ''}</Text>
         </View>
+        <Text style={skillStyles.text}>{value ? value : ''}</Text>
       </View> : '');
-    }
-    );
+    });
 
     return ItemOutputArray;
 

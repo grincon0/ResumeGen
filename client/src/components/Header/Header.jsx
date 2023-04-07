@@ -13,13 +13,19 @@ const Header = ({ contactData }) => {
       flex: 1,
       fontSize: '10px',
       width: '70px',
-      textAlign: 'left'
+      textAlign: 'left',
+      flexDirection: 'column'
     },
     address: {
       width: '130px'
     },
+    linkedinUrl: {
+      width: 'auto',
+      maxWidth: '200px'
+    },
     viewName: {
       flex: '1',
+      flexDirection: 'column',
       textAlign:'center',
       alignItems: 'center',
       fontSize: '16px',
@@ -27,6 +33,10 @@ const Header = ({ contactData }) => {
     },
     name : {
       fontFamily: 'Helvetica-Bold',
+    },
+    title: {
+      fontSize: '12px',
+      fontFamily: 'Helvetica-Oblique'
     },
     viewContact: {
       flex: 1,
@@ -40,9 +50,11 @@ const Header = ({ contactData }) => {
     <View style={styles.cHeader}>
       <View style={styles.viewAddress}>
         <Text style={styles.address}>{contactData.content.address}</Text>
+        <Text style={styles.linkedinUrl}>{contactData.content.linkedinUrl}</Text>
       </View>
       <View style={styles.viewName}>
-        <Text style={styles.name} >{contactData.content.name}</Text>
+        <Text style={styles.name}>{contactData.content.name}</Text>
+        <Text style={styles.title}>{contactData.content.title}</Text>
       </View>
       <View style={styles.viewContact}>
         <Text>{contactData.content.phone}</Text>

@@ -1,0 +1,125 @@
+.c-section {
+  margin-bottom: 15px;
+
+  .c-skill {
+    display: flex;
+    margin-bottom: 3px;
+
+    .skill-title {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .skill-row {
+      display: flex;
+      margin-left: 5px;
+      white-space: break-spaces;
+    }
+  }
+
+  .c-item-output {
+
+    &:last-child {
+      .c-item-output .c-bullet-list .bullet-list-item {
+        padding-bottom: 0;
+      }
+    }
+
+    &.is-work {
+      margin-bottom: 15px;
+
+      .item-headline {
+        margin-bottom: 3px;
+        text-align: left;
+        font-size: 1.1rem;
+
+        span:not(:first-child) {
+          margin-left: auto;
+        }
+      }
+
+      span.is-contractor {
+        float: left;
+        color: #3b3b3b;
+        font-style: italic;
+        margin-bottom: 5px;
+      }
+    }
+
+    &.is-project {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 4px;
+
+      .item-headline {
+        display: block;
+        width: auto;
+        overflow: hidden;
+        text-align: left;
+        margin-bottom: 12px;
+
+        .c-project-title {
+          float: left;
+          display: flex;
+
+          span {
+            white-space: break-spaces;
+            font-weight: 100;
+          }
+        }
+
+        .project-desc {
+          font-weight: 100;
+          line-height: 1.1;
+        }
+      }
+
+      .c-bullet-list {
+        text-align: left;
+        line-height: 1.2;
+
+        li::before {
+          content: " - ";
+          margin-right: 0.5em;
+        }
+      }
+    }
+
+    &.is-education {
+      .c-bullet-list {
+        text-align: left;
+      }
+    }
+
+    .item-headline {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      margin-bottom: 5px;
+
+      .role,
+      .company,
+      .date {
+        font-weight: bold;
+      }
+    }
+
+    .c-bullet-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .bullet-list-item {
+        padding-bottom: 7px;
+        text-align: left;
+        letter-spacing: 0.2px;
+      }
+
+      li::before {
+        content: "• ";
+        margin-right: 0.5em;
+      }
+    }
+  }
+}

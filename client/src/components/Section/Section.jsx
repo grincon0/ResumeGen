@@ -8,7 +8,7 @@ const Section = ({ title = '', data, dataType = '' }) => {
 
   const styles = StyleSheet.create({
     cSection: {
-      marginBottom: '15px',
+      marginBottom: '8px',
     }
   });
 
