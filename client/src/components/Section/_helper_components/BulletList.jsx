@@ -5,7 +5,7 @@ import rules from '../../../rules/dataTypes';
 
 const BulletList = ({ bulletArr, dataType, bulletStyles }) => {
   let targetBulletStyles = null;
-  const projectBulletIcon = ' - ';
+  /* const projectBulletIcon = ' - '; */
   const defaultBulletIcon = '• ';
 
   const bulletListStyles = {
@@ -23,11 +23,7 @@ const BulletList = ({ bulletArr, dataType, bulletStyles }) => {
       paddingBottom: '7px',
       textAlign: 'left',
       letterSpacing: '0.2px',
-      fontSize: '10px',
-      '&::before': {
-        content: "• ",
-        marginRight: '0.5px'
-      }
+      fontSize: '10px'
     },
   };
 
@@ -63,14 +59,14 @@ const BulletList = ({ bulletArr, dataType, bulletStyles }) => {
   const output = bulletArr.map((bulletData) => {
     return (
       <View style={targetBulletStyles.viewBullet}>
-        <Text style={targetBulletStyles.bulletIcon}>{`${dataType === rules.PROJECTS ? `${projectBulletIcon}` : `${defaultBulletIcon}`}`}</Text>
-        <Text style={targetBulletStyles.bulletListItem} className="bullet-list-item">{bulletData ? bulletData : ''}</Text>
+        <Text style={targetBulletStyles.bulletIcon}>{defaultBulletIcon}</Text>
+        <Text style={targetBulletStyles.bulletListItem}>{bulletData ? bulletData : ''}</Text>
       </View>
     );
   });
 
   return (
-    <View style={targetBulletStyles.cBulletList} className="c-bullet-list">
+    <View style={targetBulletStyles.cBulletList}>
       {output}
     </View>
   );

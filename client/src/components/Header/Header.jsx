@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Link, Text, View, StyleSheet } from '@react-pdf/renderer';
 
 const Header = ({ contactData }) => {
   const styles = StyleSheet.create({
@@ -50,7 +50,7 @@ const Header = ({ contactData }) => {
     <View style={styles.cHeader}>
       <View style={styles.viewAddress}>
         <Text style={styles.address}>{contactData.content.address}</Text>
-        <Text style={styles.linkedinUrl}>{contactData.content.linkedinUrl}</Text>
+        <Link style={styles.linkedinUrl} src={contactData.content.linkedinUrl}>Linkedin</Link>
       </View>
       <View style={styles.viewName}>
         <Text style={styles.name}>{contactData.content.name}</Text>

@@ -117,7 +117,8 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       flex: 0,
       fontSize: '10px',
       fontFamily: 'Helvetica-Bold',
-      textTransform: 'capitalize'
+      textTransform: 'capitalize',
+      marginRight: '2px',
     },
     text: {
       flex: 1,
@@ -125,7 +126,7 @@ const generateSectionItemOutput = (sectionItemData = []) => {
       fontSize: '9px',
       textAlign: 'left',
       whiteSpace: 'break-spaces',
-      marginLeft: '5px',
+      marginTop: '1px'
     }
   });
 
