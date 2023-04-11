@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useReducer, useRef } from 'react';
 import axios from 'axios';
-import formStage from '../../../rules/formStages';
 import FormList from './formList/FormList';
-import SkillList from './skillList/SkillList';
 import ProgressMeter from './progessMeter/ProgressMeter';
 import getResumeFormSection from './_helper_functions/getResumeFormSection';
 import PDFResume from '../../PDF/PDFResume';
@@ -15,10 +13,12 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
   const [isReviewing, setIsReviewing] = useState(false);
   const [buttonClickType, setButtonClickType] = useState(null);
   const [userName, setUserName] = useState('');
+  const [userTitle, setUserTitle] = useState('')
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [gitLink, setGitLink] = useState('');
+  const [linkedinUrl, setLinkedinUrl] = useState('');
   const [portfolioLink, setPortfolioLink] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [resumeData, setResumeData] = useState(null);
@@ -112,25 +112,23 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
   const [eduState, dispatchEduEntry] = useReducer(eduReducer, [{ eduName: '', dateString: '', eduType: '', locale: '', eduBulletString: '' }]);
   const [skillState, dispatchSkillEntry] = useReducer(skillReducer, [{ skillRowTitle: '', skillRowString: '' }]);
 
-  console.log('skillState', skillState);
-
   const maxFormStageValue = 5;
   const hasFormInit = pageValue >= 2;
 
   const formData = {
     userName,
+    userTitle,
     address,
     phone,
     email,
     gitLink,
     portfolioLink,
+    linkedinUrl,
     workEntries: workState,
     projectEntries: projectState,
     eduEntries: eduState,
     skillEntries: skillState
   };
-
-  console.log('RESUME FORM DATA', formData);
 
   const handleNextBtnClick = () => {
     if (formStageValue >= 0 && hasFormInit && !isAnimating) {
@@ -152,7 +150,6 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
     axios.post('/submit-form', formData)
       .then(response => response.data)
       .then((data) => {
-        console.log('data recieved', data);
         setResumeData(data);
       })
       .catch((error) => {
@@ -160,7 +157,7 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
       });
   }
 
-  const handleTransitionEnd = (event) => {
+  const handleTransitionEnd = () => {
     // Access the propertyName attribute of the event
     if (hasFormInit && isAnimating) {
       const currentValue = formStageValue;
@@ -202,7 +199,6 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
     }
   }, [formStageValue]);
 
-  console.log('formData', formData);
   return (
     <div className={`c-resume-form ${isLightMode ? 'light-mode' : ''}`}>
       <div className="form-messaging"></div>
@@ -213,6 +209,8 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
           <div className="c-contact-items list-items">
             <label for="user-name">Name</label>
             <input id="user-name" type="text" placeholder="Name" value={userName} onChange={(event) => setUserName(event.target.value)} />
+            <label for="user-title">Title</label>
+            <input id="user-title" type="text" placeholder="Title" value={userTitle} onChange={(event) => setUserTitle(event.target.value)} />
             <label for="address">Address</label>
             <input id="address" type="text" placeholder="Address" value={address} onChange={(event) => setAddress(event.target.value)} />
             <label for="phone">Contact Number</label>
@@ -221,6 +219,8 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
             <input id="email" type="text" placeholder="Email Address" value={email} onChange={(event) => setEmail(event.target.value)} />
             <label for="gitLink">Github Url</label>
             <input id="gitLink" type="text" placeholder="Github Url" value={gitLink} onChange={(event) => setGitLink(event.target.value)} />
+            <label for="linkedinUrl">Linkedin Url</label>
+            <input id="linkedinUrl" type="text" placeholder="Linkedin Url" value={linkedinUrl} onChange={(event) => setLinkedinUrl(event.target.value)} />
             <label for="portfolioLink">Portfolio Site Url</label>
             <input id="portfolioLink" type="text" placeholder="Portfolio Site Url" value={portfolioLink} onChange={(event) => setPortfolioLink(event.target.value)} />
           </div>

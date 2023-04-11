@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-import './SectionTitle.scss';
+import { Text, View, StyleSheet } from '@react-pdf/renderer';
 
 const SectionTitle = ({ titleString, data }) => {
   const { meta } = data;
@@ -12,8 +11,7 @@ const SectionTitle = ({ titleString, data }) => {
       fontWeight: 'bold',
       color: '#000',
       borderBottom: '1px solid #000',
-      margin: '0 -5px 5px -5px',
-      lineHeight: '1.1'
+      margin: '0 -5px 5px -5px'
     },
     sectionTitle: {
       textAlign: 'left',
@@ -39,7 +37,6 @@ const SectionTitle = ({ titleString, data }) => {
   };
 
   if (hasTopBottomBorder) {
-    console.log('hasTopBottomBorder', hasTopBottomBorder);
     styles.cSectionTitle = {
       ...styles.cSectionTitle,
       ...topBottomBorderStyle
@@ -56,13 +53,9 @@ const SectionTitle = ({ titleString, data }) => {
     ...styles,
   });
 
-  console.log('sectiontitleStyles obj', sectionTitleStyles);
-
-
-console.log('titlestring', titleString);
   return (
-    <View style={sectionTitleStyles.cSectionTitle} className={`c-section-title ${hasTopBottomBorder ? 'top-bottom-border' : ''}`}>
-      <Text style={sectionTitleStyles.sectionTitle} className="title">{`${titleString}`}</Text>
+    <View style={sectionTitleStyles.cSectionTitle}>
+      <Text style={sectionTitleStyles.sectionTitle}>{`${titleString}`}</Text>
     </View>
   );
 };

@@ -2,8 +2,6 @@ import React from 'react';
 import { Text, StyleSheet } from '@react-pdf/renderer';
 
 const WebLinks = ({ linkData }) => {
-
-  console.log('linkData', linkData);
   const styles = StyleSheet.create({
     viewLinks: {
       flexDirection: 'row'

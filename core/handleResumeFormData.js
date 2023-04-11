@@ -1,15 +1,11 @@
 const handleResumeFormData = (formData) => {
-  console.log('backend form data before tansformation', formData);
 
   const buildSkillCategories = (skillArray) => {
-    console.log('skillArray', skillArray);
     if (!skillArray) return null;
     const result = skillArray.reduce((result, entry) => {
       const { skillRowTitle = '', skillRowString = '' } = entry;
       return Object.assign(result, { [skillRowTitle]: skillRowString });
     }, {});
-
-    console.log('result', result);
 
     return result;
   }
@@ -17,14 +13,16 @@ const handleResumeFormData = (formData) => {
   const transformedData = {
     contact: {
       meta: {
-        'dataType': 'CONTACT',
-        'hasTopBottomBorder': false
+        dataType: 'CONTACT',
+        hasTopBottomBorder: false
       },
       content: {
-        'email': formData?.email,
-        'name': formData?.userName,
-        'phone': formData?.phone,
-        'address': formData?.address
+        email: formData?.email,
+        name: formData?.userName,
+        title: formData?.userTitle,
+        phone: formData?.phone,
+        address: formData?.address,
+        linkedinUrl: formData?.linkedinUrl
       }
     },
     companies: {
@@ -81,7 +79,7 @@ const handleResumeFormData = (formData) => {
       meta: {
         dataType: 'SKILL',
         layoutType: 'MULTI',
-        hasTopBottomBorder: true
+        hasTopBottomBorder: false
       },
       categories: buildSkillCategories(formData?.skillEntries)
     }
