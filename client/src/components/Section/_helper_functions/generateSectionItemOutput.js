@@ -6,7 +6,6 @@ import '../style.scss';
 
 const generateSectionItemOutput = (sectionItemData = []) => {
   const { dataType } = sectionItemData?.meta;
-  const itemClassName = dataType.toLowerCase();
   const isClassicSkillList = dataType === rules.SKILLS;
   let ItemOutputArray = [];
   let targetStyles = null;
