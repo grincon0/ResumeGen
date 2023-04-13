@@ -7,12 +7,12 @@ const FormList = ({ targetSection, reducerState, dispatch, isLightMode }) => {
   const [listIsAnimating, setListIsAnimation] = useState(false);
   const numberOfListItems = reducerState?.length;
 
-  const handleButtonClick = (btnType) => {
+  const handleButtonClick = () => {
     return dispatch({ type: 'ADD_ENTRY' });
   }
 
   const handleTransitionEnd = () => {
-    if (listIsAnimating) setListIsAnimation(false);
+    listIsAnimating && setListIsAnimation(false);
   }
 
   const transitionObj = {

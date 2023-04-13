@@ -5,15 +5,11 @@ const Landing = ({ propFunc }) => {
   const [click, setClickState] = useState(false);
 
   const handleButtonClick = () => {
-    if (!click) {
-      return setClickState(true);
-    }
+    if (!click) return setClickState(true);
     setClickState(false);
   }
 
-  const handlePropFunction = () => {
-    propFunc();
-  }
+  const handlePropFunction = propFunc;
 
   return (
     <div className={`c-landing ${click ? 'has-transition' : ''}`}>

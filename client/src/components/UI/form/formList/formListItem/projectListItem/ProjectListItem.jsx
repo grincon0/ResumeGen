@@ -3,8 +3,7 @@ import BulletTextArea from '../BulletTextArea/BulletTextArea';
 import getNumberSuffix from '../../../_helper_functions/getNumberSuffix';
 import ItemDeleteButton from '../_helper_components/itemDeleteButton/ItemDeleteButton';
 
-const ProjectListItem = ({ dispatch, reducerState, functions, element, index, transitionOut }) => {
-  const { handleTransitionEnd } = functions;
+const ProjectListItem = ({ dispatch, reducerState, element, index, transitionOut }) => {
   const numPlacement = index + 1;
   const handleInputChange = (name, value, elIndex) => {
     dispatch({
