@@ -26,12 +26,12 @@ const Header = ({ contactData }) => {
     viewName: {
       flex: '1',
       flexDirection: 'column',
-      textAlign:'center',
+      textAlign: 'center',
       alignItems: 'center',
       fontSize: '16px',
       fontWeight: 'bold',
     },
-    name : {
+    name: {
       fontFamily: 'Helvetica-Bold',
     },
     title: {
