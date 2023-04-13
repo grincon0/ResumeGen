@@ -6,7 +6,6 @@
   @include breakpoint(tablet) {
     width: 50%;
     margin-left: 25%;
-    /* margin-top: 25%; */
   }
 
   @include breakpoint(desktop-sm) {
