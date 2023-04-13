@@ -2,7 +2,6 @@ import React from 'react';
 import BulletList from '../_helper_components/BulletList';
 import rules from '../../../rules/dataTypes';
 import { Text, View, StyleSheet } from '@react-pdf/renderer';
-import '../style.scss';
 
 const generateSectionItemOutput = (sectionItemData = []) => {
   const { dataType } = sectionItemData?.meta;

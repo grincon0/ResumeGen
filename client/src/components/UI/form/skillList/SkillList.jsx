@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import SkillRow from './_helper_components/SkillRow';
 
 const SkillList = ({ }) => {
-  const [useRows, setUseRows] = useState(true);
   const [rowCount, setRowCount] = useState([true]);
 
   const increaseRowCount = () => {

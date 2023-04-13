@@ -1,23 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import JSON from '../../../JSON/content.json'
+import React, { useState } from 'react';
 import Landing from '../landing/Landing';
-import '../../../styles/_index.scss';
-import './default.scss';
 import FormWrapper from '../formWrapper/FormWrapper';
 import ColorModeIcon from './_helper_components/ColorModeIcon';
-import PDFResume from '../../PDF/PDFResume';
+import '../../../styles/_index.scss';
+import './default.scss';
 
 const DefaultLayout = () => {
   const [viewValue, setViewValue] = useState(1);
   const [isLightMode, setIsLightMode] = useState(true);
 
   const handleColorMode = () => {
-    if (isLightMode) {
-      return setIsLightMode(false)
-    }
-
-    return setIsLightMode(true)
-  }
+    setIsLightMode(isLightMode => !isLightMode);
+  };
 
   return (
     <>
@@ -38,15 +32,6 @@ const DefaultLayout = () => {
             </div>
           </>)
         }
-{/*         {viewValue === 3 && (<>
-          <PDFDownloadLink document={<PDFResume resumeJSON={JSON} />} filename="FORM">
-            {({ loading }) => (loading ? <button>Loading Document...</button> : <button>Download</button>)}
-          </PDFDownloadLink>
-        </>)} */}
-
-        {/* ReactPDF.render(<MyDocument />, `${__dirname}/example.pdf`); */}
-
-        {/* {resumeValue === 1 ? <ClassicLayout resumeData={JSON} /> : <ModernLayout resumeData={JSON} /> } */}
       </div>
     </>
   );
