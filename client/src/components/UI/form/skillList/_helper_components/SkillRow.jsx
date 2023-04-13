@@ -2,8 +2,7 @@ import React from 'react';
 import getNumberSuffix from '../../_helper_functions/getNumberSuffix';
 import ItemDeleteButton from '../../formList/formListItem/_helper_components/itemDeleteButton/ItemDeleteButton';
 
-const SkillRow = ({ dispatch, index, functions, transitionOut }) => {
-  const { handleTransitionEnd } = functions;
+const SkillRow = ({ dispatch, index, transitionOut }) => {
   const numPlacement = index + 1;
   const handleInputChange = (name, value, elIndex) => {
     dispatch({

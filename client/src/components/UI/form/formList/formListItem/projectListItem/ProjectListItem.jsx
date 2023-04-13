@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import BulletTextArea from '../BulletTextArea/BulletTextArea';
 import getNumberSuffix from '../../../_helper_functions/getNumberSuffix';
 import ItemDeleteButton from '../_helper_components/itemDeleteButton/ItemDeleteButton';
