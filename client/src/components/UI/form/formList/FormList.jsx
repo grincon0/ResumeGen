@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { EduListItem, ProjectListItem, WorkListItem } from './formListItem/index';
-import SkillList from '../skillList/SkillList';
 import SkillRow from '../skillList/_helper_components/SkillRow';
 import FormListAddSubButton from './formListAddSub/FormListAddSub';
 
@@ -8,12 +7,12 @@ const FormList = ({ targetSection, reducerState, dispatch, isLightMode }) => {
   const [listIsAnimating, setListIsAnimation] = useState(false);
   const numberOfListItems = reducerState?.length;
 
-  const handleButtonClick = (btnType) => {
+  const handleButtonClick = () => {
     return dispatch({ type: 'ADD_ENTRY' });
   }
 
   const handleTransitionEnd = () => {
-    if (listIsAnimating) setListIsAnimation(false);
+    listIsAnimating && setListIsAnimation(false);
   }
 
   const transitionObj = {

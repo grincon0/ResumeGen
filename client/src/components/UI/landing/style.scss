@@ -1,35 +1,35 @@
 @import "../../../styles/mixins";
 .App {
-
   &.light-mode {
-
     .c-landing {
-
       .headline {
-        background: rgb(152,76,255);
-        background: linear-gradient(331deg, rgba(152,76,255,1) 0%, rgba(85,55,230,1) 62%);
+        background: rgb(152, 76, 255);
+        background: linear-gradient(
+          331deg,
+          rgba(152, 76, 255, 1) 0%,
+          rgba(85, 55, 230, 1) 62%
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-  
+
       .sub-headline {
         color: #787878;
       }
 
       .call-to-action {
-        color:#303030;
+        color: #303030;
       }
 
       .c-button button {
         background-color: #47eaff;
       }
     }
-
   }
+
   .c-landing {
     margin: 0 auto;
     width: 100%;
-    /* height: 100vh; */
     height: auto;
     margin-top: 50%;
     float: left;
@@ -53,7 +53,7 @@
     }
 
     @include breakpoint(tablet) {
-      margin: 65vh auto auto 10vw;
+      margin: 40vh auto auto 10vw;
       text-align: left;
       width: 70vw;
 
@@ -80,7 +80,6 @@
     }
 
     @include breakpoint(desktop-lg) {
-
     }
 
     &.has-transition {

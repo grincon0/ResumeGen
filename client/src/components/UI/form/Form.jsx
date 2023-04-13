@@ -24,7 +24,7 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
   const [resumeData, setResumeData] = useState(null);
   const backBtn = useRef(null);
 
-  /* ADD_ENTRY will push new obj, which will in turn allow for the comp to render another set of list item inputs */
+  /* ADD_ENTRY will push new obj, this will allow for the component to render another set of list item inputs */
   const workReducer = (state, action) => {
     switch (action.type) {
       case 'ADD_ENTRY':
@@ -131,31 +131,29 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
   };
 
   const handleNextBtnClick = () => {
-    if (formStageValue >= 0 && hasFormInit && !isAnimating) {
-      setIsAnimating(true);
-    }
+    const isReadyToAnimate = formStageValue >= 0 && hasFormInit && !isAnimating;
+    if (isReadyToAnimate) setIsAnimating(true);
   };
 
   const handleBackBtnClick = (event) => {
     event.preventDefault();
-    if (formStageValue >= 0 && hasFormInit && !isAnimating) {
+    const isReadyToAnimate = formStageValue >= 0 && hasFormInit && !isAnimating;
+    if (isReadyToAnimate) {
       setButtonClickType(backBtn.current.dataset.btnType);
       setIsAnimating(true);
     }
   };
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    setFormSubmitted(true);
-    axios.post('/submit-form', formData)
-      .then(response => response.data)
-      .then((data) => {
-        setResumeData(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+  const handleFormSubmit = async (event) => {
+    try {
+      event.preventDefault();
+      setFormSubmitted(true);
+      const response = await axios.post('/submit-form', formData);
+      setResumeData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleTransitionEnd = () => {
     // Access the propertyName attribute of the event
@@ -172,19 +170,19 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
   };
 
   const handleClassOutput = (formStageLimit) => {
-    if (formStageValue === maxFormStageValue) {
-      return '';
-    } else if (!isAnimating && hasFormInit && formStageValue === formStageLimit) {
-      return 'show';
-    } else if (isAnimating && hasFormInit && formStageValue === formStageLimit) {
-      return 'transition-out';
-    } else {
-      return 'hidden';
-    }
+    if (formStageValue === maxFormStageValue) return '';
+    
+    const isAtFormStageLimit = formStageValue === formStageLimit;
+
+    if (!isAnimating && hasFormInit && isAtFormStageLimit) return 'show';
+
+    if (isAnimating && hasFormInit && isAtFormStageLimit) return 'transition-out';
+
+    return 'hidden';
   };
 
   const handleFormClick = () => {
-    if(resumeData || formSubmitted) {
+    if (resumeData || formSubmitted) {
       setResumeData(null);
       setFormSubmitted(false);
     }
@@ -205,43 +203,43 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
       <ProgressMeter currentValue={formStageValue} maxValue={maxFormStageValue} isLightMode={isLightMode} />
       <form id="resume-form" className={`resume-form ${isReviewing ? 'reviewing' : ''}`} onSubmit={handleFormSubmit}>
         <div onClick={handleFormClick}>
-        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-zero ${handleClassOutput(0)}`}>
-          <div className="c-contact-items list-items">
-            <label for="user-name">Name</label>
-            <input id="user-name" type="text" placeholder="Name" value={userName} onChange={(event) => setUserName(event.target.value)} />
-            <label for="user-title">Title</label>
-            <input id="user-title" type="text" placeholder="Title" value={userTitle} onChange={(event) => setUserTitle(event.target.value)} />
-            <label for="address">Address</label>
-            <input id="address" type="text" placeholder="Address" value={address} onChange={(event) => setAddress(event.target.value)} />
-            <label for="phone">Contact Number</label>
-            <input id="phone" type="text" placeholder="Phone #" value={phone} onChange={(event) => setPhone(event.target.value)} />
-            <label for="email">Email</label>
-            <input id="email" type="text" placeholder="Email Address" value={email} onChange={(event) => setEmail(event.target.value)} />
-            <label for="gitLink">Github Url</label>
-            <input id="gitLink" type="text" placeholder="Github Url" value={gitLink} onChange={(event) => setGitLink(event.target.value)} />
-            <label for="linkedinUrl">Linkedin Url</label>
-            <input id="linkedinUrl" type="text" placeholder="Linkedin Url" value={linkedinUrl} onChange={(event) => setLinkedinUrl(event.target.value)} />
-            <label for="portfolioLink">Portfolio Site Url</label>
-            <input id="portfolioLink" type="text" placeholder="Portfolio Site Url" value={portfolioLink} onChange={(event) => setPortfolioLink(event.target.value)} />
+          <div onTransitionEnd={handleTransitionEnd} className={`segment phase-zero ${handleClassOutput(0)}`}>
+            <div className="c-contact-items list-items">
+              <label for="user-name">Name</label>
+              <input id="user-name" type="text" placeholder="Name" value={userName} onChange={(event) => setUserName(event.target.value)} />
+              <label for="user-title">Title</label>
+              <input id="user-title" type="text" placeholder="Title" value={userTitle} onChange={(event) => setUserTitle(event.target.value)} />
+              <label for="address">Address</label>
+              <input id="address" type="text" placeholder="Address" value={address} onChange={(event) => setAddress(event.target.value)} />
+              <label for="phone">Contact Number</label>
+              <input id="phone" type="text" placeholder="Phone #" value={phone} onChange={(event) => setPhone(event.target.value)} />
+              <label for="email">Email</label>
+              <input id="email" type="text" placeholder="Email Address" value={email} onChange={(event) => setEmail(event.target.value)} />
+              <label for="gitLink">Github Url</label>
+              <input id="gitLink" type="text" placeholder="Github Url" value={gitLink} onChange={(event) => setGitLink(event.target.value)} />
+              <label for="linkedinUrl">Linkedin Url</label>
+              <input id="linkedinUrl" type="text" placeholder="Linkedin Url" value={linkedinUrl} onChange={(event) => setLinkedinUrl(event.target.value)} />
+              <label for="portfolioLink">Portfolio Site Url</label>
+              <input id="portfolioLink" type="text" placeholder="Portfolio Site Url" value={portfolioLink} onChange={(event) => setPortfolioLink(event.target.value)} />
+            </div>
           </div>
-        </div>
-        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${isReviewing ? 'in-review' : ''} ${handleClassOutput(1)}`}>
-          <FormList isLightMode={isLightMode} dispatch={dispatchWorkEntry} reducerState={workState} targetSection={getResumeFormSection(1)} />
-        </div>
-        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${isReviewing ? 'in-review' : ''} ${handleClassOutput(2)}`}>
-          <FormList isLightMode={isLightMode} dispatch={dispatchProjectEntry} reducerState={projectState} targetSection={getResumeFormSection(2)} />
-        </div>
-        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${isReviewing ? 'in-review' : ''} ${handleClassOutput(3)}`}>
-          <FormList isLightMode={isLightMode} dispatch={dispatchEduEntry} reducerState={eduState} targetSection={getResumeFormSection(3)} />
-        </div>
-        <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${isReviewing ? 'in-review' : ''} ${handleClassOutput(4)}`}>
-          <FormList isLightMode={isLightMode} dispatch={dispatchSkillEntry} reducerState={skillState} targetSection={getResumeFormSection(4)} />
-        </div>
+          <div onTransitionEnd={handleTransitionEnd} className={`segment phase-one ${isReviewing ? 'in-review' : ''} ${handleClassOutput(1)}`}>
+            <FormList isLightMode={isLightMode} dispatch={dispatchWorkEntry} reducerState={workState} targetSection={getResumeFormSection(1)} />
+          </div>
+          <div onTransitionEnd={handleTransitionEnd} className={`segment phase-two ${isReviewing ? 'in-review' : ''} ${handleClassOutput(2)}`}>
+            <FormList isLightMode={isLightMode} dispatch={dispatchProjectEntry} reducerState={projectState} targetSection={getResumeFormSection(2)} />
+          </div>
+          <div onTransitionEnd={handleTransitionEnd} className={`segment phase-three ${isReviewing ? 'in-review' : ''} ${handleClassOutput(3)}`}>
+            <FormList isLightMode={isLightMode} dispatch={dispatchEduEntry} reducerState={eduState} targetSection={getResumeFormSection(3)} />
+          </div>
+          <div onTransitionEnd={handleTransitionEnd} className={`segment phase-four ${isReviewing ? 'in-review' : ''} ${handleClassOutput(4)}`}>
+            <FormList isLightMode={isLightMode} dispatch={dispatchSkillEntry} reducerState={skillState} targetSection={getResumeFormSection(4)} />
+          </div>
         </div>
         {(isReviewing && !formSubmitted) && <button className="submit-btn" type="submit">Submit Form</button>}
         {(formSubmitted && resumeData) && (<PDFDownloadLink document={<PDFResume resumeJSON={resumeData} />} filename="FORM">
-            {({ loading }) => (loading ? <button className="submit-btn">Generating Resume...</button> : <button className="submit-btn">Download Resume</button>)}
-          </PDFDownloadLink>)}
+          {({ loading }) => (loading ? <button className="submit-btn">Generating Resume...</button> : <button className="submit-btn">Download Resume</button>)}
+        </PDFDownloadLink>)}
       </form>
       <div className={`c-form-nav ${formStageValue === 0 ? 'on-contact-form' : ''}`}>
         {formStageValue < maxFormStageValue && formStageValue > 0 && <button ref={backBtn} data-btn-type="back" className="back-btn" onClick={(event) => handleBackBtnClick(event)}>Back</button>}

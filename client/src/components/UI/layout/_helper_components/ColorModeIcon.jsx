@@ -5,7 +5,7 @@ import sunSVG from '../../../../resources/icons/sun.svg';
 const ColorModeIcon = ({isLightMode, handleColorMode}) => {
   const svgIconSrc = isLightMode ? sunSVG : moonSVG;
   return (<div className="c-color-mode">
-    {<img src={svgIconSrc} onClick={handleColorMode} />}
+    {<img alt="color-mode-icon" src={svgIconSrc} onClick={handleColorMode} />}
   </div>);
 };
 

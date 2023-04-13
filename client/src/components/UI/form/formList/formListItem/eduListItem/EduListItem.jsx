@@ -3,9 +3,9 @@ import BulletTextArea from '../BulletTextArea/BulletTextArea';
 import getNumberSuffix from '../../../_helper_functions/getNumberSuffix';
 import ItemDeleteButton from '../_helper_components/itemDeleteButton/ItemDeleteButton';
 
-const EduListItem = ({ element, index, reducerState, functions, transitionOut, dispatch }) => {
-  const { handleTransitionEnd } = functions;
+const EduListItem = ({ element, index, reducerState, transitionOut, dispatch }) => {
   const numPlacement = index + 1;
+
   const handleInputChange = (name, value, elIndex) => {
     dispatch({
       type: 'UPDATE_ENTRY',
@@ -13,9 +13,7 @@ const EduListItem = ({ element, index, reducerState, functions, transitionOut, d
     });
   };
 
-
   const handleDeleteButtonClick = (index) => {
-    // debugger;
     dispatch({
       type: 'DELETE_ENTRY',
       payload: { elIndex: index }
