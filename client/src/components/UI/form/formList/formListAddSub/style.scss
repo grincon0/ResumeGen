@@ -1,15 +1,14 @@
-@import '../../../../../styles/mixins';
+@import "../../../../../styles/mixins";
 
 .c-form-list-add-sub {
   display: flex;
   justify-content: right;
 
   &.light-mode {
-    .c-form-list-add {
-      .add-form-list {
-        background: linear-gradient(146deg, #e8faff, #c3d3dc);
-        box-shadow: -24px -24px 47px #a3b0b7, 24px 24px 47px #ffffff;
-      }
+
+    .c-form-list-add .add-form-list {
+      background: linear-gradient(146deg, #e8faff, #c3d3dc);
+      box-shadow: -24px -24px 47px #a3b0b7, 24px 24px 47px #ffffff;
     }
 
     .add-form-list {

@@ -3,9 +3,8 @@ import { Text, View, StyleSheet } from '@react-pdf/renderer';
 import dataTypes from '../../../rules/dataTypes';
 import rules from '../../../rules/dataTypes';
 
-const BulletList = ({ bulletArr, dataType, bulletStyles }) => {
+const BulletList = ({ bulletArr }) => {
   let targetBulletStyles = null;
-  /* const projectBulletIcon = ' - '; */
   const defaultBulletIcon = '• ';
 
   const bulletListStyles = {
@@ -54,8 +53,8 @@ const BulletList = ({ bulletArr, dataType, bulletStyles }) => {
     targetBulletStyles = StyleSheet.create({ ...bulletListStyles })
   }
 
-
   if (!bulletArr) return null;
+
   const output = bulletArr.map((bulletData) => {
     return (
       <View style={targetBulletStyles.viewBullet}>
