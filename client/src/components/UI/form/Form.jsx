@@ -23,6 +23,7 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [resumeData, setResumeData] = useState(null);
   const backBtn = useRef(null);
+  const activeFormRef = useRef(null);
 
   /* ADD_ENTRY will push new obj, this will allow for the component to render another set of list item inputs */
   const workReducer = (state, action) => {
@@ -155,8 +156,7 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
     }
   };
 
-  const handleTransitionEnd = () => {
-    // Access the propertyName attribute of the event
+/*   const handleTransitionEnd = () => {
     if (hasFormInit && isAnimating) {
       const currentValue = formStageValue;
       if (buttonClickType === 'back') {
@@ -167,6 +167,16 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
       setButtonClickType(null);
       setIsAnimating(false);
     }
+  }; */
+
+  const handleTransitionEnd = () => {
+    if (!hasFormInit || !isAnimating) return;
+  
+    const currentValue = formStageValue;
+    const updatedValue = buttonClickType === 'back' ? currentValue - 1 : currentValue + 1;
+    setformStageValue(updatedValue);
+    setButtonClickType(null);
+    setIsAnimating(false);
   };
 
   const handleClassOutput = (formStageLimit) => {

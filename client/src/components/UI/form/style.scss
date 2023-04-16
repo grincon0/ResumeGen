@@ -159,7 +159,7 @@
     .segment,
     .segment .c-form-list {
       margin-bottom: 25px;
-      transition: all 0.7s;
+      transition: all 0.5s;
 
       @include breakpoint(desktop-lg) {
         margin-bottom: 45px;
@@ -197,12 +197,13 @@
 
         &.hidden {
           // display: none;
-          position: absolute;
+          position: fixed;
           opacity: 0;
           width: 0;
           height: 0;
           transform: translateX(100vw);
           z-index: -2;
+          visibility: hidden;
         }
 
         &.transition-out {
