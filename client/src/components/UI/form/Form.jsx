@@ -176,7 +176,9 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
 
     if (!isAnimating && hasFormInit && isAtFormStageLimit) return 'show';
 
-    if (isAnimating && hasFormInit && isAtFormStageLimit) return 'transition-out';
+    if (isAnimating && hasFormInit && isAtFormStageLimit && !buttonClickType) return 'transition-out';
+
+    if (isAnimating && hasFormInit && isAtFormStageLimit && buttonClickType === 'back') return 'transition-out right';
 
     return 'hidden';
   };

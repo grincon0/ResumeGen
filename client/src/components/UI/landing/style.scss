@@ -79,7 +79,33 @@
       }
     }
 
-    @include breakpoint(desktop-lg) {
+    @include breakpoint(desktop-xxl) {
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      max-width: none;
+      margin-left: 0;
+      text-align: center;
+
+      .headline {
+        font-size: 8vw;
+      }
+
+      .sub-headline {
+        font-size: 2vw;
+        padding: 0 30vw 35px;
+        line-height: 1.2;
+      }
+      
+      span.call-to-action {
+        display: none;
+      }
+
+      .c-button button {
+        height: calc(56px + 1.3vw);
+        font-size: 1.3vw;
+        width: calc(26% + 1.3vw);
+      }
     }
 
     &.has-transition {
@@ -135,7 +161,7 @@
       transition: transform 0.7s, opacity 0.3s;
     }
 
-    .c-button button {
+    button {
       background: rgb(255 171 0 / 93%);
       color: #000;
       width: 195px;
