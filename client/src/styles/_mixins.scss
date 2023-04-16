@@ -5,6 +5,7 @@ $breakpoint: (
   desktop-sm: 1024px,
   desktop-lg: 1280px,
   desktop-xl: 1360px,
+  desktop-xxl: 1500px
 ) !default;
 
 @mixin between-breakpoints($pointA, $pointB) {
@@ -45,6 +46,13 @@ $breakpoint: (
     @if $point == desktop-xl {
 
       @media only screen and (min-width: map-get($breakpoint, desktop-xl)) {
+        @content;
+      }
+    }
+
+    @if $point == desktop-xxl {
+
+      @media only screen and (min-width: map-get($breakpoint, desktop-xxl)) {
         @content;
       }
     }

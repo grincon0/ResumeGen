@@ -45,7 +45,10 @@
 
       @include breakpoint(desktop-lg) {
         margin-left: 92vw;
-        width: 55px;
+      }
+
+      @include breakpoint(desktop-xxl) {
+        width: calc(75px + 2.1vw);
       }
     }
   }
