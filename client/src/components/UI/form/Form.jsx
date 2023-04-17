@@ -7,7 +7,7 @@ import PDFResume from '../../PDF/PDFResume';
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import './style.scss';
 
-const Form = ({ pageValue, setPageValue, isLightMode }) => {
+const Form = ({ pageValue, isLightMode }) => {
   const [formStageValue, setformStageValue] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
@@ -155,19 +155,6 @@ const Form = ({ pageValue, setPageValue, isLightMode }) => {
       console.error(error);
     }
   };
-
-/*   const handleTransitionEnd = () => {
-    if (hasFormInit && isAnimating) {
-      const currentValue = formStageValue;
-      if (buttonClickType === 'back') {
-        setformStageValue(currentValue - 1);
-      } else {
-        setformStageValue(currentValue + 1);
-      }
-      setButtonClickType(null);
-      setIsAnimating(false);
-    }
-  }; */
 
   const handleTransitionEnd = () => {
     if (!hasFormInit || !isAnimating) return;
