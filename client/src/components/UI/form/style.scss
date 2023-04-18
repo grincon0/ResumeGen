@@ -192,11 +192,9 @@
           z-index: 2;
           width: auto;
           height: auto;
-          // display: block;
         }
 
         &.hidden {
-          // display: none;
           position: fixed;
           opacity: 0;
           width: 0;
